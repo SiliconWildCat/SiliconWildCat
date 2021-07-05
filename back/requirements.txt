@@ -1,0 +1,5 @@
+flask
+jsonify
+requests
+gunicorn>=20.0.4
+pymysql

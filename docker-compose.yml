@@ -1,0 +1,54 @@
+version: '3'
+services:
+  mysql_db:
+    image: mysql:latest
+    restart: always
+    networks:
+        - app_tier
+    volumes:
+        - ./mysql/db:/var/lib/mysql
+    ports:
+        - "3306:3306"
+    cap_add:
+        - SYS_NICE
+    environment:
+        - MYSQL_DATABASE=app
+        - MYSQL_USER=user
+        - MYSQL_PASSWORD=1234
+        - MYSQL_ROOT_PASSWORD=1234
+
+  front:
+    build:
+      context: ./front
+    ports:
+      - "3000:3000"
+    container_name: front
+    stdin_open: true 
+    restart: always
+    networks:
+        - app_tier
+    volumes:
+       - ./front:/usr/src/app/front
+       - /usr/src/app/front/node_modules
+
+  back:
+    build:
+      context: .
+      dockerfile: ./back/Dockerfile
+    ports:
+      - "5000:5000"
+    container_name: back
+    restart: always 
+    links:
+        - mysql_db:mysql_db 
+    depends_on:
+        - mysql_db
+    networks:
+        - app_tier
+    volumes:
+       - ./back/web:/app        
+    command: gunicorn -w 1 -b 0.0.0.0:5000 app:app
+
+networks:  # 네트워크 이름 
+  app_tier:
+    driver: bridge  # 컨테이너를 bridge로 연결 
