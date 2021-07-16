@@ -33,9 +33,11 @@ RUN pip3 install -r requirements.txt
 RUN pip3 install -q --no-cache-dir "konlpy" "jamo" "nltk" "python-mecab-ko"
 #RUN pip3 install -q --no-cache-dir -e .
 
+
 WORKDIR /app
-# RUN git clone --depth 1 https://github.com/sce-tts/TTS.git -b sce-tts
-#RUN pip3 install -q --no-cache-dir -e .
+# RUN git clone --depth 1 https://github.com/sce-tts/TTS.git -b sce-t
+RUN pip3 install TTS
+#RUN pip3 install -e .
 
 # 5000번 포트 노출 
 EXPOSE 5000

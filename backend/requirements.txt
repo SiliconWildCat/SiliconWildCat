@@ -13,4 +13,3 @@ nltk
 pysbd
 torch
 cython
-TTS
