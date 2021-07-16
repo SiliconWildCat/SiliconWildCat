@@ -1,0 +1,16 @@
+flask
+jsonify
+requests
+gunicorn>=20.0.4
+pymysql
+flask_cors
+flask_sqlalchemy
+mysql-connector-python
+flask_ngrok
+jamo
+konlpy
+nltk
+pysbd
+torch
+cython
+TTS

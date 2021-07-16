@@ -6,7 +6,7 @@ services:
     networks:
         - app_tier
     volumes:
-        - /var/lib/mysql
+        - ./mysql/db:/var/lib/mysql
     ports:
         - "3306:3306"
     cap_add:
@@ -17,26 +17,26 @@ services:
         - MYSQL_PASSWORD=1234
         - MYSQL_ROOT_PASSWORD=1234
 
-  front:
+  frontend:
     build:
-      context: ./front
+      context: ./frontend
     ports:
       - "3000:3000"
-    container_name: front
+    container_name: frontend
     stdin_open: true 
     restart: always
     networks:
         - app_tier
     volumes:
-       - ./front:/usr/src/app/front
-       - /usr/src/app/front/node_modules
+       - ./frontend:/usr/src/app/frontend
+       - /usr/src/app/frontend/node_modules
 
-  back:
+  backend:
     build:
-      context: ./back
+      context: ./backend
     ports:
       - "5000:5000"
-    container_name: back
+    container_name: backend
     restart: always 
     links:
         - mysql_db:mysql_db 
@@ -45,8 +45,8 @@ services:
     networks:
         - app_tier
     volumes:
-       - ./back/web:/app        
-    command: gunicorn -w 1 -b 0.0.0.0:5000 app:app
+       - ./backend/web:/app        
+    command: gunicorn -w 1 -b 0.0.0.0:5000 run:app
 
   nginx:
     image: nginx:latest
@@ -56,8 +56,8 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
     depends_on:
-      - front
-      - back
+      - frontend
+      - backend
     networks: 
       - app_tier
     restart: "on-failure"
