@@ -45,3 +45,8 @@ docker-compose down
 docker rmi 이미지이름
 ex ) docker rmi docker_backend
 ```
+
+8. docker container output 확인
+```
+docker logs --tail 50 --follow --timestamps backend
+```
