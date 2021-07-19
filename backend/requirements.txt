@@ -11,6 +11,5 @@ jamo
 konlpy
 nltk
 pysbd
-torch
 cython
 soundfile

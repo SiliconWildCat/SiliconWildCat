@@ -28,33 +28,19 @@ RUN pip3 install markupsafe==1.0.0
 RUN pip3 install -r requirements.txt 
 
 
-<<<<<<< Updated upstream
-=======
+
 RUN git clone --depth 1 https://github.com/sce-tts/g2pK.git
 RUN git clone --depth 1 https://github.com/sce-tts/TTS.git -b sce-tts
 
 WORKDIR /app/g2pK
 RUN pip3 install -q --no-cache-dir "konlpy" "jamo" "nltk" "python-mecab-ko"
 RUN pip3 install -q --no-cache-dir -e .
->>>>>>> Stashed changes
 
-# RUN git clone --depth 1 https://github.com/sce-tts/g2pK.git
-RUN pip3 install -q --no-cache-dir "konlpy" "jamo" "nltk" "python-mecab-ko"
-#RUN pip3 install -q --no-cache-dir -e .
-
-<<<<<<< Updated upstream
-
-WORKDIR /app
-# RUN git clone --depth 1 https://github.com/sce-tts/TTS.git -b sce-t
-RUN pip3 install TTS
-#RUN pip3 install -e .
-
-=======
 WORKDIR /app/TTS
 RUN pip3 install TTS
 RUN pip3 install -q --no-cache-dir -e .
 WORKDIR /app
->>>>>>> Stashed changes
+
 # 5000번 포트 노출 
 EXPOSE 5000
 
