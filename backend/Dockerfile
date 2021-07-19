@@ -40,5 +40,6 @@ RUN pip3 install TTS
 RUN pip3 install -q --no-cache-dir 
 
 # 5000번 포트 노출 
+WORKDIR /app
 EXPOSE 5000
 
