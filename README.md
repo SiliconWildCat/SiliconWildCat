@@ -48,5 +48,5 @@ ex ) docker rmi docker_backend
 
 8. docker container output 확인
 ```
-docker logs --tail 50 --follow --timestamps docker_backend
+docker logs --tail 50 --follow --timestamps backend
 ```
