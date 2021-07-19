@@ -2,9 +2,9 @@ import os
 import re
 import sys
 from unicodedata import normalize
-import IPython
-
-sys.path.append("/content/TTS/g2pK")
+#import IPython
+#from pathlib import Path
+sys.path.append("/app/g2pK")
 from g2pK import g2pk
 from TTS.utils.synthesizer import Synthesizer
 
@@ -172,11 +172,11 @@ def synthesize(text):
 
 
 synthesizer = Synthesizer(
-    "/content/TTS/glowtts-v2/best_model.pth.tar",
-    "/content/TTS/glowtts-v2/config.json",
+    "/app/glowtts-v2/best_model.pth.tar",
+    "/app/glowtts-v2/config.json",
     None,
-    "/content/TTS/hifigan-v2/best_model_372791.pth.tar",
-    "/content/TTS/hifigan-v2/config.json",
+    "/app/hifigan-v2/best_model_372791.pth.tar",
+    "/app/hifigan-v2/config.json",
     None,
     None,
     False,

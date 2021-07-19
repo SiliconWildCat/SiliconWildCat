@@ -13,3 +13,4 @@ nltk
 pysbd
 torch
 cython
+soundfile

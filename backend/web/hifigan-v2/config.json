@@ -19,7 +19,7 @@
     "num_loader_workers": 0,
     "num_val_loader_workers": 0,
     "use_noise_augment": false,
-    "output_path": "/content/TTS/hifigan-v2",
+    "output_path": "/app/hifigan-v2",
     "distributed_backend": "nccl",
     "distributed_url": "tcp://localhost:54321",
     "audio": {
@@ -47,7 +47,7 @@
         "symmetric_norm": true,
         "max_norm": 4.0,
         "clip_norm": true,
-        "stats_path": "/content/TTS/hifigan-v2/scale_stats.npy"
+        "stats_path": "/app/hifigan-v2/scale_stats.npy"
     },
     "eval_split_size": 10,
     "data_path": "/content/TTS/filelists/wavs",
