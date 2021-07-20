@@ -1,10 +1,10 @@
 # Importing the necessary Libraries
 from flask_cors import cross_origin
 from flask import Flask, render_template, request
-#from inference import synthesize
+from inference import synthesize
 from flask_ngrok import run_with_ngrok
-#import IPython.display as ipd
-#import soundfile as sf
+
+import soundfile as sf
 from saveText import save_text
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -25,10 +25,10 @@ def homepage():
         text = request.form['speech']
         voice = request.form['voices']
         #text_to_speech(text,voice)
-        #wavs=synthesize(text)
+        wavs=synthesize(text)
         #ipd.display(ipd.Audio(wavs,rate=22050,autoplay=True))
         save_text(text,database,session)
-        #sf.write('/content/audio.wav',wavs, 22050, 'PCM_24')
+        sf.write('/app/audio.wav',wavs, 22050, 'PCM_24')
         return render_template('frontend.html')
     else:
         return render_template('frontend.html')
