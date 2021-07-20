@@ -11,5 +11,76 @@
             "name":"MIT",
             "url":"https://opensource.org/licenses/MIT"
         }
+    },
+    "servers": [
+      {
+        "url": "/"
+      }
+    ],
+    "tags": [
+      {
+        "name": "Text To Speech Request",
+        "description": "Example API for requesting and return requests"
+      }
+    ],
+    "paths": {
+      "/": {
+        "post": {
+          "tags": [
+            "Speech Request"
+          ],
+          "summary": "Create a Speech from text",
+          "requestBody": {
+            "description": "Speech Request Post Object",
+            "required": true,
+            "content": {
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/text"
+                }
+              }
+            }
+          },
+          "produces": [
+            "application/x-www-form-urlencoded"
+          ],
+          "responses": {
+            "201": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/components/schemas/text"
+              }
+            },
+            "400": {
+              "description": "Failed. Bad post data."
+            }
+          }
+        }
+      }
+    },
+
+    "components": {
+      "schemas": {
+        "texts":{
+          "type":"object",
+          "additionalProperties":{
+            "$ref": "#/components/schemas/text"
+          }
+        },
+
+        "text": {
+          "type": "object",
+          "properties": {
+            "speech": {
+              "type": "string"
+            },
+            "voices":{
+              "type": "string"
+            }
+          }
+        }
+      }
     }
+
+
 }
