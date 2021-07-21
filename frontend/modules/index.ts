@@ -1,9 +1,13 @@
 import { combineReducers, AnyAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 import { ICounter } from '../interface/counter';
-import counter from './counter';
+import { Sample } from './counter';
+import { all } from 'redux-saga/effects';
+import counter, { sampleSaga } from './counter';
+import loading from './loading';
 export interface State {
-  counter: ICounter;
+  counter: Sample;
+  loading: undefined;
 }
 
 const rootReducer = (state: State | undefined, action: AnyAction) => {
@@ -11,9 +15,8 @@ const rootReducer = (state: State | undefined, action: AnyAction) => {
     case HYDRATE:
       console.log('HYDRATE');
       return action.payload;
-
     default: {
-      const combineReducer = combineReducers({ counter });
+      const combineReducer = combineReducers({ counter, loading });
       return combineReducer(state, action);
     }
   }
@@ -21,3 +24,7 @@ const rootReducer = (state: State | undefined, action: AnyAction) => {
 
 export type RootState = ReturnType<typeof rootReducer>;
 export default rootReducer;
+
+export function* rootSaga() {
+  yield all([sampleSaga()]);
+}
