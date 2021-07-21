@@ -1,3 +1,4 @@
+const path = require('path');
 module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
@@ -21,7 +22,7 @@ module.exports = {
 };
 // module.exports = {
 //   webpack: (config) => {
-//     config.module.rules.push({
+//     config.module.rules.push({z
 //       test: /.(png|jpg)$/,
 //       use: [
 //         {
