@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# nextjs-boilerplate
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- 참고 블로그
 
-## Available Scripts
+'https://qnrjs42.github.io/react/redux/next_redux_toolkit/#pages_apptsx'
+'https://xploitdev.com/dev/next-redux-toolkit/'
 
-In the project directory, you can run:
+## 구성
 
-### `npm start`
+- nextjs + typescript + redux-toolkit + styled-components
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 최초 세팅
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+> next 설정
 
-### `npm test`
+    yarn create next-app .
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+> typescript 설정
 
-### `npm run build`
+    touch ./next-env.d.ts
+    yarn add --dev typescript @types/react @types/node
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## styled-components
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+> `.babelrc`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    touch .babelrc
 
-### `npm run eject`
+```json
+{
+  "presets": ["next/babel"],
+  "plugins": [
+    [
+      "styled-components",
+      {
+        "ssr": true,
+        "displayName": true,
+        "preprocess": false
+      }
+    ]
+  ]
+}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+> `webpack`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    code ./next.config.js
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## redux-toolkit
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- hydrate : HYDRATE는 next에서 서버사이드 렌더링을 할때 서버의 스토어와 클라이언트의 스토어를 합쳐주는 역할을 합니다. HYDRATE 액션이 호출될 때 처리하도록 구현합니다.
