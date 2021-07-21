@@ -1,0 +1,6 @@
+[submodule "backend/web/g2pK"]
+	path = backend/web/g2pK
+	url = https://github.com/sce-tts/g2pK.git
+[submodule "backend/web/TTS"]
+	path = backend/web/TTS
+	url = https://github.com/sce-tts/TTS.git
