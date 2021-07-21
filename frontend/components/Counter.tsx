@@ -1,36 +1,61 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addNumber, subNumber } from '../modules/counter';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPost, getUsers } from '../modules/counter';
+import { useCallback, useEffect } from 'react';
 import { useAppSelector } from '../hooks/useSelector';
-import styled from 'styled-components';
-import { State, RootState } from '../modules';
-export function useCounter() {
+import { RootState } from '../modules';
+export function useSample() {
+  const { post, users, loadingPost, loadingUsers } = useAppSelector(
+    ({ counter, loading }: RootState) => ({
+      post: counter.post,
+      users: counter.users,
+      loadingPost: loading['counter/GET_POST'],
+      loadingUsers: loading['counter/GET_USERS'],
+    })
+  );
   const dispatch = useDispatch();
-  const { number } = useAppSelector((state: State) => ({
-    number: state.counter.number,
-  }));
-  const onClickAdd = () => {
-    dispatch(addNumber());
+  useEffect(() => {
+    dispatch(getPost(1));
+    dispatch(getUsers());
+  }, [dispatch]);
+  return {
+    post,
+    users,
+    loadingPost,
+    loadingUsers,
   };
-  const onClickMinus = () => {
-    dispatch(subNumber());
-  };
-
-  return { number, onClickAdd, onClickMinus };
 }
 
-const Number = styled.div`
-  color: green;
-  font-size: 2rem;
-`;
-
-export default function Counter() {
-  const { number, onClickAdd, onClickMinus } = useCounter();
+export default function Sample() {
+  const { post, users, loadingPost, loadingUsers } = useSample();
   return (
     <>
-      <Number>{number}</Number>
-      <button onClick={onClickAdd}>+1</button>
-      <button onClick={onClickMinus}>-1</button>
+      <section>
+        {loadingPost && '로딩중...'}
+        {!loadingPost && post && (
+          <div>
+            <>
+              <h3>{post.title}</h3>
+              <h3>{post.body}</h3>
+            </>
+          </div>
+        )}
+      </section>
+      <hr />
+      <section>
+        {loadingUsers && '로딩중...'}
+        {!loadingUsers && users && (
+          <>
+            <h1>사용자 목록</h1>
+            <ul>
+              {users.map((user) => (
+                <li key={user.id}>
+                  {user.id}({user.email})
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+      </section>
     </>
   );
 }
