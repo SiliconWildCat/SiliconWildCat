@@ -171,7 +171,7 @@ def synthesize(text,synthesizer):
 def create_synthesizer():
     voice_dict = {}
     #code = voice_dict[voice]
-    for voice in ('Taeyeon','KSS'):
+    for voice in ('TaeYeon','KSS'):
         glow_model_path="/app/glowtts-v2/"+voice+"/best_model.pth.tar"
         glow_config_path="/app/glowtts-v2/"+voice+"/config.json"
 

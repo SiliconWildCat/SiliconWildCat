@@ -47,7 +47,7 @@
         "symmetric_norm": true,
         "max_norm": 4.0,
         "clip_norm": true,
-        "stats_path": "/app/hifigan-v2/KSS/scale_stats.npy"
+        "stats_path": "/app/hifigan-v2/TaeYeon/scale_stats.npy"
     },
     "eval_split_size": 10,
     "data_path": "/content/TTS/filelists/wavs",

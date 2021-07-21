@@ -1,7 +1,7 @@
 # Importing the necessary Libraries
 from flask_cors import cross_origin
 from flask import Flask, render_template, request
-from inference import synthesize
+from inference import synthesize, create_synthesizer
 from flask_ngrok import run_with_ngrok
 
 import soundfile as sf
@@ -19,10 +19,6 @@ session = Session()
 #run_with_ngrok(app)
 
 voice_dict=create_synthesizer()
-
-@app.route('/static/<path:path>')
-def send_static(path):
-    return send_fron_directory('static',path)
 
 SWAGGER_URL = '/swagger'
 API_URL = '/static/swagger.json'
