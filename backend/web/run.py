@@ -18,6 +18,8 @@ Session = sessionmaker(database)
 session = Session()
 #run_with_ngrok(app)
 
+voice_dict=create_synthesizer()
+
 @app.route('/static/<path:path>')
 def send_static(path):
     return send_fron_directory('static',path)
@@ -34,20 +36,27 @@ swaggerui_blueprint = get_swaggerui_blueprint(
 
 app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 
+
 @app.route('/', methods=['POST', 'GET'])
 @cross_origin()
-def homepage():
+def voice_inference():
     if request.method == 'POST':
         text = request.form['speech']
         voice = request.form['voices']
-        #text_to_speech(text,voice)
-        wavs=synthesize(text)
-        #ipd.display(ipd.Audio(wavs,rate=22050,autoplay=True))
+        
+        syn=voice_dict[voice]
+        #symbols = syn.tts_config.characters.characters 
+        wavs=synthesize(text,syn)
+        
         save_text(text,database,session)
         sf.write('/app/audio.wav',wavs, 22050, 'PCM_24')
+
+        #return jsonify({"msg": 'Complete!'})
         return render_template('frontend.html')
     else:
         return render_template('frontend.html')
+
+
 
 
 if __name__ == "__main__":

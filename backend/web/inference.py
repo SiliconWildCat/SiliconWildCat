@@ -164,13 +164,38 @@ def normalize_multiline_text(long_text):
     normalized_texts = [normalize_text(text).strip() for text in texts]
     return [text for text in normalized_texts if len(text) > 0]
 
-def synthesize(text):
+def synthesize(text,synthesizer):
     wavs = synthesizer.tts(text, None, None)
     return wavs
 
+def create_synthesizer():
+    voice_dict = {}
+    #code = voice_dict[voice]
+    for voice in ('Taeyeon','KSS'):
+        glow_model_path="/app/glowtts-v2/"+voice+"/best_model.pth.tar"
+        glow_config_path="/app/glowtts-v2/"+voice+"/config.json"
+
+        hifi_model_path="/app/hifigan-v2/"+voice+"/best_model.pth.tar"
+        hifi_config_path="/app/hifigan-v2/"+voice+"/config.json"
+
+        synthesizer = Synthesizer(
+            glow_model_path,
+            glow_config_path,
+            None,
+            hifi_model_path,
+            hifi_config_path,
+            None,
+            None,
+            False,
+            )
+        voice_dict[voice]=synthesizer
+        symbols = synthesizer.tts_config.characters.characters   
+        
+    return voice_dict
 
 
 
+"""
 synthesizer = Synthesizer(
     "/app/glowtts-v2/best_model.pth.tar",
     "/app/glowtts-v2/config.json",
@@ -181,5 +206,6 @@ synthesizer = Synthesizer(
     None,
     False,
 )
-symbols = synthesizer.tts_config.characters.characters
+"""
+#symbols = synthesizer.tts_config.characters.characters
 
