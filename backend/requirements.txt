@@ -14,3 +14,4 @@ pysbd
 torch
 cython
 soundfile
+flask_swagger_ui

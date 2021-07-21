@@ -8,6 +8,7 @@ import soundfile as sf
 from saveText import save_text
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from flask_swagger_ui import get_swaggerui_blueprint
 
 
 app = Flask(__name__,template_folder='') #html 폴더 경로 설정
@@ -17,6 +18,21 @@ Session = sessionmaker(database)
 session = Session()
 #run_with_ngrok(app)
 
+@app.route('/static/<path:path>')
+def send_static(path):
+    return send_fron_directory('static',path)
+
+SWAGGER_URL = '/swagger'
+API_URL = '/static/swagger.json'
+swaggerui_blueprint = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    API_URL,
+    config = {
+        'app_name':"SilliconWildCat"
+    }
+)
+
+app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 
 @app.route('/', methods=['POST', 'GET'])
 @cross_origin()
