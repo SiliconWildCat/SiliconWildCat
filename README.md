@@ -9,7 +9,7 @@ Voice Style Transfer provides two main features:
 ---
 
 ## System Architecture
-![image](https://user-images.githubusercontent.com/78634177/126662528-1342d915-0717-43a8-81f3-7a46333b73d6.png)
+![system architecture](https://user-images.githubusercontent.com/68267278/126674124-fcd2b432-1eb4-4234-a262-df2608a89284.png)
 ---
 ## Tech Stack
 
