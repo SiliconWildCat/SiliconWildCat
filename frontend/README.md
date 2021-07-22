@@ -5,7 +5,7 @@
 - [Frontend](#frontend)
   - [목차](#목차)
   - [Usage Library/Framework](#usage-libraryframework)
-    - [Next.js](#nextjs)
+      - [Next.js](#nextjs)
     - [styled-components](#styled-components)
     - [Typescript](#typescript)
     - [Redux-toolkit](#redux-toolkit)
@@ -20,7 +20,7 @@
 
 ## Usage Library/Framework
 
-### Next.js
+#### Next.js
 
     - 서버 사이드 렌더링 도입
     - 사용자 이탈율과 페이지 렌더링 속도 개선
