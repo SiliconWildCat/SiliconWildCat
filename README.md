@@ -1,52 +1,47 @@
-# docker
-## 유용한 docker 명령어 정리
+# Voice Changer : Voice Style Transfer
 
-1. docker-compose 컨테이너 실행
-- 모두 실행
-```
-docker-compose up -d
-```
 
-- 특정 컨테이너만 실행
+## System Architecture
+![Untitled](https://user-images.githubusercontent.com/78634177/126619817-cc748f9c-3d27-4bc9-acbd-02b4314b8a8c.png)
 
-```
-docker-compose up -d 컨테이너이름
-ex ) docker-compose up -d backend
-```
+## Tech Stack
 
-2. 컨테이너 목록 확인
-```
-docker ps -a
-```
+<img src="https://img.shields.io/badge/PYTHON-3776AB?style=for-the-badge&logo=python&logoColor=white">
+<img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
+<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
+<img src="https://img.shields.io/badge/flask-ffffff?style=for-the-badge&logo=flask&logoColor=black">
+<img src="https://img.shields.io/badge/gunicorn-489746?style=for-the-badge&logo=gunicorn&logoColor=black">
+<img src="https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=black">
+<img src="https://img.shields.io/badge/Google Cloud-4285F4?style=for-the-badge&logo=google cloud&logoColor=white">
+<img src="https://img.shields.io/badge/Google Colaboratory-F9AB00?style=for-the-badge&logo=googlecolab&logoColor=black">
+<img src="https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=black">
+<img src="https://img.shields.io/badge/Google Cloud Storage-4285F4?style=for-the-badge&logo=&logoColor=white">
 
-3. 이미지 목록 확인
-```
-docker images
-```
+    Backend: Flask
+    Frontend: React
+    Middleware: Gunicorn
+    etc: Nginx, Docker, Mysql, Colaboratory, Google Cloud Storage
 
-4. 특정 컨테이너에 접속
-```
-docker exec -it 컨테이너이름 /bin/bash
-ex) docker exec -it docker_backend /bin/bash
-```
+## Installation
+### Clone Repository 
 
-5. docker-compose 로그 확인
-```
-docker-compose logs
-```
+    $git clone https://github.com/SiliconWildCat/SiliconWildCat.git
+    $git clone https://github.com/SiliconWildCat/TextToSpeech.git
+    $git clone https://github.com/SiliconWildCat/PoC.git
 
-6. docker-compose 컨테이너 종료 후 삭제
-```
-docker-compose down
-```
+### Docker 
+    docker-compose up -d 
+- url
 
-7. docker image 삭제
+#### Nginx
+- Frontend
 ```
-docker rmi 이미지이름
-ex ) docker rmi docker_backend
+http://localhost:80
 ```
-
-8. docker container output 확인
+- Backend
 ```
-docker logs --tail 50 --follow --timestamps backend
+http://localhost:8000
 ```
+- 그냥
+- frontend http://localhost:3000
+- backend http://localhost:5000
