@@ -17,17 +17,13 @@
         "url": "/"
       }
     ],
-    "tags": [
-      {
-        "name": "Text To Speech Request",
-        "description": "Example API for requesting and return requests"
-      }
-    ],
     "paths": {
       "/": {
         "post": {
           "tags": [
-            "Speech Request"
+            {
+              "name": "Text To Speech Request"
+            }
           ],
           "summary": "Create a Speech from text",
           "requestBody": {
@@ -61,13 +57,6 @@
 
     "components": {
       "schemas": {
-        "texts":{
-          "type":"object",
-          "additionalProperties":{
-            "$ref": "#/components/schemas/text"
-          }
-        },
-
         "text": {
           "type": "object",
           "properties": {
