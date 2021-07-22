@@ -73,6 +73,7 @@
 
 - `Next.js` 도입으로 `Framework` 성격을 지니므로 규칙 적용
 
+```bash
 📦frontend
 ┣ 📂.vscode
 ┃ ┗ 📜settings.json
@@ -115,3 +116,49 @@
 ┣ 📜store.ts
 ┣ 📜tsconfig.json
 ┗ 📜yarn.lock
+```
+
+```
+frontend
+ ┣ .vscode
+ ┃ ┗ settings.json
+ ┣ components
+ ┃ ┣ Counter.tsx
+ ┃ ┗ Tts.tsx
+ ┣ hooks
+ ┃ ┣ createRequestSaga.ts
+ ┃ ┗ useSelector.tsx
+ ┣ interface
+ ┃ ┣ counter.ts
+ ┃ ┣ loading.ts
+ ┃ ┗ tts.ts
+ ┣ lib
+ ┃ ┗ api
+ ┃ ┃ ┣ api.ts
+ ┃ ┃ ┗ client.ts
+ ┣ modules
+ ┃ ┣ counter.ts
+ ┃ ┣ index.ts
+ ┃ ┣ loading.ts
+ ┃ ┗ tts.ts
+ ┣ pages
+ ┃ ┣ _app.tsx
+ ┃ ┣ _document.tsx
+ ┃ ┗ index.tsx
+ ┣ public
+ ┃ ┣ favicon.ico
+ ┃ ┗ vercel.svg
+ ┣ styles
+ ┣ .DS_Store
+ ┣ .babelrc
+ ┣ .eslintrc
+ ┣ .gitignore
+ ┣ Dockerfile
+ ┣ README.md
+ ┣ next-env.d.ts
+ ┣ next.config.js
+ ┣ package.json
+ ┣ store.ts
+ ┣ tsconfig.json
+ ┗ yarn.lock
+```
