@@ -1,17 +1,14 @@
-FROM node:10
+FROM node:12 as base
+WORKDIR /app
 
-WORKDIR /usr/src/app/frontend 
+COPY package.json yarn.lock ./
+RUN yarn
 
-# `/app/node_modules/.bin`을 $PATH 에 추가
-ENV PATH /app/node_modules/.bin:$PATH
+ENV CONTINUOUS_INTEGRATION=1
+ENV NODE_ENV=production
 
-COPY package*.json ./
+COPY . .
+RUN yarn build
 
-RUN npm i
-
-# RUN npm run build
-# RUN npm run dev
-
-EXPOSE 3000
-
-CMD ["npm", "start"]
+EXPOSE 3000 
+CMD [ "yarn", "start" ]
