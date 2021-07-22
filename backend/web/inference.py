@@ -168,9 +168,25 @@ def synthesize(text,synthesizer):
     wavs = synthesizer.tts(text, None, None)
     return wavs
 
-def create_synthesizer():
-    voice_dict = {}
-    #code = voice_dict[voice]
+def create_synthesizer(voice):
+    glow_model_path="/app/glowtts-v2/"+voice+"/best_model.pth.tar"
+    glow_config_path="/app/glowtts-v2/"+voice+"/config.json"
+
+    hifi_model_path="/app/hifigan-v2/"+voice+"/best_model.pth.tar"
+    hifi_config_path="/app/hifigan-v2/"+voice+"/config.json"
+
+    synthesizer = Synthesizer(
+            glow_model_path,
+            glow_config_path,
+            None,
+            hifi_model_path,
+            hifi_config_path,
+            None,
+            None,
+            False,
+            )
+
+    """
     for voice in ('TaeYeon','KSS'):
         glow_model_path="/app/glowtts-v2/"+voice+"/best_model.pth.tar"
         glow_config_path="/app/glowtts-v2/"+voice+"/config.json"
@@ -190,8 +206,8 @@ def create_synthesizer():
             )
         voice_dict[voice]=synthesizer
         symbols = synthesizer.tts_config.characters.characters   
-        
-    return voice_dict
+     """   
+    return synthesizer
 
 
 
