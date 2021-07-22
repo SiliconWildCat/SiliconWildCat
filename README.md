@@ -1,13 +1,10 @@
-# Voice Changer : Voice Style Transfer
-
+# Voice Sythesizer : AI Voice Generator
 
 Voice Style Transfer provides two main features:
 
 1) Provides clips of music in the style of our source voice(Taeyeon) covering songs originally from other singers. 
 
 2) Provides two options of voices that reads out a given text.
-
-An example is shown below, when you enter text, the text is read by a trained female voice.
 
 ---
 
@@ -106,6 +103,7 @@ Backend: http://localhost:5000
 > About Pages
 
      When you start the webpage you will see the SVG(Singing Voice Synthesis) page first.
+     
      Switching in between two pages can be reached by clicking on the button. 
      Enjoy IT! 😃
 
@@ -149,7 +147,7 @@ Backend: http://localhost:5000
 ```
 > About
 ```
-  Enter the text you want to convert to voice. Our project provides Taeyeon and KSS voice dataset. If you select the voice and press the 'say it' button, the audio file is saved in the path below.
+  Enter the text you want to convert to desired voice. Our project provides Taeyeon and KSS voice dataset. If you select the voice and press the 'say it' button, the audio file will be saved in the path below.
   
   >> /app/audio.wav   
 ```
@@ -177,15 +175,14 @@ Backend: http://localhost:5000
 
 > Submodule
 
-    g2pK : g2p module for Korean language
+    g2pK : g2p module that converts graphemes to phonemes for Korean language
 
-    TTS : Text to Speech generation library
+    TTS : library for advanced Text-to-Speech generation
     
 
 ---
 ## Swagger
-![swagger](https://user-images.githubusercontent.com/78634177/126648053-8ebb22a4-33f2-4bad-a3aa-dcebee7cc46a.png)
-
+![swagger1](https://user-images.githubusercontent.com/78634177/126656866-4f02effe-2b9d-4320-8f0b-7df92d9ce766.png)
 
 ---
 ## Reference
