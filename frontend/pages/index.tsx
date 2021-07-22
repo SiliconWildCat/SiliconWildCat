@@ -3,6 +3,7 @@ import Head from 'next/head';
 import styled from 'styled-components';
 import Counter from '../components/Counter';
 import TTS from '../components/Tts';
+import MusicPlayer from '../components/musicPlayer';
 
 const Text = styled.div`
   color: blue;
@@ -18,6 +19,7 @@ export default function Home() {
   return (
     <div className="container">
       <TTS />
+      <MusicPlayer />
     </div>
   );
 }
