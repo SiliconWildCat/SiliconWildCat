@@ -42,6 +42,9 @@ http://localhost:80
 ```
 http://localhost:8000
 ```
-- 그냥
-- frontend http://localhost:3000
-- backend http://localhost:5000
+
+#### Local
+```
+frontend http://localhost:3000
+backend http://localhost:5000
+```
