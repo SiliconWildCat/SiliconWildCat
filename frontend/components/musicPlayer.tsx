@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import jquery from "jquery";
-import $ from "jquery";
-import { TimelineMax, Power0,TweenMax } from "gsap";
-
+import React, { Component } from 'react';
+import jquery from 'jquery';
+import $ from 'jquery';
+import { TimelineMax, Power0, TweenMax } from 'gsap';
+import { slides } from '../modules/music';
 class musicPlayer extends Component {
   constructor(props) {
     super(props);
@@ -10,35 +10,35 @@ class musicPlayer extends Component {
 
   componentDidMount() {
     $(document).ready(function () {
-      var audioElement = document.createElement("audio");
-      audioElement.setAttribute("src", $(".active-song").attr("data-src"));
+      var audioElement = document.createElement('audio');
+      audioElement.setAttribute('src', $('.active-song').attr('data-src'));
 
       var tl = new TimelineMax();
       tl.to(
-        ".player__albumImg",
+        '.player__albumImg',
         3,
         {
-          rotation: "360deg",
+          rotation: '360deg',
           repeat: -1,
           ease: Power0.easeNone,
         },
-        "-=0.2"
+        '-=0.2'
       );
       tl.pause();
 
-      $(".player__play").click(function () {
-        if ($(".player").hasClass("play")) {
-          $(".player").removeClass("play");
+      $('.player__play').click(function () {
+        if ($('.player').hasClass('play')) {
+          $('.player').removeClass('play');
           audioElement.pause();
-          TweenMax.to(".player__albumImg", 0.2, {
+          TweenMax.to('.player__albumImg', 0.2, {
             scale: 1,
             ease: Power0.easeNone,
           });
           tl.pause();
         } else {
-          $(".player").addClass("play");
+          $('.player').addClass('play');
           audioElement.play();
-          TweenMax.to(".player__albumImg", 0.2, {
+          TweenMax.to('.player__albumImg', 0.2, {
             scale: 1.1,
             ease: Power0.easeNone,
           });
@@ -46,71 +46,71 @@ class musicPlayer extends Component {
         }
       });
 
-      var playhead = document.getElementById("playhead");
-      audioElement.addEventListener("timeupdate", function () {
+      var playhead = document.getElementById('playhead');
+      audioElement.addEventListener('timeupdate', function () {
         var duration = this.duration;
         var currentTime = this.currentTime;
         var percentage = (currentTime / duration) * 100;
-        playhead.style.width = percentage + "%";
+        playhead.style.width = percentage + '%';
       });
 
       function updateInfo() {
-        $(".player__author").text($(".active-song").attr("data-author"));
-        $(".player__song").text($(".active-song").attr("data-song"));
+        $('.player__author').text($('.active-song').attr('data-author'));
+        $('.player__song').text($('.active-song').attr('data-song'));
       }
       updateInfo();
 
-      $(".player__next").click(function () {
-        if ($(".player .player__albumImg.active-song").is(":last-child")) {
-          $(".player__albumImg.active-song").removeClass("active-song");
-          $(".player .player__albumImg:first-child").addClass("active-song");
-          audioElement.addEventListener("timeupdate", function () {
+      $('.player__next').click(function () {
+        if ($('.player .player__albumImg.active-song').is(':last-child')) {
+          $('.player__albumImg.active-song').removeClass('active-song');
+          $('.player .player__albumImg:first-child').addClass('active-song');
+          audioElement.addEventListener('timeupdate', function () {
             var duration = this.duration;
             var currentTime = this.currentTime;
             var percentage = (currentTime / duration) * 100;
-            playhead.style.width = percentage + "%";
+            playhead.style.width = percentage + '%';
           });
         } else {
-          $(".player__albumImg.active-song")
-            .removeClass("active-song")
+          $('.player__albumImg.active-song')
+            .removeClass('active-song')
             .next()
-            .addClass("active-song");
-          audioElement.addEventListener("timeupdate", function () {
+            .addClass('active-song');
+          audioElement.addEventListener('timeupdate', function () {
             var duration = this.duration;
             var currentTime = this.currentTime;
             var percentage = (currentTime / duration) * 100;
-            playhead.style.width = percentage + "%";
+            playhead.style.width = percentage + '%';
           });
         }
         updateInfo();
-        audioElement.setAttribute("src", $(".active-song").attr("data-src"));
+        audioElement.setAttribute('src', $('.active-song').attr('data-src'));
         audioElement.play();
       });
 
-      $(".player__prev").click(function () {
-        if ($(".player .player__albumImg.active-song").is(":first-child")) {
-          $(".player__albumImg.active-song").removeClass("active-song");
-          $(".player .player__albumImg:last-child").addClass("active-song");
-          audioElement.addEventListener("timeupdate", function () {
+      $('.player__prev').click(function () {
+        if ($('.player .player__albumImg.active-song').is(':first-child')) {
+          $('.player__albumImg.active-song').removeClass('active-song');
+          $('.player .player__albumImg:last-child').addClass('active-song');
+          audioElement.addEventListener('timeupdate', function () {
             var duration = this.duration;
             var currentTime = this.currentTime;
             var percentage = (currentTime / duration) * 100;
-            playhead.style.width = percentage + "%";
+            playhead.style.width = percentage + '%';
           });
         } else {
-          $(".player__albumImg.active-song")
-            .removeClass("active-song")
+          $('.player__albumImg.active-song')
+            .removeClass('active-song')
             .prev()
-            .addClass("active-song");
-          audioElement.addEventListener("timeupdate", function () {
+            .addClass('active-song');
+          audioElement.addEventListener('timeupdate', function () {
             var duration = this.duration;
             var currentTime = this.currentTime;
             var percentage = (currentTime / duration) * 100;
-            playhead.style.width = percentage + "%";
+            playhead.style.width = percentage + '%';
           });
         }
         updateInfo();
-        audioElement.setAttribute("src", $(".active-song").attr("data-src"));
+        audioElement.setAttribute('src', $('.active-song').attr('data-src'));
         audioElement.play();
       });
     });
@@ -127,8 +127,7 @@ class musicPlayer extends Component {
               data-song="Location"
               data-src="http://ol5.mp3party.net/online/8418/8418598.mp3"
               style={{
-                backgroundImage:
-                  "url(https://alikinvv.github.io/minimal-player/build/img/album.jpg",
+                backgroundImage: `url(${slides[0].img})`,
               }}
             ></div>
             <div
@@ -137,8 +136,7 @@ class musicPlayer extends Component {
               data-song="Angels"
               data-src="http://music.dawnfoxes.com/_fxs_/_upls_/_sngs_/USA/khalid-angels.mp3"
               style={{
-                backgroundImage:
-                  "url(https://alikinvv.github.io/minimal-player/build/img/album.jpg",
+                backgroundImage: `url(${slides[0].img})`,
               }}
             ></div>
           </div>
