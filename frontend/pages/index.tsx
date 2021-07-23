@@ -6,7 +6,7 @@ import Counter from '../components/Counter';
 import TTS from '../components/Tts';
 import MusicPlayer from '../components/musicPlayer';
 import MusicSlider from '../components/Music/MusicSlider';
-
+import ToggleMenu from '../components/Music/ToggleMenu';
 export default function Home() {
   const [text, setText] = useState<string>('자바스크립트');
 
@@ -17,8 +17,10 @@ export default function Home() {
   return (
     <div className="container">
       {/* <TTS /> */}
+      <ToggleMenu></ToggleMenu>
 
       <MusicSlider />
+
       <MusicPlayer />
     </div>
   );
