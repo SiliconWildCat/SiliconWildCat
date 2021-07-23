@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { ReactDOM } from 'react';
 import { useAppSelector } from '../../hooks/useSelector';
 import { slides } from '../../modules/music';
+import Link from 'next/link';
 
 export default function MusicSlider() {
   // const { slides2 } = useAppSelector(({ music }) => ({
@@ -13,8 +14,8 @@ export default function MusicSlider() {
   const AUTOCHANGE_TIME = 4000;
   const [state, onOne4] = useState({
     activeSlide: -1,
-    prevSlide: -1,
-    sliderReady: false,
+    prevSlide: 0,
+    sliderReady: true,
   });
 
   useEffect(() => {
@@ -121,6 +122,9 @@ export default function MusicSlider() {
           className="slider__control slider__control--right"
           onClick={() => changeSlides(1)}
         />
+        {/* <Link href="tts">
+          <a className="slider__control slider__control--right" />
+        </Link> */}
       </div>
     </>
   );
