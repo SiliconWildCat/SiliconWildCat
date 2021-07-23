@@ -8,7 +8,7 @@ import soundfile as sf
 from saveText import save_text
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-#from flask_swagger_ui import get_swaggerui_blueprint
+from flask_swagger_ui import get_swaggerui_blueprint
 
 
 app = Flask(__name__,template_folder='') #html 폴더 경로 설정
@@ -19,7 +19,7 @@ session = Session()
 #run_with_ngrok(app)
 
 
-"""
+
 SWAGGER_URL = '/swagger'
 API_URL = '/static/swagger.json'
 swaggerui_blueprint = get_swaggerui_blueprint(
@@ -31,13 +31,6 @@ swaggerui_blueprint = get_swaggerui_blueprint(
 )
 
 app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
-"""
-"""
-@app.before_first_request
-def before_first_request_func():
-    voice_dict=create_synthesizer()
-    print("complete")
-"""
 
 @app.route('/', methods=['POST', 'GET'])
 @cross_origin()
@@ -46,12 +39,11 @@ def homepage():
         text = request.form['speech']
         voice = request.form['voices']
         syn=create_synthesizer(voice)
-        #symbols = syn.tts_config.characters.characters 
+        print(type(text))
         wavs=synthesize(text,syn)
         save_text(text,database,session)
         sf.write('/app/audio.wav',wavs, 22050, 'PCM_24')
 
-        #return jsonify({"msg": 'Complete!'})
         return render_template('frontend.html')
     else:
         return render_template('frontend.html')
@@ -59,8 +51,6 @@ def homepage():
 
 
 
-
-
 if __name__ == "__main__":
     #app.run()
-    app.run(port=8000, debug=True)
+    app.run(port=80, debug=True)
