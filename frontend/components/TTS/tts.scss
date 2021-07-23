@@ -30,23 +30,21 @@ $letterStagger: 0.1s;
     }
   }
 
-  &__top-heading {
+  &__top-headings {
     z-index: $numOfParts * 3;
     position: absolute;
     left: 0;
     top: 100px;
     text-align: center;
     font-size: 2rem;
-    margin-left: 62%;
+    margin-left: 42%;
+
     text-transform: uppercase;
     letter-spacing: 2.5px;
     transition: $sliderReadyTrans;
     transform: translateY(-30px);
     opacity: 0;
 
-    transform: translateY(20px);
-
-    // @include subTextsActiveSlide;
     @include sliderReady {
       transform: translateY(0);
       opacity: 1;
@@ -55,7 +53,6 @@ $letterStagger: 0.1s;
 
   &__slides {
     position: relative;
-    height: 100%;
   }
 
   &__slide {
@@ -63,7 +60,7 @@ $letterStagger: 0.1s;
     left: 0;
     top: 0;
     width: 100%;
-    height: 100%;
+
     pointer-events: none;
 
     &.s--active {
@@ -82,7 +79,7 @@ $letterStagger: 0.1s;
       }
     }
     // 제목
-    &-content {
+    &-contentt {
       z-index: $numOfParts + 2;
       position: relative;
       display: flex;
@@ -91,7 +88,8 @@ $letterStagger: 0.1s;
       flex-direction: column;
       height: 100%;
       text-transform: uppercase;
-      margin-left: 20%;
+      margin-top: -5rem;
+      padding-top: -12rem;
       line-height: 1;
     }
 
@@ -106,13 +104,73 @@ $letterStagger: 0.1s;
       }
     }
     // 제목
-    &-subheading {
-      margin-bottom: 5rem;
-      font-size: 2rem;
+    &-subheadings {
+      margin-top: 1.8rem;
+      margin-bottom: 2rem;
+      font-size: 1.5rem;
       letter-spacing: 2px;
       transform: translateY(20px);
-      margin-left: 20%;
-      background-image: none;
+
+      @include subTextsActiveSlide;
+    }
+    &-button {
+      font-size: 18px;
+      font-weight: 200;
+      padding: 1em;
+      width: 50%;
+
+      box-sizing: border-box;
+      border: 4px solid #8977ad;
+      border-radius: 4px;
+      color: #fff;
+      // transition: all 0.1s ease 0s;
+      cursor: pointer;
+      background-color: #8977ad;
+      &:hover {
+        color: #fff;
+      }
+      margin-bottom: 2rem;
+      transform: translateY(20px);
+      z-index: 300;
+      @include subTextsActiveSlide;
+    }
+    &-subheadingss {
+      margin-bottom: 2rem;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      transform: translateY(20px);
+      z-index: 500;
+      width: 50%;
+      color: #000;
+      @include subTextsActiveSlide;
+    }
+    &-music {
+      width: 50%;
+      margin-bottom: 2rem;
+      transform: translateY(20px);
+      @include subTextsActiveSlide;
+    }
+    &-inputs {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      height: 6%;
+      width: 50%;
+      border: 1px solid white;
+      box-sizing: border-box;
+      ::placeholder {
+        padding-left: 1rem;
+        color: black;
+      }
+      &:focus {
+        ::placeholder {
+          display: none;
+        }
+        padding-left: 1rem;
+        outline: none;
+      }
+      border-radius: 10px;
+      padding-left: 1rem;
+      transform: translateY(20px);
       @include subTextsActiveSlide;
     }
 
@@ -163,14 +221,14 @@ $letterStagger: 0.1s;
       }
     }
 
-    &-readmore {
+    &-readmores {
       position: relative;
       font-size: 14px;
       text-transform: lowercase;
       backface-visibility: hidden;
       transform: translateY(-10px);
       cursor: pointer;
-      margin-left: 13%;
+
       @include subTextsActiveSlide;
 
       &:before {
@@ -217,6 +275,7 @@ $letterStagger: 0.1s;
       position: relative;
       width: percentage(1 / $numOfParts);
       height: 100%;
+
       $partRef: &;
       $imageFadeAT: $animTime/4;
 
@@ -234,7 +293,7 @@ $letterStagger: 0.1s;
           position: absolute;
           width: 100vw;
           height: 100%;
-          background-image: inherit;
+
           background-size: cover;
           background-position: center center;
           transition: opacity $imageFadeAT;
