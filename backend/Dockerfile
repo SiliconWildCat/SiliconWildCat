@@ -30,7 +30,7 @@ RUN pip3 install -r requirements.txt
 
 
 RUN git clone --recursive https://github.com/sce-tts/g2pK.git
-RUN git clone --recursive https://github.com/sce-tts/TTS.git 
+RUN git clone --recursive https://github.com/thfla1105/TTS.git 
 
 WORKDIR /app/g2pK
 RUN pip3 install -q --no-cache-dir "konlpy" "jamo" "nltk" "python-mecab-ko"
