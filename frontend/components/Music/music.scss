@@ -38,6 +38,7 @@ $letterStagger: 0.1s;
     width: 100%;
     text-align: center;
     font-size: 2rem;
+    margin-left: 20%;
     text-transform: uppercase;
     letter-spacing: 2.5px;
     transition: $sliderReadyTrans;
@@ -78,7 +79,7 @@ $letterStagger: 0.1s;
         @content;
       }
     }
-
+    // 제목
     &-content {
       z-index: $numOfParts + 2;
       position: relative;
@@ -88,6 +89,7 @@ $letterStagger: 0.1s;
       flex-direction: column;
       height: 100%;
       text-transform: uppercase;
+      margin-left: 20%;
       line-height: 1;
     }
 
@@ -101,13 +103,13 @@ $letterStagger: 0.1s;
         transform: translateY(0);
       }
     }
-
+    // 제목
     &-subheading {
-      margin-bottom: 20px;
-      font-size: 24px;
+      margin-bottom: 5rem;
+      font-size: 2rem;
       letter-spacing: 2px;
       transform: translateY(20px);
-
+      margin-left: 20%;
       @include subTextsActiveSlide;
     }
 
@@ -165,7 +167,7 @@ $letterStagger: 0.1s;
       backface-visibility: hidden;
       transform: translateY(-10px);
       cursor: pointer;
-
+      margin-left: 13%;
       @include subTextsActiveSlide;
 
       &:before {
