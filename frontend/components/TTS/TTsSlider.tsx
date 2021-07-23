@@ -1,14 +1,24 @@
 import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { ReactDOM } from 'react';
-import { useAppSelector } from '../../hooks/useSelector';
-import { slides } from '../../modules/music';
+import { tts } from '../../modules/tts';
 import Link from 'next/link';
+import AudioPlayer from 'react-h5-audio-player';
+import { useAppSelector } from '../../hooks/useSelector';
+import { RootState } from '../../modules';
+import { initialText, inputText, submitTTS } from '../../modules/tts';
+import { useDispatch } from 'react-redux';
 
-export default function MusicSlider() {
-  // const { slides2 } = useAppSelector(({ music }) => ({
-  //   slides2: music.slides,
-  // }));
+const options = [
+  { value: 'tts', label: 'TTS' },
+  { value: 'kss', label: 'KSS' },
+];
+
+export default function TTsSlider({ Select }) {
+  const { text, mp3File } = useAppSelector(({ tts }: RootState) => ({
+    text: tts.text,
+    mp3File: tts.mp3File,
+  }));
   const [IMAGE_PARTS, onOne] = useState(4);
   const [changeTO, onOne2] = useState(0);
   const AUTOCHANGE_TIME = 4000;
@@ -17,15 +27,22 @@ export default function MusicSlider() {
     prevSlide: 0,
     sliderReady: true,
   });
+  const [value, onChangeValue] = useState('');
 
+  const dispatch = useDispatch();
+  const onSubmitText = (e) => {
+    e.preventDefault();
+    dispatch(submitTTS(text));
+    dispatch(initialText());
+  };
   useEffect(() => {
     window.clearTimeout(changeTO);
-  }, []);
+  }, [changeTO]);
   useEffect(() => {
     // runAutochangeTO();
     setTimeout(() => {
       onOne4({
-        activeSlide: 1,
+        activeSlide: 0,
         prevSlide: 0,
         sliderReady: true,
       });
@@ -40,6 +57,9 @@ export default function MusicSlider() {
   //     }, AUTOCHANGE_TIME)
   //   );
   // }
+  const onChangeText = (e) => {
+    dispatch(inputText(e.target.value));
+  };
 
   function onClickChange(e) {
     window.clearTimeout(changeTO);
@@ -56,7 +76,7 @@ export default function MusicSlider() {
 
   function changeSlides(change) {
     window.clearTimeout(changeTO);
-    const { length } = slides;
+    const { length } = tts;
 
     const prevSlide = state.activeSlide;
     let activeSlide = prevSlide + change;
@@ -74,9 +94,10 @@ export default function MusicSlider() {
     <>
       <div className={classNames('slider', { 's--ready': state.sliderReady })}>
         {/* <button onClick={onClickChange}>2</button> */}
-        <p className="slider__top-heading">Taeyeon</p>
+        <p className="slider__top-headings">Text to speech</p>
+        {console.log(value)}
         <div className="slider__slides">
-          {slides.map((slide, index) => (
+          {tts.map((slide, index) => (
             <div
               className={classNames('slider__slide', {
                 's--active': state.activeSlide === index,
@@ -84,22 +105,41 @@ export default function MusicSlider() {
               })}
               key={slide.city}
             >
-              <div className="slider__slide-content">
+              <form onSubmit={onSubmitText} className="slider__slide-contentt">
                 <h3
-                  className="slider__slide-subheading"
+                  className="slider__slide-subheadings"
+                  style={{ color: 'white', marginTop: '100px' }}
+                >
+                  변환할 텍스트를 입력하세요.
+                </h3>
+                <input
+                  value={text}
+                  onChange={onChangeText}
+                  className="slider__slide-inputs"
+                  type="text"
+                />
+                <h3
+                  className="slider__slide-subheadings"
                   style={{ color: 'white' }}
                 >
-                  Title : {slide.country}
+                  변환 방법을 선택하세요.
                 </h3>
-                {/* <h2 className="slider__slide-heading">
-                  {slide.city.split('').map((l, index) => (
-                    <span style={{ color: 'white' }} key={index}>
-                      {l}
-                    </span>
-                  ))}
-                </h2> */}
-                <p className="slider__slide-readmore">Go to Youtube</p>
-              </div>
+                <Select
+                  className="slider__slide-subheadingss"
+                  options={options}
+                  onChange={onChangeValue}
+                />
+                <button className="slider__slide-button">Translate</button>
+                {mp3File && (
+                  <AudioPlayer
+                    className="slider__slide-music"
+                    style={{ width: '50%', borderRadius: '8px' }}
+                    autoPlay
+                    src={mp3File}
+                    onPlay={(e) => console.log('onPlay')}
+                  />
+                )}
+              </form>
               <div className="slider__slide-parts">
                 {[...Array(IMAGE_PARTS).fill(0)].map((x, i) => (
                   <div className="slider__slide-part" key={i}>
@@ -113,18 +153,14 @@ export default function MusicSlider() {
             </div>
           ))}
         </div>
-        {/* <div className="slider__control" onClick={() => changeSlides(-1)}>
-          <div className="__control" onClick={() => changeSlides(-1)} />
-          <div className="__control" onClick={() => changeSlides(-1)} />
-          <div className="__control" onClick={() => changeSlides(-1)} />
-        </div> */}
-        <div
+        <Link href="/music">
+          <a className="slider__control" />
+        </Link>
+
+        {/* <div
           className="slider__control slider__control--right"
           onClick={() => changeSlides(1)}
-        />
-        {/* <Link href="tts">
-          <a className="slider__control slider__control--right" />
-        </Link> */}
+        /> */}
       </div>
     </>
   );

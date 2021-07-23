@@ -6,6 +6,19 @@ import { takeLatest } from 'redux-saga/effects';
 import { createAction } from 'redux-actions';
 import { stat } from 'fs';
 
+export const tts = [
+  {
+    city: 'Paris',
+    country: '제주도 푸른밤',
+    img: `https://t1.daumcdn.net/cfile/tistory/9975134C5C97724E08`,
+  },
+  {
+    city: 'Paris',
+    country: '제주도 푸른밤',
+    img: `https://t1.daumcdn.net/cfile/tistory/994D5C485C8EEF791E?original`,
+  },
+];
+
 const initialState: ITts = {
   text: '',
   mp3File: '',
@@ -34,6 +47,9 @@ export const ttsSlice = createSlice({
     },
     initialText: (state) => {
       state.text = '';
+    },
+    SUBMIT_TTS_SUCCESS: (state, action: PayloadAction<any>) => {
+      state.mp3File = action.payload;
     },
   },
 });
