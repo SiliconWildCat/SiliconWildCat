@@ -18,7 +18,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "components/Music/CitiesSlider.tsx"
+    "components/Music/MusicSlider.tsx"
   ],
   "exclude": ["node_modules"]
 }

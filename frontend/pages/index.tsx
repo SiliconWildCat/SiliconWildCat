@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Counter from '../components/Counter';
 import TTS from '../components/Tts';
 import MusicPlayer from '../components/musicPlayer';
-import CitiesSlider from '../components/Music/CitiesSlider';
+import MusicSlider from '../components/Music/MusicSlider';
 
 export default function Home() {
   const [text, setText] = useState<string>('자바스크립트');
@@ -18,7 +18,7 @@ export default function Home() {
     <div className="container">
       {/* <TTS /> */}
 
-      <CitiesSlider />
+      <MusicSlider />
       <MusicPlayer />
     </div>
   );

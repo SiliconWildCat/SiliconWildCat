@@ -5,8 +5,9 @@ import { useAppSelector } from '../../hooks/useSelector';
 import { slides } from '../../modules/music';
 import image1 from '../../images/1.jpeg';
 import image2 from '../../images/1.png';
+import { truncate } from 'node:fs';
 
-export default function CitiesSlider() {
+export default function MusicSlider() {
   // const { slides2 } = useAppSelector(({ music }) => ({
   //   slides2: music.slides,
   // }));
@@ -44,7 +45,6 @@ export default function CitiesSlider() {
 
   function onClickChange(e) {
     window.clearTimeout(changeTO);
-    const { length } = slides;
 
     const prevSlide = state.activeSlide;
     let activeSlide = 3;
