@@ -3,9 +3,6 @@ import classNames from 'classnames';
 import { ReactDOM } from 'react';
 import { useAppSelector } from '../../hooks/useSelector';
 import { slides } from '../../modules/music';
-import image1 from '../../images/1.jpeg';
-import image2 from '../../images/1.png';
-import { truncate } from 'node:fs';
 
 export default function MusicSlider() {
   // const { slides2 } = useAppSelector(({ music }) => ({
@@ -74,8 +71,8 @@ export default function MusicSlider() {
 
   return (
     <>
-      <button onClick={onClickChange}>2</button>
       <div className={classNames('slider', { 's--ready': state.sliderReady })}>
+        {/* <button onClick={onClickChange}>2</button> */}
         <p className="slider__top-heading">Taeyeon</p>
         <div className="slider__slides">
           {slides.map((slide, index) => (
@@ -91,15 +88,15 @@ export default function MusicSlider() {
                   className="slider__slide-subheading"
                   style={{ color: 'white' }}
                 >
-                  {slide.country}
+                  Title : {slide.country}
                 </h3>
-                <h2 className="slider__slide-heading">
+                {/* <h2 className="slider__slide-heading">
                   {slide.city.split('').map((l, index) => (
                     <span style={{ color: 'white' }} key={index}>
                       {l}
                     </span>
                   ))}
-                </h2>
+                </h2> */}
                 <p className="slider__slide-readmore">Go to Youtube</p>
               </div>
               <div className="slider__slide-parts">
