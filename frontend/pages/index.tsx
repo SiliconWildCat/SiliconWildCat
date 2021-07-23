@@ -1,27 +1,19 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
-
+import Link from 'next/link';
 import styled from 'styled-components';
 import Counter from '../components/Counter';
 import TTS from '../components/Tts';
-import MusicPlayer from '../components/musicPlayer';
-import MusicSlider from '../components/Music/MusicSlider';
-import ToggleMenu from '../components/Music/ToggleMenu';
+
 export default function Home() {
-  const [text, setText] = useState<string>('자바스크립트');
-
-  setTimeout(() => {
-    // setText("타입스크립트")
-  }, 1000);
-
   return (
     <div className="container">
       {/* <TTS /> */}
-      <ToggleMenu></ToggleMenu>
+      <Link href="/tts"></Link>
+      <Link href="/music"></Link>
 
-      <MusicSlider />
-
-      <MusicPlayer />
+      {/* 
+      <MusicPlayer /> */}
     </div>
   );
 }
