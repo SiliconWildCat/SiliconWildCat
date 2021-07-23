@@ -23,7 +23,8 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2000;
-  margin-top: 2rem;
+  margin-top: 1rem;
+  margin-left: 20%;
 }
 .player.play .player__timeline {
   transform: translateY(-90%);
