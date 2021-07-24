@@ -1,6 +1,6 @@
 # Importing the necessary Libraries
 from flask_cors import cross_origin
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify,send_file
 from inference import synthesize, create_synthesizer
 from flask_ngrok import run_with_ngrok
 
@@ -9,6 +9,7 @@ from saveText import save_text, find_path
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from flask_swagger_ui import get_swaggerui_blueprint
+import io
 
 
 app = Flask(__name__,template_folder='') #html 폴더 경로 설정
@@ -32,9 +33,9 @@ swaggerui_blueprint = get_swaggerui_blueprint(
 
 app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/TTS', methods=['POST', 'GET'])
 @cross_origin()
-def homepage():
+def text_speech():
     if request.method == 'POST':
         text = request.form['speech']
         voice = request.form['voices']
@@ -42,14 +43,17 @@ def homepage():
         print(type(text))
         wavs=synthesize(text,syn)
         save_text(text,database,session)
-        sf.write('/app/audio.wav',wavs, 22050, 'PCM_24')
+        #sf.write('/app/audio.wav',wavs, 22050, 'PCM_24')
+        out = io.BytesIO()
+        syn.save_wav(wavs, out)
+        return send_file(out, mimetype="audio/wav")
 
-        return render_template('frontend.html')
+        #return render_template('frontend.html')
     else:
         return render_template('frontend.html')
 
-@app.route('/SVS/', methods=['GET'])
-def voice():
+@app.route('/SVS', methods=['GET'])
+def singing_voice():
     param_dict = request.args.to_dict()
     title = param_dict['title']
     file_path = find_path(title, session)
