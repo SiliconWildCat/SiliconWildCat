@@ -2,22 +2,20 @@ import { IMusic } from '../interface/music';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export const initialState: IMusic = {
-  selectNum: 1,
+  selectNum: 0,
   musics: [
-    {
-      title: '제주도 푸른밤',
-      imgURL: 'https://t1.daumcdn.net/cfile/tistory/9975134C5C97724E08',
-    },
-
     {
       title: '별 보러 갈래',
       imgURL:
         'https://t1.daumcdn.net/cfile/tistory/994D5C485C8EEF791E?original',
     },
-
     {
       title: '그리 쉽게 이별을 말하지 말아요',
       imgURL: 'https://t1.daumcdn.net/cfile/tistory/9980B4485C8EEF781C',
+    },
+    {
+      title: '제주도 푸른밤',
+      imgURL: 'https://t1.daumcdn.net/cfile/tistory/9975134C5C97724E08',
     },
 
     {
