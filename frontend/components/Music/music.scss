@@ -284,9 +284,7 @@ $letterStagger: 0.1s;
     position: absolute;
     left: 50px;
     top: 50%;
-    // :first-child {
-    //   display: none;
-    // }
+
     :nth-child(1) {
       top: -20vh;
     }
@@ -337,7 +335,7 @@ $letterStagger: 0.1s;
     }
   }
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 769px) {
     .slider__slide-readmore,
     .slider__top-heading,
     .slider__slide-subheading {
