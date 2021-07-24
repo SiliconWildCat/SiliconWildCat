@@ -1,11 +1,11 @@
 # Importing the necessary Libraries
 from flask_cors import cross_origin
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from inference import synthesize, create_synthesizer
 from flask_ngrok import run_with_ngrok
 
 import soundfile as sf
-from saveText import save_text
+from saveText import save_text, find_path
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from flask_swagger_ui import get_swaggerui_blueprint
@@ -48,7 +48,12 @@ def homepage():
     else:
         return render_template('frontend.html')
 
-
+@app.route('/SVS/', methods=['GET'])
+def voice():
+    param_dict = request.args.to_dict()
+    title = param_dict['title']
+    file_path = find_path(title, session)
+    return file_path
 
 
 if __name__ == "__main__":

@@ -52,7 +52,38 @@
             }
           }
         }
+      },
+
+      "/SVS/": {
+        "get": {
+          "tags": [
+            {
+              "name": "Music URL request"
+            }
+          ],
+          "parameters": [
+            {
+            "in" : "query",
+            "name" : "title",
+            "schema" : {
+              "type" : "string"
+            } 
+              
+            }
+          ],
+            "summary": "Returns Music URL",
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/components/schemas/music"
+                }
+              }
+            }
+          
+          
       }
+    }
     },
 
     "components": {
@@ -67,9 +98,18 @@
               "type": "string"
             }
           }
+        },
+        "music": {
+          "type": "object", 
+          "properties": {
+            "title": {
+              "type":"string"
+            }
+          }
         }
+
       }
     }
 
 
-}
+  }
