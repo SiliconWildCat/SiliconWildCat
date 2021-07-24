@@ -19,11 +19,8 @@ body {
 
 .player {
   position: absolute;
-  top: 68%;
-  left: 65%;
-  transform: translate(-50%, -50%);
+  margin: 0;
   z-index: 2000;
-  margin-top: 2rem;
 }
 .player.play .player__timeline {
   transform: translateY(-90%);
@@ -210,9 +207,22 @@ body {
 }
 @media (max-width: 769px) {
   .player {
+    position: relative;
+    transform: scale(0.7, 0.7);
+    width: 115%;
+    right: 5%;
+    top: 75%;
+  }
+  .player_wrapper {
     position: absolute;
-    transform: scale(0.5, 0.5);
-    top: 68%;
-    left: 0%;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+  }
+}
+@media (min-width: 770px) {
+  .player {
+    top: 67.5%;
+    left: 55%;
   }
 }
