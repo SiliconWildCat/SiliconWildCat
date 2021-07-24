@@ -39,6 +39,7 @@ const StyledBurger = styled.button<{ open: boolean }>`
   top: 5%;
   left: 2rem;
   display: flex;
+  z-index: 8000;
   flex-direction: column;
   justify-content: space-around;
   width: 2rem;
@@ -101,7 +102,7 @@ const StyledMenu = styled.nav<{ open: boolean; selectNum: number }>`
   /* @media screen and (max-width: 769px) {
     width: 50%;
   } */
-  @media screen and (max-width: 850px) {
+  @media screen and (max-width: 769px) {
     top: 5%;
     width: 90%;
     left: -5%;
