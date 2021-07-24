@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import jquery from 'jquery';
 import $ from 'jquery';
 import { TimelineMax, Power0, TweenMax } from 'gsap';
-import { slides } from '../modules/music';
+import { useAppSelector } from '../hooks/useSelector';
+import { initialState } from '../modules/music';
+import { RootState } from '../modules';
 class musicPlayer extends Component {
   constructor(props) {
     super(props);
@@ -53,7 +55,10 @@ class musicPlayer extends Component {
         var percentage = (currentTime / duration) * 100;
         playhead.style.width = percentage + '%';
       });
-
+      const { selectNum, musics } = useAppSelector(({ music }: RootState) => ({
+        selectNum: music.selectNum,
+        musics: music.musics,
+      }));
       function updateInfo() {
         $('.player__author').text($('.active-song').attr('data-author'));
         $('.player__song').text($('.active-song').attr('data-song'));
@@ -127,7 +132,7 @@ class musicPlayer extends Component {
               data-song="Location"
               data-src="http://ol5.mp3party.net/online/8418/8418598.mp3"
               style={{
-                backgroundImage: `url(${slides[0].img})`,
+                backgroundImage: `url(${initialState.musics[0].imgURL})`,
               }}
             ></div>
             <div
@@ -136,7 +141,7 @@ class musicPlayer extends Component {
               data-song="Angels"
               data-src="http://music.dawnfoxes.com/_fxs_/_upls_/_sngs_/USA/khalid-angels.mp3"
               style={{
-                backgroundImage: `url(${slides[0].img})`,
+                backgroundImage: `url(${initialState.musics[0].imgURL})`,
               }}
             ></div>
           </div>

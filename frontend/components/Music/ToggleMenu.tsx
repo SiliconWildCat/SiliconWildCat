@@ -97,8 +97,9 @@ const StyledMenu = styled.nav<{ open: boolean }>`
   left: 0;
   transition: transform 0.3s ease-in-out;
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
-  @media (max-width: ${({ theme }) => theme.mobile}) {
+  @media screen and (max-width: 850px) {
     width: 100%;
+    height: 100%;
   }
   width: 30%;
   margin-left: 10%;
@@ -143,27 +144,31 @@ export default function ToggleMenu() {
     console.log(e.target);
   };
   return (
-    <ThemeProvider theme={theme}>
-      <>
-        <StyledBurger open={open} onClick={() => setOpen(!open)}>
-          <div />
-          <div />
-          <div />
-        </StyledBurger>
-        <StyledMenu open={open}>
-          {musics.map((music, index) => (
-            <a
-              onClick={(e) => {
-                onChangeNum({ e, index });
-                console.log(index);
-              }}
-              key={music.title}
-            >
-              {music.title}
-            </a>
-          ))}
-        </StyledMenu>
-      </>
-    </ThemeProvider>
+    <div className="toggle_bar">
+      <ThemeProvider theme={theme}>
+        <>
+          <StyledBurger open={open} onClick={() => setOpen(!open)}>
+            <div />
+            <div />
+            <div />
+          </StyledBurger>
+          <div className="musicList">
+            <StyledMenu open={open}>
+              {musics.map((music, index) => (
+                <a
+                  onClick={(e) => {
+                    onChangeNum({ e, index });
+                    console.log(index);
+                  }}
+                  key={music.title}
+                >
+                  {music.title}
+                </a>
+              ))}
+            </StyledMenu>
+          </div>
+        </>
+      </ThemeProvider>
+    </div>
   );
 }
