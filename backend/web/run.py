@@ -41,13 +41,12 @@ def text_speech():
         voice = request.form['voices']
         syn=create_synthesizer(voice)
         print(type(text))
-        wavs=synthesize(text,syn)
         save_text(text,database,session)
+        wavs=synthesize(text,syn)
         #sf.write('/app/audio.wav',wavs, 22050, 'PCM_24')
         out = io.BytesIO()
         syn.save_wav(wavs, out)
         return send_file(out, mimetype="audio/wav")
-
         #return render_template('frontend.html')
     else:
         return render_template('frontend.html')
@@ -61,5 +60,4 @@ def singing_voice():
 
 
 if __name__ == "__main__":
-    #app.run()
     app.run(port=80, debug=True)
