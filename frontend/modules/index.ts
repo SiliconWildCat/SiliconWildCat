@@ -7,10 +7,13 @@ import tts, { ttsSaga } from './tts';
 import { all } from 'redux-saga/effects';
 import counter, { sampleSaga } from './counter';
 import loading from './loading';
+import music from './music';
+import { IMusic } from '../interface/music';
 export interface State {
   counter: Sample;
   loading: string;
   tts: ITts;
+  music: IMusic;
 }
 
 const rootReducer = (state: State | undefined, action: AnyAction) => {
@@ -19,7 +22,7 @@ const rootReducer = (state: State | undefined, action: AnyAction) => {
       console.log('HYDRATE');
       return action.payload;
     default: {
-      const combineReducer = combineReducers({ counter, loading, tts });
+      const combineReducer = combineReducers({ counter, loading, tts, music });
       return combineReducer(state, action);
     }
   }
