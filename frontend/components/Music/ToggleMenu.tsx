@@ -2,7 +2,11 @@ import { createGlobalStyle } from 'styled-components';
 import { ThemeProvider } from 'styled-components';
 import styled from 'styled-components';
 import { useState } from 'react';
-import { slides } from '../../modules/music';
+import { useAppDispatch, useAppSelector } from '../../hooks/useSelector';
+import { RootState } from '../../modules';
+import { useSelector } from 'react-redux';
+import { changeSelect } from '../../modules/music';
+
 // const GlobalStyles = createGlobalStyle`
 //   html, body {
 //     margin: 0;
@@ -25,6 +29,7 @@ import { slides } from '../../modules/music';
 const theme = {
   primaryDark: '#0D0C1D',
   primaryLight: 'white',
+
   primaryHover: '#343078',
   mobile: '576px',
 };
@@ -84,7 +89,7 @@ const StyledMenu = styled.nav<{ open: boolean }>`
   text-align: left;
   padding: 2rem;
   position: absolute;
-  border: 0.3rem solid white;
+  border: 0.2rem solid white;
   border-radius: 20px;
   margin-top: 5rem;
   z-index: 200;
@@ -99,16 +104,18 @@ const StyledMenu = styled.nav<{ open: boolean }>`
   margin-left: 10%;
 
   a {
-    font-size: 0.8rem;
+    font-size: 1rem;
+
     text-transform: uppercase;
     padding: 1rem 0;
     padding-left: 0.5rem;
-    font-weight: bold;
+    cursor: pointer;
+    font-weight: 300;
     letter-spacing: 0.5rem;
     /* color: ${({ theme }) => theme.primaryDark}; */
     color: white;
     text-decoration: none;
-    border: 0.3rem solid white;
+    border: 0.2rem solid white;
     transition: color 0.3s linear;
     margin-top: 2rem;
     /* height: 10%; */
@@ -125,6 +132,16 @@ const StyledMenu = styled.nav<{ open: boolean }>`
 `;
 export default function ToggleMenu() {
   const [open, setOpen] = useState(true);
+  const { selectNum, musics } = useSelector(({ music }: RootState) => ({
+    selectNum: music.selectNum,
+    musics: music.musics,
+  }));
+  const dispatch = useAppDispatch();
+  const onChangeNum = ({ e, index }) => {
+    e.preventDefault();
+    dispatch(changeSelect(index));
+    console.log(e.target);
+  };
   return (
     <ThemeProvider theme={theme}>
       <>
@@ -134,9 +151,15 @@ export default function ToggleMenu() {
           <div />
         </StyledBurger>
         <StyledMenu open={open}>
-          {slides.map((music) => (
-            <a href="" key={music.country}>
-              {music.country}
+          {musics.map((music, index) => (
+            <a
+              onClick={(e) => {
+                onChangeNum({ e, index });
+                console.log(index);
+              }}
+              key={music.title}
+            >
+              {music.title}
             </a>
           ))}
         </StyledMenu>
