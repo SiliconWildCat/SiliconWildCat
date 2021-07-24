@@ -9,7 +9,9 @@ function Music() {
     <>
       <ToggleMenu></ToggleMenu>
       <MusicSlider />
-      <MusicPlayer />
+      <div className="player_wrapper">
+        <MusicPlayer />
+      </div>
     </>
   );
 }
