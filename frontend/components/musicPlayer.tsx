@@ -55,10 +55,7 @@ class musicPlayer extends Component {
         var percentage = (currentTime / duration) * 100;
         playhead.style.width = percentage + '%';
       });
-      const { selectNum, musics } = useAppSelector(({ music }: RootState) => ({
-        selectNum: music.selectNum,
-        musics: music.musics,
-      }));
+
       function updateInfo() {
         $('.player__author').text($('.active-song').attr('data-author'));
         $('.player__song').text($('.active-song').attr('data-song'));
@@ -130,7 +127,7 @@ class musicPlayer extends Component {
               className="player__albumImg active-song"
               data-author=""
               data-song="Location"
-              data-src="http://ol5.mp3party.net/online/8418/8418598.mp3"
+              data-src="https://fastcampus2022.s3.ap-northeast-2.amazonaws.com/Ed+Sheeran+Bad+Habits+%5BOfficial+Acoustic+Video%5D+(2)+(2).mp3"
               style={{
                 backgroundImage: `url(${initialState.musics[0].imgURL})`,
               }}
@@ -139,7 +136,7 @@ class musicPlayer extends Component {
               className="player__albumImg"
               data-author="Khalid"
               data-song="Angels"
-              data-src="http://music.dawnfoxes.com/_fxs_/_upls_/_sngs_/USA/khalid-angels.mp3"
+              data-src="https://fastcampus2022.s3.ap-northeast-2.amazonaws.com/Ed+Sheeran+Bad+Habits+%5BOfficial+Acoustic+Video%5D+(2)+(2).mp3"
               style={{
                 backgroundImage: `url(${initialState.musics[0].imgURL})`,
               }}
