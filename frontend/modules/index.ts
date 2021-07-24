@@ -32,5 +32,5 @@ export type RootState = ReturnType<typeof rootReducer>;
 export default rootReducer;
 
 export function* rootSaga() {
-  yield all([sampleSaga()]);
+  yield all([sampleSaga(), ttsSaga()]);
 }
