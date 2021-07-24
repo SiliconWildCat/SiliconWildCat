@@ -7,7 +7,7 @@
 }
 
 body {
-  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
   background: #000;
 }
 
@@ -174,7 +174,7 @@ $letterStagger: 0.1s;
       @include subTextsActiveSlide;
 
       &:before {
-        content: '';
+        content: "";
         position: absolute;
         left: -2px;
         top: -3px;
@@ -200,7 +200,7 @@ $letterStagger: 0.1s;
       height: 100%;
 
       &:after {
-        content: '';
+        content: "";
         z-index: $numOfParts + 1;
         position: absolute;
         left: 0;
@@ -230,7 +230,7 @@ $letterStagger: 0.1s;
         transition: transform $animTime/2 ease-in-out;
 
         &:before {
-          content: '';
+          content: "";
           position: absolute;
           width: 100vw;
           height: 100%;
@@ -307,7 +307,7 @@ $letterStagger: 0.1s;
     cursor: pointer;
 
     &:before {
-      content: '';
+      content: "";
       position: absolute;
       left: 50%;
       top: 50%;
@@ -334,6 +334,35 @@ $letterStagger: 0.1s;
     @include sliderReady {
       transform: translateX(0);
       opacity: 1;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .slider__slide-readmore,
+    .slider__top-heading,
+    .slider__slide-subheading {
+      position: absolute;
+      transform: scale(0.5, 0.5);
+      font-size: 10%;
+    }
+
+    .slider__top-heading {
+      top: 32%;
+      left: 11%;
+      font-weight: bold;
+    }
+
+    .slider__slide-subheading {
+      top: 35%;
+      left: 35%;
+      font-size: 1;
+    }
+
+    .slider__slide-readmore {
+      top: 38%;
+      left: 54%;
+      font-size: 1;
+      margin-top: 10px;
     }
   }
 }
