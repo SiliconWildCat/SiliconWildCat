@@ -4,10 +4,11 @@ import { ReactDOM } from 'react';
 import { tts } from '../../modules/tts';
 import Link from 'next/link';
 import AudioPlayer from 'react-h5-audio-player';
-import { useAppSelector } from '../../hooks/useSelector';
+import { useAppDispatch, useAppSelector } from '../../hooks/useSelector';
 import { RootState } from '../../modules';
 import { initialText, inputText, submitTTS } from '../../modules/tts';
 import { useDispatch } from 'react-redux';
+import { changeSelect } from '../../modules/music';
 
 const options = [
   { value: 'tts', label: 'TTS' },
@@ -29,7 +30,7 @@ export default function TTsSlider({ Select }) {
   });
   const [value, onChangeValue] = useState('');
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const onSubmitText = (e) => {
     e.preventDefault();
     dispatch(submitTTS(text));
@@ -60,7 +61,9 @@ export default function TTsSlider({ Select }) {
   const onChangeText = (e) => {
     dispatch(inputText(e.target.value));
   };
-
+  const onInitial = () => {
+    dispatch(changeSelect(0));
+  };
   function onClickChange(e) {
     window.clearTimeout(changeTO);
 
@@ -154,7 +157,7 @@ export default function TTsSlider({ Select }) {
           ))}
         </div>
         <Link href="/music">
-          <a className="slider__control" />
+          <a onClick={onInitial} className="slider__control" />
         </Link>
 
         {/* <div
