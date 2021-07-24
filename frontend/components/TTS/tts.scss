@@ -421,7 +421,7 @@ $letterStagger: 0.1s;
         &:before {
           border: 3px solid white;
           border-bottom: none;
-          left: 88%;
+          right: 3.5rem;
           border-right: none;
           transform: translateX(-5px) rotate(135deg);
         }
@@ -443,7 +443,7 @@ $letterStagger: 0.1s;
       // left: -19%;
       font-weight: bold;
       top: 5%;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
     }
 
     .slider__slide-subheadings {
