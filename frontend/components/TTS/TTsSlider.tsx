@@ -173,7 +173,10 @@ export default function TTsSlider({ Select }) {
           ))}
         </div>
         <Link href="/music">
-          <a onClick={onInitial} className="slider__control" />
+          <a
+            onClick={onInitial}
+            className="slider__control slider__top-headings"
+          />
         </Link>
 
         {/* <div

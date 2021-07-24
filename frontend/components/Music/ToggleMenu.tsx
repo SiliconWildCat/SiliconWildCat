@@ -7,31 +7,31 @@ import { RootState } from '../../modules';
 import { useSelector } from 'react-redux';
 import { changeSelect } from '../../modules/music';
 
-// const GlobalStyles = createGlobalStyle`
-//   html, body {
-//     margin: 0;
-//     padding: 0;
-//   }
-//   *, *::after, *::before {
-//     box-sizing: border-box;
-//   }
-//   body {
-//     align-items: center;
-//     background: #0D0C1D;
-//     color: #EFFFFA;
-//     display: flex;
-//     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-//     height: 100vh;
-//     justify-content: center;
-//     text-rendering: optimizeLegibility;
-//   }
-//   `;
+const GlobalStyles = createGlobalStyle`
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+  *, *::after, *::before {
+    box-sizing: border-box;
+  }
+  body {
+    align-items: center;
+    background: #0D0C1D;
+    color: #EFFFFA;
+    display: flex;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    height: 100vh;
+    justify-content: center;
+    text-rendering: optimizeLegibility;
+  }
+  `;
 const theme = {
   primaryDark: '#0D0C1D',
   primaryLight: 'white',
 
   primaryHover: '#343078',
-  mobile: '576px',
+  mobile: '1024px',
 };
 
 const StyledBurger = styled.button<{ open: boolean }>`
@@ -89,6 +89,7 @@ const StyledMenu = styled.nav<{ open: boolean; selectNum: number }>`
   text-align: left;
   padding: 2rem;
   position: absolute;
+
   border: 0.2rem solid white;
   border-radius: 20px;
   margin-top: 5rem;
@@ -96,10 +97,16 @@ const StyledMenu = styled.nav<{ open: boolean; selectNum: number }>`
   top: 0;
   left: 0;
   transition: transform 0.3s ease-in-out;
-  transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
+  transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-120%)')};
+  /* @media screen and (max-width: 769px) {
+    width: 50%;
+  } */
   @media screen and (max-width: 850px) {
-    width: 100%;
-    height: 100%;
+    top: 5%;
+    width: 90%;
+    left: -5%;
+    height: 60%;
+    transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-102%)')};
   }
   width: 30%;
   margin-left: 10%;
@@ -107,7 +114,7 @@ const StyledMenu = styled.nav<{ open: boolean; selectNum: number }>`
 
 const MusicList = styled.div<{ index: number; selectNum: number }>`
   font-size: 1rem;
-
+  width: 50%;
   text-transform: uppercase;
   padding: 1rem 0;
   padding-left: 0.5rem;
@@ -121,6 +128,7 @@ const MusicList = styled.div<{ index: number; selectNum: number }>`
   transition: color 0.3s linear;
   margin-top: 2rem;
   box-sizing: border-box;
+  width: 100%;
   /* height: 10%; */
   border-radius: 10px;
   border: ${(props) =>
@@ -131,8 +139,19 @@ const MusicList = styled.div<{ index: number; selectNum: number }>`
     border: 0.3rem solid #8e63e8;
   }
   @media (max-width: ${({ theme }) => theme.mobile}) {
-    font-size: 1.5rem;
+    font-size: 0.7rem;
     text-align: center;
+    border: 0.2rem solid white;
+    margin: 0 auto;
+    margin-top: 2rem;
+    :first-child {
+      margin-top: 1rem;
+    }
+    width: 80%;
+    &:hover {
+      font-weight: 400;
+      border: 0.2rem solid #8e63e8;
+    }
   }
 `;
 export default function ToggleMenu() {

@@ -127,7 +127,7 @@ export default function MusicSlider() {
                     </span>
                   ))}
                 </h2> */}
-                <p className="slider__slide-readmore">Go to Youtube</p>
+                {/* <p className="slider__slide-readmore">Go to Youtube</p> */}
               </div>
               <div className="slider__slide-parts">
                 {[...Array(IMAGE_PARTS).fill(0)].map((x, i) => (
@@ -152,7 +152,7 @@ export default function MusicSlider() {
           onClick={() => changeSlides(1)}
         /> */}
         <Link href="/tts">
-          <a className="slider__control slider__control--right" />
+          <a className="slider__control slider__top-heading slider__control--right" />
         </Link>
       </div>
     </>
