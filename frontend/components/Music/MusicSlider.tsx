@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { ReactDOM } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/useSelector';
@@ -17,24 +17,47 @@ export default function MusicSlider() {
   const AUTOCHANGE_TIME = 4000;
   const [state, onOne4] = useState({
     activeSlide: -1,
-    prevSlide: 0,
+    prevSlide: -1,
     sliderReady: true,
   });
   const dispatch = useAppDispatch();
   useEffect(() => {
     window.clearTimeout(changeTO);
   }, []);
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     onOne4({
+  //       activeSlide: 0,
+  //       prevSlide: 0,
+  //       sliderReady: true,
+  //     });
+  //   }, 0);
+  // }, []);
   useEffect(() => {
-    // runAutochangeTO();
-    setTimeout(() => {
+    if (selectNum === 0) {
       onOne4({
         activeSlide: 1,
         prevSlide: 0,
         sliderReady: true,
       });
-      dispatch(changeSelect(1));
-    }, 0);
-  }, []);
+      setTimeout(() => {
+        onOne4({
+          activeSlide: 0,
+          prevSlide: 0,
+          sliderReady: true,
+        });
+      }, 100);
+    } else {
+      onOne4({
+        activeSlide: selectNum,
+        prevSlide: 0,
+        sliderReady: true,
+      });
+    }
+
+    // changeSlides(selectNum);
+  }, [selectNum]);
 
   // function runAutochangeTO() {
   //   onOne2(
@@ -57,22 +80,24 @@ export default function MusicSlider() {
       sliderReady: true,
     });
   }
+  const changeSlides = useCallback(
+    (change) => {
+      window.clearTimeout(changeTO);
+      const { length } = musics;
 
-  function changeSlides(change) {
-    window.clearTimeout(changeTO);
-    const { length } = musics;
-
-    const prevSlide = state.activeSlide;
-    let activeSlide = prevSlide + change;
-    if (activeSlide < 0) activeSlide = length - 1;
-    if (activeSlide >= length) activeSlide = 0;
-    dispatch(changeSelect(activeSlide));
-    onOne4({
-      activeSlide: activeSlide,
-      prevSlide: prevSlide,
-      sliderReady: true,
-    });
-  }
+      const prevSlide = state.activeSlide;
+      let activeSlide = prevSlide + change;
+      if (activeSlide < 0) activeSlide = length - 1;
+      if (activeSlide >= length) activeSlide = 0;
+      // dispatch(changeSelect(activeSlide));
+      onOne4({
+        activeSlide: selectNum,
+        prevSlide: prevSlide,
+        sliderReady: true,
+      });
+    },
+    [selectNum]
+  );
 
   return (
     <>
@@ -122,13 +147,13 @@ export default function MusicSlider() {
           <div className="__control" onClick={() => changeSlides(-1)} />
           <div className="__control" onClick={() => changeSlides(-1)} />
         </div> */}
-        <div
+        {/* <div
           className="slider__control slider__control--right"
           onClick={() => changeSlides(1)}
-        />
-        {/* <Link href="tts">
+        /> */}
+        <Link href="/tts">
           <a className="slider__control slider__control--right" />
-        </Link> */}
+        </Link>
       </div>
     </>
   );
