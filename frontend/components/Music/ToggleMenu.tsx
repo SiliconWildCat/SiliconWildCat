@@ -92,8 +92,9 @@ const StyledMenu = styled.nav<{ open: boolean }>`
   left: 0;
   transition: transform 0.3s ease-in-out;
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
-  @media (max-width: ${({ theme }) => theme.mobile}) {
+  @media screen and (max-width: 850px){
     width: 100%;
+    height: 100%;
   }
   width: 30%;
   margin-left: 10%;
@@ -126,6 +127,7 @@ const StyledMenu = styled.nav<{ open: boolean }>`
 export default function ToggleMenu() {
   const [open, setOpen] = useState(true);
   return (
+    <div className='toggle_bar'>
     <ThemeProvider theme={theme}>
       <>
         <StyledBurger open={open} onClick={() => setOpen(!open)}>
@@ -133,14 +135,17 @@ export default function ToggleMenu() {
           <div />
           <div />
         </StyledBurger>
-        <StyledMenu open={open}>
-          {slides.map((music) => (
-            <a href="" key={music.country}>
-              {music.country}
-            </a>
-          ))}
-        </StyledMenu>
+        <div className='musicList'>
+          <StyledMenu open={open}>
+            {slides.map((music) => (
+              <a href="" key={music.country}>
+                {music.country}
+              </a>
+            ))}
+          </StyledMenu>
+        </div>
       </>
     </ThemeProvider>
+    </div>
   );
 }
