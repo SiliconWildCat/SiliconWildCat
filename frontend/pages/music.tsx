@@ -9,7 +9,7 @@ function Music() {
     <>
       <ToggleMenu></ToggleMenu>
       <MusicSlider />
-      {/* <MusicPlayer /> */}
+      <MusicPlayer />
     </>
   );
 }
