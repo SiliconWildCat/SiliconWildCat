@@ -1,24 +1,32 @@
 import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { ReactDOM } from 'react';
-import { tts } from '../../modules/tts';
+import { submit, tts } from '../../modules/tts';
 import Link from 'next/link';
 import AudioPlayer from 'react-h5-audio-player';
 import { useAppDispatch, useAppSelector } from '../../hooks/useSelector';
 import { RootState } from '../../modules';
-import { initialText, inputText, submitTTS } from '../../modules/tts';
+import {
+  initialText,
+  inputText,
+  submitTTS,
+  changeType,
+} from '../../modules/tts';
 import { useDispatch } from 'react-redux';
 import { changeSelect } from '../../modules/music';
+import { getPost } from '../../lib/api/api';
+import { getUsers } from '../../modules/counter';
 
 const options = [
-  { value: 'tts', label: 'TTS' },
-  { value: 'kss', label: 'KSS' },
+  { value: 'KSS', label: 'KSS' },
+  { value: 'TaeYeon', label: 'TaeYeon' },
 ];
 
 export default function TTsSlider({ Select }) {
-  const { text, mp3File } = useAppSelector(({ tts }: RootState) => ({
+  const { text, mp3File, type } = useAppSelector(({ tts }: RootState) => ({
     text: tts.text,
     mp3File: tts.mp3File,
+    type: tts.type,
   }));
   const [IMAGE_PARTS, onOne] = useState(4);
   const [changeTO, onOne2] = useState(0);
@@ -28,12 +36,13 @@ export default function TTsSlider({ Select }) {
     prevSlide: 0,
     sliderReady: true,
   });
-  const [value, onChangeValue] = useState('');
+  const [value, onChangeValue] = useState({ value: '', label: '' });
 
   const dispatch = useAppDispatch();
   const onSubmitText = (e) => {
     e.preventDefault();
-    dispatch(submitTTS(text));
+    const info: submit = { text: text, type: type };
+    dispatch(submitTTS(info));
     dispatch(initialText());
   };
   useEffect(() => {
@@ -49,7 +58,10 @@ export default function TTsSlider({ Select }) {
       });
     }, 0);
   }, []);
-
+  useEffect(() => {
+    const { label } = value;
+    dispatch(changeType(label));
+  }, [value, dispatch]);
   // function runAutochangeTO() {
   //   onOne2(
   //     setTimeout(() => {
@@ -76,7 +88,9 @@ export default function TTsSlider({ Select }) {
       sliderReady: true,
     });
   }
-
+  const onChangeVal = () => {
+    onChangeValue(value);
+  };
   function changeSlides(change) {
     window.clearTimeout(changeTO);
     const { length } = tts;
@@ -132,7 +146,9 @@ export default function TTsSlider({ Select }) {
                   options={options}
                   onChange={onChangeValue}
                 />
-                <button className="slider__slide-button">Translate</button>
+                <button onClick={onSubmitText} className="slider__slide-button">
+                  Translate
+                </button>
                 {mp3File && (
                   <AudioPlayer
                     className="slider__slide-music"
