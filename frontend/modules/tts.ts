@@ -13,7 +13,7 @@ export const tts = [
     img: `https://t1.daumcdn.net/cfile/tistory/9975134C5C97724E08`,
   },
   {
-    city: 'Paris',
+    city: 'NewYork',
     country: '제주도 푸른밤',
     img: `https://t1.daumcdn.net/cfile/tistory/994D5C485C8EEF791E?original`,
   },
