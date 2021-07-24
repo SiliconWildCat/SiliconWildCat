@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { ReactDOM } from 'react';
-import { useAppSelector } from '../../hooks/useSelector';
-import { slides } from '../../modules/music';
+import { useAppDispatch, useAppSelector } from '../../hooks/useSelector';
+
 import Link from 'next/link';
+import { changeSelect } from '../../modules/music';
+import { RootState } from '../../modules';
 
 export default function MusicSlider() {
-  // const { slides2 } = useAppSelector(({ music }) => ({
-  //   slides2: music.slides,
-  // }));
+  const { selectNum, musics } = useAppSelector(({ music }: RootState) => ({
+    selectNum: music.selectNum,
+    musics: music.musics,
+  }));
   const [IMAGE_PARTS, onOne] = useState(4);
   const [changeTO, onOne2] = useState(0);
   const AUTOCHANGE_TIME = 4000;
@@ -17,7 +20,7 @@ export default function MusicSlider() {
     prevSlide: 0,
     sliderReady: true,
   });
-
+  const dispatch = useAppDispatch();
   useEffect(() => {
     window.clearTimeout(changeTO);
   }, []);
@@ -29,6 +32,7 @@ export default function MusicSlider() {
         prevSlide: 0,
         sliderReady: true,
       });
+      dispatch(changeSelect(1));
     }, 0);
   }, []);
 
@@ -56,13 +60,13 @@ export default function MusicSlider() {
 
   function changeSlides(change) {
     window.clearTimeout(changeTO);
-    const { length } = slides;
+    const { length } = musics;
 
     const prevSlide = state.activeSlide;
     let activeSlide = prevSlide + change;
     if (activeSlide < 0) activeSlide = length - 1;
     if (activeSlide >= length) activeSlide = 0;
-
+    dispatch(changeSelect(activeSlide));
     onOne4({
       activeSlide: activeSlide,
       prevSlide: prevSlide,
@@ -76,20 +80,20 @@ export default function MusicSlider() {
         {/* <button onClick={onClickChange}>2</button> */}
         <p className="slider__top-heading">Taeyeon</p>
         <div className="slider__slides">
-          {slides.map((slide, index) => (
+          {musics.map((slide, index) => (
             <div
               className={classNames('slider__slide', {
                 's--active': state.activeSlide === index,
                 's--prev': state.prevSlide === index,
               })}
-              key={slide.city}
+              key={slide.title}
             >
               <div className="slider__slide-content">
                 <h3
                   className="slider__slide-subheading"
                   style={{ color: 'white' }}
                 >
-                  Title : {slide.country}
+                  Title : {slide.title}
                 </h3>
                 {/* <h2 className="slider__slide-heading">
                   {slide.city.split('').map((l, index) => (
@@ -105,7 +109,7 @@ export default function MusicSlider() {
                   <div className="slider__slide-part" key={i}>
                     <div
                       className="slider__slide-part-inner"
-                      style={{ backgroundImage: `url(${slide.img})` }}
+                      style={{ backgroundImage: `url(${slide.imgURL})` }}
                     />
                   </div>
                 ))}
