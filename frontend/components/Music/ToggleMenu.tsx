@@ -80,7 +80,7 @@ const StyledBurger = styled.button<{ open: boolean }>`
     }
   }
 `;
-const StyledMenu = styled.nav<{ open: boolean }>`
+const StyledMenu = styled.nav<{ open: boolean; selectNum: number }>`
   display: flex;
   background: transparent;
   flex-direction: column;
@@ -103,32 +103,36 @@ const StyledMenu = styled.nav<{ open: boolean }>`
   }
   width: 30%;
   margin-left: 10%;
+`;
 
-  a {
-    font-size: 1rem;
+const MusicList = styled.div<{ index: number; selectNum: number }>`
+  font-size: 1rem;
 
-    text-transform: uppercase;
-    padding: 1rem 0;
-    padding-left: 0.5rem;
-    cursor: pointer;
-    font-weight: 300;
-    letter-spacing: 0.5rem;
-    /* color: ${({ theme }) => theme.primaryDark}; */
-    color: white;
-    text-decoration: none;
-    border: 0.2rem solid white;
-    transition: color 0.3s linear;
-    margin-top: 2rem;
-    /* height: 10%; */
-    border-radius: 10px;
-    @media (max-width: ${({ theme }) => theme.mobile}) {
-      font-size: 1.5rem;
-      text-align: center;
-    }
-
-    &:hover {
-      color: black;
-    }
+  text-transform: uppercase;
+  padding: 1rem 0;
+  padding-left: 0.5rem;
+  cursor: pointer;
+  font-weight: 300;
+  letter-spacing: 0.5rem;
+  /* color: ${({ theme }) => theme.primaryDark}; */
+  color: white;
+  text-decoration: none;
+  border: 0.3rem solid white;
+  transition: color 0.3s linear;
+  margin-top: 2rem;
+  box-sizing: border-box;
+  /* height: 10%; */
+  border-radius: 10px;
+  border: ${(props) =>
+    props.index === props.selectNum && '0.3rem solid #8e63e8'};
+  font-weight: ${(props) => props.index === props.selectNum && '400'};
+  &:hover {
+    font-weight: 400;
+    border: 0.3rem solid #8e63e8;
+  }
+  @media (max-width: ${({ theme }) => theme.mobile}) {
+    font-size: 1.5rem;
+    text-align: center;
   }
 `;
 export default function ToggleMenu() {
@@ -153,19 +157,23 @@ export default function ToggleMenu() {
             <div />
           </StyledBurger>
           <div className="musicList">
-            <StyledMenu open={open}>
-              {musics.map((music, index) => (
-                <a
-                  onClick={(e) => {
-                    onChangeNum({ e, index });
-                    console.log(index);
-                  }}
-                  key={music.title}
-                >
-                  {music.title}
-                </a>
-              ))}
-            </StyledMenu>
+            <div className="toggle_bar">
+              <StyledMenu open={open} selectNum={selectNum}>
+                {musics.map((music, index) => (
+                  <MusicList
+                    index={index}
+                    selectNum={selectNum}
+                    onClick={(e) => {
+                      onChangeNum({ e, index });
+                      console.log(index);
+                    }}
+                    key={music.title}
+                  >
+                    {music.title}
+                  </MusicList>
+                ))}
+              </StyledMenu>
+            </div>
           </div>
         </>
       </ThemeProvider>
