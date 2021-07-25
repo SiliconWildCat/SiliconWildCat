@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Counter from '../components/Counter';
 import MusicSlider from '../components/Music/MusicSlider';
 import ToggleMenu from '../components/Music/ToggleMenu';
-import MusicPlayer from '../components/musicPlayer';
+import MusicPlayer from '../components/MusicPlayer';
 
 export default function Home() {
   return (
