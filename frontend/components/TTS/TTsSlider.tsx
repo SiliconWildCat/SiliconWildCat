@@ -144,11 +144,10 @@ export default function TTsSlider({ Select }) {
                 <button onClick={onSubmitText} className="slider__slide-button">
                   Translate
                 </button>
-                {!mp3File && (
+                {mp3File && (
                   <AudioPlayer
                     className="slider__slide-music"
                     style={{ width: '60%', borderRadius: '8px' }}
-                    autoPlay
                     src={mp3File}
                     onPlay={(e) => console.log('onPlay')}
                   />
