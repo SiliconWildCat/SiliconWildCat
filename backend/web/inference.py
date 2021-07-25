@@ -3,7 +3,7 @@ import re
 import sys
 from unicodedata import normalize
 from pathlib import Path
-from TTS_sub.TTS.utils.synthesizer import Synthesizer
+from tts_sub.TTS.utils.synthesizer import Synthesizer
 from g2pK import g2pk
 
 g2p = g2pk.G2p()
