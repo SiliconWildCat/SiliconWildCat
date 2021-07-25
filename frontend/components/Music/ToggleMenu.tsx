@@ -106,7 +106,7 @@ const StyledMenu = styled.nav<{ open: boolean; selectNum: number }>`
     top: 5%;
     width: 90%;
     left: -5%;
-    height: 60%;
+    height: 90%;
     transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-102%)')};
   }
   width: 30%;
@@ -140,15 +140,15 @@ const MusicList = styled.div<{ index: number; selectNum: number }>`
     border: 0.3rem solid #8e63e8;
   }
   @media (max-width: ${({ theme }) => theme.mobile}) {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     text-align: center;
     border: 0.2rem solid white;
     margin: 0 auto;
-    margin-top: 2rem;
+    margin-top: 5rem;
     :first-child {
-      margin-top: 1rem;
+      margin-top: 2rem;
     }
-    width: 80%;
+    width: 90%;
     &:hover {
       font-weight: 400;
       border: 0.2rem solid #8e63e8;
