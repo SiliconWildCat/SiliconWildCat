@@ -3,7 +3,7 @@ from flask_cors import cross_origin
 from flask import Flask, render_template, request, jsonify,send_file
 from inference import synthesize, create_synthesizer
 from flask_ngrok import run_with_ngrok
-
+from flask_restful import reqparse,Api,Resource
 import soundfile as sf
 from saveText import save_text, find_path
 from sqlalchemy import create_engine
@@ -33,14 +33,32 @@ swaggerui_blueprint = get_swaggerui_blueprint(
 
 app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 
-@app.route('/TTS', methods=['POST', 'GET'])
+api=Api(app)
+
+@app.route('/TTS', methods=['POST'])
 @cross_origin()
 def text_speech():
-    if request.method == 'POST':
+    if request.method=='POST':
+        data=request.get_json()
+        return jsonify(data)
+    """
+    text=request.args.get("speech")
+    voice=request.args.get("type")
+    return jsonify(text,voice)
+    #syn=create_synthesizer(voice)
+    #wavs=synthesize(text,syn)
+    #out = io.BytesIO()
+    #syn.save_wav(wavs, out)
+    #save_text(text,database,session) 
+    #return send_file(out, mimetype="audio/wav")
+    
+
+    #if request.method == 'POST':
+        data=request.get_json()
+        return jsonify(data)
         text = request.form['speech']
         voice = request.form['voices']
         syn=create_synthesizer(voice)
-        print(type(text))
         save_text(text,database,session)
         wavs=synthesize(text,syn)
         #sf.write('/app/audio.wav',wavs, 22050, 'PCM_24')
@@ -48,8 +66,9 @@ def text_speech():
         syn.save_wav(wavs, out)
         return send_file(out, mimetype="audio/wav")
         #return render_template('frontend.html')
+        
     else:
-        return render_template('frontend.html')
+        return render_template('frontend.html')"""
 
 @app.route('/SVS', methods=['GET'])
 def singing_voice():

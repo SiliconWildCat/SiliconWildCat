@@ -30,7 +30,7 @@
             "description": "Speech Request Post Object",
             "required": true,
             "content": {
-              "application/x-www-form-urlencoded": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/text"
                 }
@@ -38,7 +38,7 @@
             }
           },
           "produces": [
-            "application/x-www-form-urlencoded"
+            "application/json"
           ],
           "responses": {
             "201": {
