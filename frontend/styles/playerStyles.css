@@ -223,8 +223,8 @@ body {
   .player {
     position: relative;
     transform: scale(0.7, 0.7);
-    width: 115%;
-    right: 5%;
+    width: 135%;
+    right: 17.5%;
     top: 80%;
   }
   .player_wrapper {
