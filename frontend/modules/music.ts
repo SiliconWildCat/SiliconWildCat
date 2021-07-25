@@ -1,6 +1,9 @@
 import { IMusic } from '../interface/music';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
+import createRequestSaga from '../hooks/createRequestSaga';
+import * as api from '../lib/api/music';
+import { takeLatest } from 'redux-saga/effects';
+import { createAction } from 'redux-actions';
 export const initialState: IMusic = {
   selectNum: 0,
   musics: [
@@ -23,7 +26,18 @@ export const initialState: IMusic = {
       imgURL: 'https://t1.daumcdn.net/cfile/tistory/9954D9485C8EEF7C1E',
     },
   ],
+  music: '',
 };
+
+const GET_MUSIC = 'music/GET_MUSIC';
+
+export const submitTTS = createAction(GET_MUSIC);
+
+const getMusicSaga = createRequestSaga(GET_MUSIC, api.getMusic);
+
+export function* musicSaga() {
+  yield takeLatest(GET_MUSIC, getMusicSaga);
+}
 
 export const musicSlice = createSlice({
   name: 'music',
@@ -31,6 +45,9 @@ export const musicSlice = createSlice({
   reducers: {
     changeSelect: (state, action: PayloadAction<number>) => {
       state.selectNum = action.payload;
+    },
+    GET_MUSIC_SUCCESS: (state, action: PayloadAction<any>) => {
+      state.music = action.payload;
     },
   },
 });
