@@ -152,7 +152,7 @@ export default function MusicSlider() {
           onClick={() => changeSlides(1)}
         /> */}
         <Link href="/tts">
-          <a className="slider__control slider__top-heading slider__control--right" />
+          <a className="slider__control  slider__control--right" />
         </Link>
       </div>
     </>
