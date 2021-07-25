@@ -33,8 +33,8 @@ export default function TTsSlider({ Select }) {
     sliderReady: true,
   });
   const [value, onChangeValue] = useState({
-    value: 'TTS',
-    label: 'TTS',
+    value: 'KSS',
+    label: 'KSS',
     key: 0,
   });
 

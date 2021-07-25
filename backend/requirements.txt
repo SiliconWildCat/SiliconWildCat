@@ -15,4 +15,3 @@ torch
 cython
 soundfile
 flask_swagger_ui
-flask_restful
