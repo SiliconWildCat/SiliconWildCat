@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { ReactDOM } from 'react';
 import { submit, tts } from '../../modules/tts';
 import Link from 'next/link';
 import AudioPlayer from 'react-h5-audio-player';
@@ -12,14 +11,11 @@ import {
   submitTTS,
   changeType,
 } from '../../modules/tts';
-import { useDispatch } from 'react-redux';
 import { changeSelect } from '../../modules/music';
-import { getPost } from '../../lib/api/api';
-import { getUsers } from '../../modules/counter';
 
 const options = [
-  { value: 'KSS', label: 'KSS' },
-  { value: 'TaeYeon', label: 'TaeYeon' },
+  { value: 'KSS', label: 'KSS', key: 0 },
+  { value: 'TaeYeon', label: 'TaeYeon', key: 1 },
 ];
 
 export default function TTsSlider({ Select }) {
@@ -36,7 +32,11 @@ export default function TTsSlider({ Select }) {
     prevSlide: 0,
     sliderReady: true,
   });
-  const [value, onChangeValue] = useState({ value: '', label: '' });
+  const [value, onChangeValue] = useState({
+    value: 'TTS',
+    label: 'TTS',
+    key: 0,
+  });
 
   const dispatch = useAppDispatch();
   const onSubmitText = (e) => {
@@ -52,24 +52,17 @@ export default function TTsSlider({ Select }) {
     // runAutochangeTO();
     setTimeout(() => {
       onOne4({
-        activeSlide: 0,
+        activeSlide: value.key,
         prevSlide: 0,
         sliderReady: true,
       });
     }, 0);
-  }, []);
+  }, [value]);
   useEffect(() => {
     const { label } = value;
     dispatch(changeType(label));
   }, [value, dispatch]);
-  // function runAutochangeTO() {
-  //   onOne2(
-  //     setTimeout(() => {
-  //       changeSlides(1);
-  //       runAutochangeTO();
-  //     }, AUTOCHANGE_TIME)
-  //   );
-  // }
+
   const onChangeText = (e) => {
     dispatch(inputText(e.target.value));
   };
@@ -112,7 +105,7 @@ export default function TTsSlider({ Select }) {
       <div className={classNames('slider', { 's--ready': state.sliderReady })}>
         {/* <button onClick={onClickChange}>2</button> */}
         <p className="slider__top-headings">Text to speech</p>
-        {console.log(value)}
+        {console.log(type)}
         <div className="slider__slides">
           {tts.map((slide, index) => (
             <div
@@ -144,6 +137,8 @@ export default function TTsSlider({ Select }) {
                 <Select
                   className="slider__slide-subheadingss"
                   options={options}
+                  value={value}
+                  defaultValue={{ value: `${type}`, label: `${type}`, key: 0 }}
                   onChange={onChangeValue}
                 />
                 <button onClick={onSubmitText} className="slider__slide-button">
@@ -173,16 +168,8 @@ export default function TTsSlider({ Select }) {
           ))}
         </div>
         <Link href="/music">
-          <a
-            onClick={onInitial}
-            className="slider__control slider__top-headings"
-          />
+          <a onClick={onInitial} className="slider__control" />
         </Link>
-
-        {/* <div
-          className="slider__control slider__control--right"
-          onClick={() => changeSlides(1)}
-        /> */}
       </div>
     </>
   );

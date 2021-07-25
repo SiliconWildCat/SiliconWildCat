@@ -16,20 +16,20 @@
   }
 }*/
 
-/* @media screen and (max-width: 769px) {
+@media screen and (max-width: 769px) {
   .musicList {
-    transform: scale(0.8, 0.8);
+    transform: scale(0.6, 0.6);
     position: absolute;
-    width: 80%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
     align-self: center;
     z-index: 600;
-    right: 15%;
+    right: 20%;
     bottom: 12%;
   }
   a {
     width: 100%;
     height: 120px;
   }
-} */
+}
 /*각 디바이스별 미디어 쿼리 생성.*/

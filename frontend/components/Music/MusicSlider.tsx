@@ -25,15 +25,6 @@ export default function MusicSlider() {
     window.clearTimeout(changeTO);
   }, []);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     onOne4({
-  //       activeSlide: 0,
-  //       prevSlide: 0,
-  //       sliderReady: true,
-  //     });
-  //   }, 0);
-  // }, []);
   useEffect(() => {
     if (selectNum === 0) {
       onOne4({
@@ -142,17 +133,8 @@ export default function MusicSlider() {
             </div>
           ))}
         </div>
-        {/* <div className="slider__control" onClick={() => changeSlides(-1)}>
-          <div className="__control" onClick={() => changeSlides(-1)} />
-          <div className="__control" onClick={() => changeSlides(-1)} />
-          <div className="__control" onClick={() => changeSlides(-1)} />
-        </div> */}
-        {/* <div
-          className="slider__control slider__control--right"
-          onClick={() => changeSlides(1)}
-        /> */}
         <Link href="/tts">
-          <a className="slider__control slider__top-heading slider__control--right" />
+          <a className="slider__control  slider__control--right" />
         </Link>
       </div>
     </>
