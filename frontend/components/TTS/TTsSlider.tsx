@@ -14,7 +14,7 @@ import {
 import { changeSelect } from '../../modules/music';
 
 const options = [
-  { value: 'TTS', label: 'TTS', key: 0 },
+  { value: 'KSS', label: 'KSS', key: 0 },
   { value: 'TaeYeon', label: 'TaeYeon', key: 1 },
 ];
 
