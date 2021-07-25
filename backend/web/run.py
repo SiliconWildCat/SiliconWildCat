@@ -37,18 +37,21 @@ app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 
 
 @app.route('/TTS', methods=['POST'])
-def text_speech():    
-    data=request.get_json()
-    speech=data['speech']
-    voices=data['voices']
-    #return jsonify({"speech":speech, "voices":voices})
-    syn=create_synthesizer(voices)
-    wavs=synthesize(speech,syn)
-    out = io.BytesIO()
-    syn.save_wav(wavs, out)
-    save_text(speech,database,session) 
-    return send_file(out, mimetype="audio/wav")
-    
+def text_speech(): 
+    if request.method=='POST':   
+        data=request.get_json()
+        speech=data['speech']
+        voices=data['voices']
+        #return jsonify({"speech":speech, "voices":voices})
+        syn=create_synthesizer(voices)
+        wavs=synthesize(speech,syn)
+        #sf.write('/app/audio.wav',wavs,22050,subtype='PCM_16')
+        out = io.BytesIO()
+        syn.save_wav(wavs, out)
+        save_text(speech,database,session)
+        #return 'ok' 
+        return send_file(out, mimetype="audio/wav")
+
 
     
 
