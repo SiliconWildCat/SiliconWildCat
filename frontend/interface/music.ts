@@ -5,4 +5,5 @@ interface slides {
 export interface IMusic {
   selectNum: number;
   musics: slides[];
+  music: string;
 }

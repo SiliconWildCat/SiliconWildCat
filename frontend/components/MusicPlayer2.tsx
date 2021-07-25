@@ -129,7 +129,7 @@ export default function MusicPlayer() {
           ></div>
           <div
             className="player__albumImg"
-            data-author="Khalid"
+            data-author=""
             data-song="Angels"
             data-src="https://fastcampus2022.s3.ap-northeast-2.amazonaws.com/Ed+Sheeran+Bad+Habits+%5BOfficial+Acoustic+Video%5D+(2)+(2).mp3"
             style={{

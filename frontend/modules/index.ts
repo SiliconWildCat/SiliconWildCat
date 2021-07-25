@@ -7,7 +7,7 @@ import tts, { ttsSaga } from './tts';
 import { all } from 'redux-saga/effects';
 import counter, { sampleSaga } from './counter';
 import loading from './loading';
-import music from './music';
+import music, { musicSaga } from './music';
 import { IMusic } from '../interface/music';
 export interface State {
   counter: Sample;
@@ -32,5 +32,5 @@ export type RootState = ReturnType<typeof rootReducer>;
 export default rootReducer;
 
 export function* rootSaga() {
-  yield all([sampleSaga(), ttsSaga()]);
+  yield all([sampleSaga(), ttsSaga(), musicSaga()]);
 }

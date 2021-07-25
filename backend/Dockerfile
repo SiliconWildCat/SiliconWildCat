@@ -28,15 +28,20 @@ RUN pip3 install markupsafe==1.0.0
 RUN pip3 install -r requirements.txt 
 
 
-
 RUN git clone --recursive https://github.com/sce-tts/g2pK.git
-RUN git clone --recursive https://github.com/thfla1105/TTS.git 
+RUN git clone --recursive https://github.com/thfla1105/TTS.git
+#RUN git clone --recursive https://github.com/sce-tts/TTS.git
+
 
 WORKDIR /app/g2pK
 RUN pip3 install -q --no-cache-dir "konlpy" "jamo" "nltk" "python-mecab-ko"
 RUN pip3 install -q --no-cache-dir -e .
 
 WORKDIR /app/TTS
+#RUN git config --global user.email "syoung622@naver.com"
+#RUN git config --global user.name "syoung622"
+#RUN git subtree add --prefix=TTS_sub https://github.com/syoung622/TTS.git syoung622-TTS
+
 RUN pip3 install TTS
 RUN pip3 install -q --no-cache-dir -e .
 WORKDIR /app
