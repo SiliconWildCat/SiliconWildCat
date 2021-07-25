@@ -4,3 +4,4 @@
 [submodule "backend/web/TTS"]
 	path = backend/web/TTS
 	url = https://github.com/sce-tts/TTS.git
+	branch = sce-tts
