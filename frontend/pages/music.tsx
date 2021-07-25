@@ -10,9 +10,8 @@ function Music() {
     <>
       <ToggleMenu></ToggleMenu>
       <MusicSlider />
-      {/* <div className="player_wrapper">
-        <MusicPlayer />
-      </div> */}
+
+      <MusicPlayer />
     </>
   );
 }
