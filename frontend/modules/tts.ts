@@ -10,19 +10,19 @@ export const tts = [
   {
     city: 'Paris',
     country: '제주도 푸른밤',
-    img: `https://t1.daumcdn.net/cfile/tistory/9975134C5C97724E08`,
+    img: `https://ww8007bucket.s3.ap-northeast-2.amazonaws.com/%ED%83%9C%EC%97%B0/record-player-1851576_1920.jpg`,
   },
   {
     city: 'NewYork',
     country: '제주도 푸른밤',
-    img: `https://t1.daumcdn.net/cfile/tistory/994D5C485C8EEF791E?original`,
+    img: `https://ww8007bucket.s3.ap-northeast-2.amazonaws.com/%ED%83%9C%EC%97%B0/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA+2021-07-25+%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE+4.16.36.png`,
   },
 ];
 
 const initialState: ITts = {
   text: '',
   mp3File: '',
-  type: '',
+  type: 'KSS',
   error: '',
 };
 
