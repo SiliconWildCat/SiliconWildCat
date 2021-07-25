@@ -11,19 +11,27 @@ export const initialState: IMusic = {
       title: '별 보러 갈래',
       imgURL:
         'https://t1.daumcdn.net/cfile/tistory/994D5C485C8EEF791E?original',
+      musicURL:
+        'https://storage.googleapis.com/siliconwildcat_poc_bucket/music/FourSeasons.wav',
     },
     {
       title: '그리 쉽게 이별을 말하지 말아요',
       imgURL: 'https://t1.daumcdn.net/cfile/tistory/9980B4485C8EEF781C',
+      musicURL:
+        'https://storage.googleapis.com/siliconwildcat_poc_bucket/music/IU_Secret_Garden.mp3',
     },
     {
       title: '제주도 푸른밤',
       imgURL: 'https://t1.daumcdn.net/cfile/tistory/9975134C5C97724E08',
+      musicURL:
+        'https://storage.googleapis.com/siliconwildcat_poc_bucket/music/IU_Secret_Garden.mp3',
     },
 
     {
       title: 'Stay',
       imgURL: 'https://t1.daumcdn.net/cfile/tistory/9954D9485C8EEF7C1E',
+      musicURL:
+        'https://storage.googleapis.com/siliconwildcat_poc_bucket/music/IU_Secret_Garden.mp3',
     },
   ],
   music: '',

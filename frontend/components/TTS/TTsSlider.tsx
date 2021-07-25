@@ -14,7 +14,7 @@ import {
 import { changeSelect } from '../../modules/music';
 
 const options = [
-  { value: 'TTS', label: 'TTS', key: 0 },
+  { value: 'KSS', label: 'KSS', key: 0 },
   { value: 'TaeYeon', label: 'TaeYeon', key: 1 },
 ];
 
@@ -148,7 +148,6 @@ export default function TTsSlider({ Select }) {
                   <AudioPlayer
                     className="slider__slide-music"
                     style={{ width: '60%', borderRadius: '8px' }}
-                    autoPlay
                     src={mp3File}
                     onPlay={(e) => console.log('onPlay')}
                   />
