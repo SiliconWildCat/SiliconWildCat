@@ -3,9 +3,12 @@ import jquery from 'jquery';
 import $ from 'jquery';
 import { TimelineMax, Power0, TweenMax } from 'gsap';
 import { useAppSelector } from '../hooks/useSelector';
-import { initialState } from '../modules/music';
 import { RootState } from '../modules';
 export default function MusicPlayer() {
+  const { musics, selectNum } = useAppSelector(({ music }: RootState) => ({
+    musics: music.musics,
+    selectNum: music.selectNum,
+  }));
   useEffect(() => {
     $(document).ready(function () {
       var audioElement = document.createElement('audio');
@@ -122,18 +125,18 @@ export default function MusicPlayer() {
             className="player__albumImg active-song"
             data-author=""
             data-song="Location"
-            data-src="https://fastcampus2022.s3.ap-northeast-2.amazonaws.com/Ed+Sheeran+Bad+Habits+%5BOfficial+Acoustic+Video%5D+(2)+(2).mp3"
+            data-src={musics[selectNum].musicURL}
             style={{
-              backgroundImage: `url(${initialState.musics[0].imgURL})`,
+              backgroundImage: `url(${musics[selectNum].imgURL})`,
             }}
           ></div>
           <div
             className="player__albumImg"
             data-author=""
             data-song="Angels"
-            data-src="https://fastcampus2022.s3.ap-northeast-2.amazonaws.com/Ed+Sheeran+Bad+Habits+%5BOfficial+Acoustic+Video%5D+(2)+(2).mp3"
+            data-src={musics[selectNum].musicURL}
             style={{
-              backgroundImage: `url(${initialState.musics[0].imgURL})`,
+              backgroundImage: `url(${musics[selectNum].imgURL})`,
             }}
           ></div>
         </div>
