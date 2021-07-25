@@ -3,15 +3,16 @@ import Icon from '../static/icon.png';
 
 import MusicSlider from '../components/Music/MusicSlider';
 import ToggleMenu from '../components/Music/ToggleMenu';
-import MusicPlayer from '../components/musicPlayer';
+import MusicPlayer from '../components/MusicPlayer2';
+
 function Music() {
   return (
     <>
       <ToggleMenu></ToggleMenu>
       <MusicSlider />
-      <div className="player_wrapper">
+      {/* <div className="player_wrapper">
         <MusicPlayer />
-      </div>
+      </div> */}
     </>
   );
 }
