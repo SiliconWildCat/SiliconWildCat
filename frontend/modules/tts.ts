@@ -22,7 +22,7 @@ export const tts = [
 const initialState: ITts = {
   text: '',
   mp3File: '',
-  type: 'KSS',
+  type: 'TTS',
   error: '',
 };
 
