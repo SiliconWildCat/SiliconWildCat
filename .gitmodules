@@ -3,7 +3,4 @@
 	url = https://github.com/sce-tts/g2pK.git
 [submodule "backend/web/TTS"]
 	path = backend/web/TTS
-	url = https://github.com/thfla1105/TTS.git
-[submodule "TTS"]
-	path = TTS
-	url = https://github.com/thfla1105/TTS.git
+	url = https://github.com/sce-tts/TTS.git
