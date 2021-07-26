@@ -4,13 +4,18 @@ import client from './client';
 export const submitTTS = ({ text, type }: submit) => {
   const headers = {
     'Content-type': 'application/json; charset=UTF-8',
-     Accept: '*/*',
+    Accept: '*/*',
+    responseType: 'arraybuffer',
+    headers: {
+      'Content-Type': 'audio/wav',
+    },
   };
 
-  const data = JSON.stringify({ "speech": text, "voices": type });
-  return client.post(`/TTS`,data, {headers});
+  const data = JSON.stringify({ speech: text, voices: type });
+  return client.post(`/TTS`, data, { headers });
 };
 
-export const getUsers = () =>
-  axios.get(`https://jsonplaceholder.typicode.com/users`);
-
+export const getMP3 = () =>
+  axios.get(
+    `https://ww8007bucket.s3.ap-northeast-2.amazonaws.com/%ED%83%9C%EC%97%B0/y2mate.com+-+MV+Lee+Mujin%EC%9D%B4%EB%AC%B4%EC%A7%84++Traffic+light%EC%8B%A0%ED%98%B8%EB%93%B1.mp3`
+  );
