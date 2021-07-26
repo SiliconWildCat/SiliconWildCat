@@ -6,7 +6,7 @@ import '../styles/togglemenu.css';
 import '../styles/background.css';
 import '../components/Music/music.scss';
 import '../components/TTS/tts.scss';
-import 'react-h5-audio-player/lib/styles.css';
+import '../styles/MusicPlayer3.css';
 
 
 
