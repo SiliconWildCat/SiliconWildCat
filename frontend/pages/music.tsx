@@ -3,7 +3,8 @@ import Icon from '../static/icon.png';
 
 import MusicSlider from '../components/Music/MusicSlider';
 import ToggleMenu from '../components/Music/ToggleMenu';
-import MusicPlayer from '../components/MusicPlayer2';
+import MusicPlayer from '../components/MusicPlayer3';
+
 
 function Music() {
   return (
