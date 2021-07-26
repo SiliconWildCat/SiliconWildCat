@@ -6,7 +6,6 @@ import { takeLatest } from 'redux-saga/effects';
 import { createAction } from 'redux-actions';
 import { stat } from 'fs';
 import axios from 'axios';
-
 export const tts = [
   {
     city: 'Paris',
@@ -19,32 +18,27 @@ export const tts = [
     img: `https://ww8007bucket.s3.ap-northeast-2.amazonaws.com/%ED%83%9C%EC%97%B0/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA+2021-07-25+%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE+4.16.36.png`,
   },
 ];
-
 const initialState: ITts = {
   text: '',
   mp3File: '',
   type: 'KSS',
   error: '',
+  mp3File2: '',
 };
-
 export interface submit {
   text: string;
   type: string;
 }
 const SUBMIT_TTS = 'tts/SUBMIT_TTS';
 const GET_TTS = 'tts/GET_TTS';
-
 export const submitTTS = createAction(SUBMIT_TTS, (info: submit) => info);
 export const getTTS = createAction(GET_TTS);
-
 const submitTTSSaga = createRequestSaga(SUBMIT_TTS, api.submitTTS);
 const getTTSSaga = createRequestSaga(GET_TTS, api);
-
 export function* ttsSaga() {
   yield takeLatest(SUBMIT_TTS, submitTTSSaga);
   yield takeLatest(GET_TTS, getTTSSaga);
 }
-
 export const ttsSlice = createSlice({
   name: 'tts',
   initialState: initialState,
@@ -72,8 +66,11 @@ export const ttsSlice = createSlice({
     },
   },
 });
-
-export const { inputText, initialText, changeType, SUBMIT_TTS_SUCCESS } =
-  ttsSlice.actions;
+export const {
+  inputText,
+  initialText,
+  changeType,
+  SUBMIT_TTS_SUCCESS,
+} = ttsSlice.actions;
 
 export default ttsSlice.reducer;
