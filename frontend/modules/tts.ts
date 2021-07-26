@@ -5,6 +5,7 @@ import createRequestSaga from '../hooks/createRequestSaga';
 import { takeLatest } from 'redux-saga/effects';
 import { createAction } from 'redux-actions';
 import { stat } from 'fs';
+import axios from 'axios';
 
 export const tts = [
   {
@@ -58,11 +59,13 @@ export const ttsSlice = createSlice({
       state.type = action.payload;
     },
     SUBMIT_TTS_SUCCESS: (state, action: PayloadAction<any>) => {
-      var blob=new Blob([action.payload],{ 'type' : 'audio/wav' });
-      var url= URL.createObjectURL(blob);
-      state.mp3File=url;
-      //state.mp3File =  url.slice(5);
-      
+      //console.log(action.payload);
+      //var array_data=action.payload;
+      //var blob=new Blob([array_data],{ 'type' : 'audio/wav' });
+      //var url= URL.createObjectURL(blob);
+      var url=action.payload['data']
+      state.mp3File="http://localhost:5000"+url;
+    
     },
     SUBMIT_TTS_FAILURE: (state, action: PayloadAction<any>) => {
       state.error = action.payload;

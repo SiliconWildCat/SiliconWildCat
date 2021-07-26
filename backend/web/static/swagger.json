@@ -44,7 +44,7 @@
             "201": {
               "description": "OK",
               "content":{
-                 "audio/wav": {
+                 "application/json": {
                       "schema": {
                         "$ref": "#/components/schemas/text"
                       }
