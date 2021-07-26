@@ -6,9 +6,6 @@ export const submitTTS = ({ text, type }: submit) => {
     'Content-type': 'application/json; charset=UTF-8',
     Accept: '*/*',
     responseType: 'arraybuffer',
-    headers: {
-      'Content-Type': 'audio/wav',
-    },
   };
 
   const data = JSON.stringify({ speech: text, voices: type });
