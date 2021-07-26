@@ -27,7 +27,7 @@ services:
         - app_tier
     volumes:
        - ./backend/web:/app        
-    command: gunicorn -w 1 -b 0.0.0.0:5000 run:app
+    command: gunicorn -w 1 -b 0.0.0.0:5000 --timeout=300 run:app
 
   nginx:
     image: nginx:latest

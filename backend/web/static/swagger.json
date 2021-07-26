@@ -43,9 +43,13 @@
           "responses": {
             "201": {
               "description": "OK",
-              "schema": {
-                "$ref": "#/components/schemas/text"
-              }
+              "content":{
+                 "audio/wav": {
+                      "schema": {
+                        "$ref": "#/components/schemas/text"
+                      }
+                    }
+                  }
             },
             "400": {
               "description": "Failed. Bad post data."

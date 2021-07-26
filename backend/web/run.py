@@ -48,9 +48,11 @@ def text_speech():
         #sf.write('/app/audio.wav',wavs,22050,subtype='PCM_16')
         out = io.BytesIO()
         syn.save_wav(wavs, out)
-        save_text(speech,database,session)
+        #save_text(speech,database,session)
         #return 'ok' 
-        return send_file(out, mimetype="audio/wav")
+        response=send_file(out, mimetype="audio/wav")
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response
 
 
     
