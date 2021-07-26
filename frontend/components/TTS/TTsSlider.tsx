@@ -147,7 +147,7 @@ export default function TTsSlider({ Select }) {
                   className="slider__slide-subheadings"
                   style={{ color: 'white', marginTop: '100px' }}
                 >
-                  변환할 텍스트를 입력하세요.
+                  텍스트를 입력하세요.
                 </h3>
                 <input
                   value={text}
@@ -159,7 +159,7 @@ export default function TTsSlider({ Select }) {
                   className="slider__slide-subheadings"
                   style={{ color: 'white' }}
                 >
-                  변환 방법을 선택하세요.
+                  목소리를 선택하세요.
                 </h3>
                 <Select
                   className="slider__slide-subheadingss"
