@@ -4,12 +4,11 @@ import client from './client';
 export const submitTTS = ({ text, type }: submit) => {
   const headers = {
     'Content-type': 'application/json; charset=UTF-8',
-    Accept: '*/*',
-    responseType: 'arraybuffer',
   };
-
+  // const Accept = '*/*';
+  const responseType = 'arraybuffer';
   const data = JSON.stringify({ speech: text, voices: type });
-  return client.post(`/TTS`, data, { headers });
+  return client.post(`/TTS`, data, { headers, responseType });
 };
 
 export const getMP3 = () =>
