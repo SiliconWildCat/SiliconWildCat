@@ -4273,7 +4273,7 @@ react-dom@17.0.2:
 
 react-h5-audio-player@^3.7.1:
   version "3.7.1"
-  resolved "https://registry.npmjs.org/react-h5-audio-player/-/react-h5-audio-player-3.7.1.tgz"
+  resolved "https://registry.yarnpkg.com/react-h5-audio-player/-/react-h5-audio-player-3.7.1.tgz#7401f1385a5bd369652dde18cca5823fd6cc6f30"
   integrity sha512-MWeMZ/orBXxt48P4SVBUfzRy+lw5acz61nc8mhDzqfE4VP7kPzpAnedGsC7mhu+BKy5/1+nO/0q4FFCuNe6U2Q==
   dependencies:
     "@babel/runtime" "^7.10.2"
