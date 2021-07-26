@@ -58,7 +58,7 @@ export const ttsSlice = createSlice({
       //var blob=new Blob([array_data],{ 'type' : 'audio/wav' });
       //var url= URL.createObjectURL(blob);
       var url = action.payload['data'];
-      state.mp3File = 'http://localhost' + url;
+      state.mp3File = 'http://localhost:5000' + url;
     },
     SUBMIT_TTS_FAILURE: (state, action: PayloadAction<any>) => {
       state.error = action.payload;
@@ -71,3 +71,5 @@ export const {
   changeType,
   SUBMIT_TTS_SUCCESS,
 } = ttsSlice.actions;
+
+export default ttsSlice.reducer;
