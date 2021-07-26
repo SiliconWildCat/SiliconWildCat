@@ -74,7 +74,7 @@ export default function TTsSlider({ Select }) {
       'http://localhost:8000/TTS',
       {
         speech: '태연',
-        voices: 'TTS',
+        voices: 'KSS',
       },
       {
         responseType: 'arraybuffer',
