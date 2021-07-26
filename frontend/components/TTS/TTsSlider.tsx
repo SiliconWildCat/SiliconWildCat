@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { submit, tts } from '../../modules/tts';
+import { submit, tts, submitTTS } from '../../modules/tts';
 import Link from 'next/link';
 import AudioPlayer from 'react-h5-audio-player';
 import { useAppDispatch, useAppSelector } from '../../hooks/useSelector';
 import { RootState } from '../../modules';
+import axios from 'axios';
 import {
   initialText,
   inputText,
-  submitTTS,
+  // submitTTS,
   changeType,
 } from '../../modules/tts';
 import { changeSelect } from '../../modules/music';
@@ -19,11 +20,14 @@ const options = [
 ];
 
 export default function TTsSlider({ Select }) {
-  const { text, mp3File, type } = useAppSelector(({ tts }: RootState) => ({
-    text: tts.text,
-    mp3File: tts.mp3File,
-    type: tts.type,
-  }));
+  const { text, mp3File, type, mp3File2 } = useAppSelector(
+    ({ tts }: RootState) => ({
+      text: tts.text,
+      mp3File: tts.mp3File,
+      type: tts.type,
+      mp3File2: tts.mp3File2,
+    })
+  );
   const [IMAGE_PARTS, onOne] = useState(4);
   const [changeTO, onOne2] = useState(0);
   const AUTOCHANGE_TIME = 4000;
@@ -37,12 +41,14 @@ export default function TTsSlider({ Select }) {
     label: 'KSS',
     key: 0,
   });
+  const [myURL, onChangemyURL] = useState('');
 
   const dispatch = useAppDispatch();
   const onSubmitText = (e) => {
     e.preventDefault();
     const info: submit = { text: text, type: type };
-    dispatch(submitTTS(info));
+    onGET();
+    // dispatch(submitTTS(info));
     dispatch(initialText());
   };
   useEffect(() => {
@@ -63,6 +69,27 @@ export default function TTsSlider({ Select }) {
     dispatch(changeType(label));
   }, [value, dispatch]);
 
+  const onGET = async () => {
+    const { data } = await axios.post(
+      'http://localhost:8000/TTS',
+      {
+        speech: '태연',
+        voices: 'TTS',
+      },
+      {
+        responseType: 'arraybuffer',
+        headers: {
+          'Content-Type': 'audio/wav',
+        },
+      }
+    );
+    const blob = new Blob([data], {
+      type: 'audio/wav',
+    });
+
+    const myURL = URL.createObjectURL(blob);
+    onChangemyURL(myURL);
+  };
   const onChangeText = (e) => {
     dispatch(inputText(e.target.value));
   };
@@ -141,14 +168,20 @@ export default function TTsSlider({ Select }) {
                   defaultValue={{ value: `${type}`, label: `${type}`, key: 0 }}
                   onChange={onChangeValue}
                 />
-                <button onClick={onSubmitText} className="slider__slide-button">
-                  Translate
-                </button>
-                {mp3File && (
+                <button className="slider__slide-button">Translate</button>
+                {myURL && (
                   <AudioPlayer
                     className="slider__slide-music"
                     style={{ width: '60%', borderRadius: '8px' }}
-                    src={mp3File}
+                    src={myURL}
+                    onPlay={(e) => console.log('onPlay')}
+                  />
+                )}
+                {mp3File2 && (
+                  <AudioPlayer
+                    className="slider__slide-music"
+                    style={{ width: '60%', borderRadius: '8px' }}
+                    src={mp3File2}
                     onPlay={(e) => console.log('onPlay')}
                   />
                 )}
