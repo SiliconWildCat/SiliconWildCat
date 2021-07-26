@@ -4,7 +4,6 @@ import * as api from '../lib/api/tts';
 import createRequestSaga from '../hooks/createRequestSaga';
 import { takeLatest } from 'redux-saga/effects';
 import { createAction } from 'redux-actions';
-import { stat } from 'fs';
 
 export const tts = [
   {
@@ -24,6 +23,7 @@ const initialState: ITts = {
   mp3File: '',
   type: 'KSS',
   error: '',
+  mp3File2: '',
 };
 
 export interface submit {
@@ -32,16 +32,20 @@ export interface submit {
 }
 const SUBMIT_TTS = 'tts/SUBMIT_TTS';
 const GET_TTS = 'tts/GET_TTS';
+const GET_MP3 = 'tts/GET_MP3';
 
 export const submitTTS = createAction(SUBMIT_TTS, (info: submit) => info);
 export const getTTS = createAction(GET_TTS);
+// export const getMP3 = createAction(GET_MP3);
 
 const submitTTSSaga = createRequestSaga(SUBMIT_TTS, api.submitTTS);
 const getTTSSaga = createRequestSaga(GET_TTS, api);
+// const getMP3Saga = createRequestSaga(GET_MP3, api.getMP3);
 
 export function* ttsSaga() {
   yield takeLatest(SUBMIT_TTS, submitTTSSaga);
   yield takeLatest(GET_TTS, getTTSSaga);
+  // yield takeLatest(GET_MP3, getMP3Saga);
 }
 
 export const ttsSlice = createSlice({
@@ -58,19 +62,30 @@ export const ttsSlice = createSlice({
       state.type = action.payload;
     },
     SUBMIT_TTS_SUCCESS: (state, action: PayloadAction<any>) => {
-      var blob=new Blob([action.payload],{ 'type' : 'audio/wav' });
-      var url= URL.createObjectURL(blob);
-      state.mp3File=url;
-      //state.mp3File =  url.slice(5);
-      
+      const blob = new Blob([action.payload], {
+        type: 'audio/wav',
+      });
+
+      const myURL = URL.createObjectURL(blob);
+      state.mp3File2 = myURL;
     },
+    // GET_MP3_SUCCESS: (state, action: PayloadAction<any>) => {
+    //   var blob = new Blob([action.payload], {
+    //     type: 'audio/wav',
+    //   });
+
+    //   var url = window.URL.createObjectURL(blob);
+    //   state.mp3File2 = url;
+    // },
+    // GET_MP3_FAILURE: (state, action: PayloadAction<any>) => {
+    //   state.error = action.payload;
+    // },
     SUBMIT_TTS_FAILURE: (state, action: PayloadAction<any>) => {
       state.error = action.payload;
     },
   },
 });
 
-export const { inputText, initialText, changeType, SUBMIT_TTS_SUCCESS } =
-  ttsSlice.actions;
+export const { inputText, initialText, changeType } = ttsSlice.actions;
 
 export default ttsSlice.reducer;
