@@ -47,8 +47,8 @@ export default function TTsSlider({ Select }) {
   const onSubmitText = (e) => {
     e.preventDefault();
     const info: submit = { text: text, type: type };
-    onGET();
-    // dispatch(submitTTS(info));
+
+    dispatch(submitTTS(info));
     dispatch(initialText());
   };
   useEffect(() => {
@@ -69,27 +69,27 @@ export default function TTsSlider({ Select }) {
     dispatch(changeType(label));
   }, [value, dispatch]);
 
-  const onGET = async () => {
-    const { data } = await axios.post(
-      'http://localhost:8000/TTS',
-      {
-        speech: '태연',
-        voices: 'KSS',
-      },
-      {
-        responseType: 'arraybuffer',
-        headers: {
-          'Content-Type': 'audio/wav',
-        },
-      }
-    );
-    const blob = new Blob([data], {
-      type: 'audio/wav',
-    });
+  // const onGET = async () => {
+  //   const { data } = await axios.post(
+  //     'http://localhost:5000/TTS',
+  //     {
+  //       speech: '태연',
+  //       voices: 'KSS',
+  //     },
+  //     {
+  //       responseType: 'arraybuffer',
+  //       headers: {
+  //         'Content-Type': 'audio/wav',
+  //       },
+  //     }
+  //   );
+  // const blob = new Blob([data], {
+  //   type: 'audio/wav',
+  // });
 
-    const myURL = URL.createObjectURL(blob);
-    onChangemyURL(myURL);
-  };
+  //   const myURL = URL.createObjectURL(blob);
+  //   onChangemyURL(myURL);
+  // };
   const onChangeText = (e) => {
     dispatch(inputText(e.target.value));
   };
