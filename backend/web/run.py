@@ -1,6 +1,6 @@
 # Importing the necessary Libraries
 from flask_cors import CORS
-from flask import Flask, render_template, request, jsonify,send_file,Response,make_response,url_for,send_from_directory
+from flask import Flask, render_template, request, jsonify,send_file,Response,make_response,url_for
 from flask_ngrok import run_with_ngrok
 from inference import create_synthesizer,synthesize,normalize_text
 import soundfile as sf
@@ -40,17 +40,23 @@ def text_speech():
         data=request.get_json()
         speech=data['speech']
         voices=data['voices']
-        syn=create_synthesizer(voices)
-        symbols=syn.tts_config.characters.characters
-        speechs=normalize_text(speech,symbols)
-        wavs=synthesize(speechs,syn)
-        sf.write('static/audio.wav',wavs,22050,subtype='PCM_16')
+        try:
+            if speech=="":
+                raise Exception('There is no input')
+            syn=create_synthesizer(voices)
+            symbols=syn.tts_config.characters.characters
+            speechs=normalize_text(speech,symbols)
+            wavs=synthesize(speechs,syn)
+            sf.write('static/audio.wav',wavs,22050,subtype='PCM_16')
 
-        save_text(speech,database,session)
+            save_text(speech,database,session)
+            src=url_for('static', filename='audio.wav')
+            response=make_response(jsonify({"msg":"success","data":src}))
+            response.headers.add("Access-Control-Allow-Origin", "*")
         
-        src=url_for('static', filename='audio.wav')
-        response=make_response(jsonify({"msg":"success","data":src}))
-        response.headers.add("Access-Control-Allow-Origin", "*")
+        except Exception as e:
+            response=make_response(jsonify({"msg": "There is no input"}))
+           
         return response
 
 @app.route('/<path:filename>')
