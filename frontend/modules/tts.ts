@@ -20,7 +20,7 @@ export const tts = [
 ];
 const initialState: ITts = {
   text: '',
-  mp3File: '',
+  mp3File: 'a',
   type: 'KSS',
   error: '',
   mp3File2: '',
@@ -53,20 +53,15 @@ export const ttsSlice = createSlice({
       state.type = action.payload;
     },
     SUBMIT_TTS_SUCCESS: (state, action: PayloadAction<any>) => {
-      var url=action.payload['data']
-      state.mp3File="http://localhost:5000"+url;
-    
+      var url = action.payload['data'];
+      state.mp3File = 'http://localhost:5000' + url;
     },
     SUBMIT_TTS_FAILURE: (state, action: PayloadAction<any>) => {
       state.error = action.payload;
     },
   },
 });
-export const {
-  inputText,
-  initialText,
-  changeType,
-  SUBMIT_TTS_SUCCESS,
-} = ttsSlice.actions;
+export const { inputText, initialText, changeType, SUBMIT_TTS_SUCCESS } =
+  ttsSlice.actions;
 
 export default ttsSlice.reducer;
