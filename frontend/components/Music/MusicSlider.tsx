@@ -6,6 +6,8 @@ import { useAppDispatch, useAppSelector } from '../../hooks/useSelector';
 import Link from 'next/link';
 import { changeSelect } from '../../modules/music';
 import { RootState } from '../../modules';
+import Music from '../../pages/music';
+import Player from '../MusicPlayer3';
 
 export default function MusicSlider() {
   const { selectNum, musics } = useAppSelector(({ music }: RootState) => ({
@@ -130,6 +132,10 @@ export default function MusicSlider() {
                   </div>
                 ))}
               </div>
+              <Player
+                className={'slider__slide-player'}
+                url={slide.musicURL}
+              ></Player>
             </div>
           ))}
         </div>
