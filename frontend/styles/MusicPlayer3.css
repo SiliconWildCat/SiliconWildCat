@@ -40,6 +40,13 @@ a {
     height: 12%;
     border: 0.15rem solid #ffffff;
   }
+  input,
+  textarea,
+  button,
+  select,
+  a {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
 }
 
 @media screen and (max-width: 415px) {
