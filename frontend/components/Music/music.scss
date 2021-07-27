@@ -7,7 +7,7 @@
 }
 
 body {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
   background: #000;
 }
 
@@ -33,10 +33,10 @@ $letterStagger: 0.1s;
   &__top-heading {
     z-index: $numOfParts * 3;
     position: absolute;
-    left: 0;
-    top: 100px;
+    left: -9%;
+    top: 20%;
     text-align: center;
-    font-size: 2rem;
+    font-size: 3.5rem;
     margin-left: 62%;
     text-transform: uppercase;
     letter-spacing: 2.5px;
@@ -174,7 +174,7 @@ $letterStagger: 0.1s;
       @include subTextsActiveSlide;
 
       &:before {
-        content: "";
+        content: '';
         position: absolute;
         left: -2px;
         top: -3px;
@@ -200,7 +200,7 @@ $letterStagger: 0.1s;
       height: 100%;
 
       &:after {
-        content: "";
+        content: '';
         z-index: $numOfParts + 1;
         position: absolute;
         left: 0;
@@ -230,7 +230,7 @@ $letterStagger: 0.1s;
         transition: transform $animTime/2 ease-in-out;
 
         &:before {
-          content: "";
+          content: '';
           position: absolute;
           width: 100vw;
           height: 100%;
@@ -296,7 +296,7 @@ $letterStagger: 0.1s;
     cursor: pointer;
 
     &:before {
-      content: "";
+      content: '';
       position: absolute;
       left: 50%;
       top: 50%;
@@ -372,33 +372,47 @@ $letterStagger: 0.1s;
     margin-top: 10px;
   }
 }
-@media screen and (max-width: 416px) {
+@media screen and (max-width: 800px) {
   .slider__top-heading {
     position: absolute;
-    top: 35%;
-    left: 68%;
+    top: 25%;
+    left: 62%;
     margin: 0;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
   .slider__slide-subheading {
     left: 35%;
     font-size: 0.55rem;
   }
 }
-
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 416px) {
   .slider__top-heading {
-    position: absolute;
-    top: 35%;
-    left: 65%;
+    top: 22%;
+    // left: 62%;
     margin: 0;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
   .slider__slide-subheading {
-    left: 30%;
-    font-size: 0.55rem;
+    top: 41%;
+    left: 33%;
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .slider__top-heading {
+    top: 23.5%;
+    // left: 62%;
+    margin-left: -0.5rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  .slider__slide-subheading {
+    top: 39%;
+    left: 31%;
+    font-size: 0.7rem;
   }
 }
 

@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/useSelector';
 import { RootState } from '../../modules';
 import { useSelector } from 'react-redux';
 import { changeSelect } from '../../modules/music';
+import { redirect } from 'next/dist/next-server/server/api-utils';
 
 const GlobalStyles = createGlobalStyle`
   html, body {
@@ -31,7 +32,7 @@ const theme = {
   primaryLight: 'white',
 
   primaryHover: '#343078',
-  mobile: '1024px',
+  mobile: { normal: '1024px', iphone_x: '380px', Ipad: '770px', dev: '830px' },
 };
 
 const StyledBurger = styled.button<{ open: boolean }>`
@@ -103,7 +104,7 @@ const StyledMenu = styled.nav<{ open: boolean; selectNum: number }>`
     width: 50%;
   } */
   @media screen and (max-width: 1024px) {
-    height:60%;
+    height: 60%;
   }
   @media screen and (max-width: 769px) {
     top: 2%;
@@ -113,7 +114,7 @@ const StyledMenu = styled.nav<{ open: boolean; selectNum: number }>`
     transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-102%)')};
   }
   @media screen and (max-width: 280px) {
-    width:85%
+    width: 85%;
   }
   width: 30%;
   margin-left: 10%;
@@ -128,41 +129,55 @@ const MusicList = styled.div<{ index: number; selectNum: number }>`
   cursor: pointer;
   font-weight: 300;
   letter-spacing: 0.5rem;
-  /* color: ${({ theme }) => theme.primaryDark}; */
   color: white;
   text-decoration: none;
   border: 0.3rem solid white;
   transition: color 0.3s linear;
-  margin-top: 2rem;
+  :first-child {
+    margin-top: 0rem;
+  }
+  margin-top: 4rem;
   box-sizing: border-box;
   width: 100%;
-  /* height: 10%; */
+  text-align: center;
   border-radius: 10px;
   border: ${(props) =>
     props.index === props.selectNum && '0.3rem solid #8e63e8'};
-  font-weight: ${(props) => props.index === props.selectNum && '400'};
+  font-weight: ${(props) => props.index === props.selectNum && '800'};
+
   &:hover {
     font-weight: 400;
     border: 0.3rem solid #8e63e8;
   }
-  
-  @media (max-width: ${({ theme }) => theme.mobile}) {
-    font-size: 0.9rem;
+  @media (max-width: ${({ theme }) => theme.mobile.Ipad}) {
+    font-size: 1.2rem;
     text-align: center;
-    border: 0.2rem solid white;
-    margin: 0 auto;
+    border: 0.3rem solid white;
+
     margin-top: 5rem;
-    :first-child {
-      margin-top: 2rem;
-    }
-    @media screen and (max-width: 280px) {
-    width:100%
-  }
-    width: 90%;
+    width: 100%;
+    padding: 2rem 2rem;
+    ${(props) =>
+      props.index === props.selectNum && {
+        fontWeight: 400,
+        border: '0.3rem solid #8e63e8',
+      }}
+
     &:hover {
       font-weight: 400;
-      border: 0.2rem solid #8e63e8;
+      border: 0.3rem solid #8e63e8;
     }
+  }
+  @media (max-width: ${({ theme }) => theme.mobile.normal}) {
+    font-size: 1.2rem;
+    /* padding: 0; */
+  }
+  @media (max-width: ${({ theme }) => theme.mobile.dev}) {
+    font-size: 1rem;
+    /* padding: 0; */
+  }
+  @media (max-width: ${({ theme }) => theme.mobile.iphone_x}) {
+    font-size: 1rem;
   }
 `;
 export default function ToggleMenu() {

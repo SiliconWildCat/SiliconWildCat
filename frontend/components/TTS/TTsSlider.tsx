@@ -125,7 +125,7 @@ export default function TTsSlider({ Select }) {
                   className="slider__slide-subheadings"
                   style={{ color: 'white', marginTop: '100px' }}
                 >
-                  변환할 텍스트를 입력하세요.
+                  텍스트를 입력하세요.
                 </h3>
                 <input
                   value={text}
@@ -137,14 +137,24 @@ export default function TTsSlider({ Select }) {
                   className="slider__slide-subheadings"
                   style={{ color: 'white' }}
                 >
-                  변환 방법을 선택하세요.
+                  목소리를 선택하세요.
                 </h3>
                 <Select
                   className="slider__slide-subheadingss"
                   options={options}
                   value={value}
+                  isSearchable={false}
                   defaultValue={{ value: `${type}`, label: `${type}`, key: 0 }}
                   onChange={onChangeValue}
+                  theme={(theme) => ({
+                    ...theme,
+                    // borderRadius: 0,
+                    colors: {
+                      ...theme.colors,
+                      // primary25: '#8977ad',
+                      primary: '#8977ad',
+                    },
+                  })}
                 />
                 <button className="slider__slide-button">Translate</button>
 
