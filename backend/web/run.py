@@ -8,7 +8,6 @@ from saveText import save_text, find_path
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from flask_swagger_ui import get_swaggerui_blueprint
-from audio import add_padding
 import io
 
 
@@ -42,8 +41,8 @@ def text_speech():
         data=request.get_json()
         speech=data['speech']
         voices=data['voices']
-        #return jsonify({"speech":speech, "voices":voices})
         syn=create_synthesizer(voices)
+        speech=speech+"."
         wavs=synthesize(speech,syn)
         sf.write('static/audio.wav',wavs,22050,subtype='PCM_16')
         #out = io.BytesIO()
