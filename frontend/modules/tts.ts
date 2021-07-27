@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { PayloadActionCreator } from '@reduxjs/toolkit';
 import { ITts } from '../interface/tts';
 import * as api from '../lib/api/tts';
 import createRequestSaga from '../hooks/createRequestSaga';
@@ -20,7 +21,7 @@ export const tts = [
 ];
 const initialState: ITts = {
   text: '',
-  mp3File: 'a',
+  mp3File: '',
   type: 'KSS',
   error: '',
   mp3File2: '',
@@ -32,14 +33,15 @@ export interface submit {
 const SUBMIT_TTS = 'tts/SUBMIT_TTS';
 const GET_TTS = 'tts/GET_TTS';
 export const submitTTS = createAction(SUBMIT_TTS, (info: submit) => info);
+// export const submitTTS = createAction(SUBMIT_TTS);
 export const getTTS = createAction(GET_TTS);
 const submitTTSSaga = createRequestSaga(SUBMIT_TTS, api.submitTTS);
-const getTTSSaga = createRequestSaga(GET_TTS, api);
+const getTTSSaga = createRequestSaga(GET_TTS, api.getMP3);
 export function* ttsSaga() {
   yield takeLatest(SUBMIT_TTS, submitTTSSaga);
   yield takeLatest(GET_TTS, getTTSSaga);
 }
-export const ttsSlice = createSlice({
+const ttsSlice = createSlice({
   name: 'tts',
   initialState: initialState,
   reducers: {
@@ -55,13 +57,17 @@ export const ttsSlice = createSlice({
     SUBMIT_TTS_SUCCESS: (state, action: PayloadAction<any>) => {
       var url = action.payload['data'];
       state.mp3File = 'http://localhost:5000' + url;
+      // state.mp3File = 'hihi';
+    },
+    setInitialText: (state) => {
+      state.mp3File = '';
     },
     SUBMIT_TTS_FAILURE: (state, action: PayloadAction<any>) => {
       state.error = action.payload;
     },
   },
 });
-export const { inputText, initialText, changeType, SUBMIT_TTS_SUCCESS } =
+export const { inputText, initialText, changeType, setInitialText } =
   ttsSlice.actions;
 
 export default ttsSlice.reducer;
