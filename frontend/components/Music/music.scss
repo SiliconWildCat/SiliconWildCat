@@ -115,7 +115,9 @@ $letterStagger: 0.1s;
       background-image: none;
       @include subTextsActiveSlide;
     }
-
+    &-player {
+      @include subTextsActiveSlide;
+    }
     &-heading {
       $fontSize: 60px;
 
