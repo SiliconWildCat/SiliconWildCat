@@ -16,7 +16,13 @@
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
   border-radius: 1rem;
 }
-
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
 @media screen and (max-width: 1024px) {
   .rhap_container {
     top: 85%;
