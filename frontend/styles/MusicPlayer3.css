@@ -15,7 +15,9 @@
   background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
   border-radius: 1rem;
+  -webkit-tap-highlight-color: transparent;
 }
+
 input,
 textarea,
 button,
@@ -39,6 +41,7 @@ a {
     left: 3%;
     height: 12%;
     border: 0.15rem solid #ffffff;
+    -webkit-tap-highlight-color: transparent;
   }
   input,
   textarea,
@@ -55,6 +58,7 @@ a {
     width: 94%;
     left: 3%;
     height: 12%;
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
@@ -64,6 +68,7 @@ a {
     width: 94%;
     left: 3%;
     height: 13%;
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
@@ -73,6 +78,7 @@ a {
     width: 94%;
     left: 3%;
     height: 15%;
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
@@ -82,6 +88,7 @@ a {
     width: 80%;
     height: 17%;
     left: 10%;
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
@@ -91,6 +98,7 @@ a {
     width: 90%;
     height: 15%;
     left: 5%;
+    -webkit-tap-highlight-color: transparent;
   }
 }
 .rhap_container:focus:not(:focus-visible) {
