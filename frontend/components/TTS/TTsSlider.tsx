@@ -1,24 +1,28 @@
 import { useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { submit, tts, submitTTS } from '../../modules/tts';
+import { submit, tts, submitTTS, setInitialText } from '../../modules/tts';
 import Link from 'next/link';
 import AudioPlayer from 'react-h5-audio-player';
 import { useAppDispatch, useAppSelector } from '../../hooks/useSelector';
 import { RootState } from '../../modules';
 import { initialText, inputText, changeType } from '../../modules/tts';
 import { changeSelect } from '../../modules/music';
-
+import Loader from 'react-loader-spinner';
+import LoadingProgress from '../../lib/Loading/LoadingProgress';
 const options = [
   { value: 'KSS', label: 'KSS', key: 0 },
   { value: 'TaeYeon', label: 'TaeYeon', key: 1 },
 ];
 
 export default function TTsSlider({ Select }) {
-  const { text, mp3File, type } = useAppSelector(({ tts }: RootState) => ({
-    text: tts.text,
-    mp3File: tts.mp3File,
-    type: tts.type,
-  }));
+  const { text, mp3File, type, loadingWAV } = useAppSelector(
+    ({ tts, loading }: RootState) => ({
+      text: tts.text,
+      mp3File: tts.mp3File,
+      type: tts.type,
+      loadingWAV: loading['tts/SUBMIT_TTS'],
+    })
+  );
   const [IMAGE_PARTS, onOne] = useState(4);
   const [changeTO, onOne2] = useState(0);
   const [state, onOne4] = useState({
@@ -38,10 +42,11 @@ export default function TTsSlider({ Select }) {
     const info: submit = { text: text, type: type };
     dispatch(submitTTS(info));
     dispatch(initialText());
+    dispatch(setInitialText());
   };
   useEffect(() => {
     window.clearTimeout(changeTO);
-  }, [changeTO]);
+  }, [changeTO, mp3File]);
   useEffect(() => {
     setTimeout(() => {
       onOne4({
@@ -115,10 +120,18 @@ export default function TTsSlider({ Select }) {
                   })}
                 />
                 <button className="slider__slide-button">Translate</button>
-                {mp3File && (
+                {loadingWAV && (
+                  <LoadingProgress className="slider__slide-loading" />
+                )}
+                {!loadingWAV && mp3File && (
                   <AudioPlayer
                     className="slider__slide-music"
-                    style={{ left: '20%',top: '80%', width: '60%', borderRadius: '8px' }}
+                    style={{
+                      left: '20%',
+                      top: '80%',
+                      width: '60%',
+                      borderRadius: '8px',
+                    }}
                     src={mp3File}
                     autoPlay={true}
                   />
@@ -134,6 +147,13 @@ export default function TTsSlider({ Select }) {
                   </div>
                 ))}
               </div>
+              {/* <Loader
+                type="Oval"
+                color="black"
+                height={30}
+                width={30}
+                timeout={3000}
+              ></Loader> */}
             </div>
           ))}
         </div>
