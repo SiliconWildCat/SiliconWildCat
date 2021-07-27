@@ -8,9 +8,8 @@ from saveText import save_text, find_path
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from flask_swagger_ui import get_swaggerui_blueprint
-from audio import add_padding
 import io
-
+import wave
 
 app = Flask(__name__,static_url_path='',static_folder="static") #html 폴더 경로 설정
 CORS(app)
@@ -41,11 +40,19 @@ def text_speech():
     if request.method=='POST':   
         data=request.get_json()
         speech=data['speech']
+        speech=speech+'.'
         voices=data['voices']
         #return jsonify({"speech":speech, "voices":voices})
         syn=create_synthesizer(voices)
         wavs=synthesize(speech,syn)
         sf.write('static/audio.wav',wavs,22050,subtype='PCM_16')
+
+        '''
+        w = wave.open('audio.wav','r')
+        frame = w.getnframes()
+        rate = w.getframerate()
+        '''
+
         #out = io.BytesIO()
         #syn.save_wav(wavs, out)
         #save_text(speech,database,session)
