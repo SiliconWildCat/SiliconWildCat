@@ -165,8 +165,18 @@ export default function TTsSlider({ Select }) {
                   className="slider__slide-subheadingss"
                   options={options}
                   value={value}
+                  isSearchable={false}
                   defaultValue={{ value: `${type}`, label: `${type}`, key: 0 }}
                   onChange={onChangeValue}
+                  theme={(theme) => ({
+                    ...theme,
+                    // borderRadius: 0,
+                    colors: {
+                      ...theme.colors,
+                      // primary25: '#8977ad',
+                      primary: '#8977ad',
+                    },
+                  })}
                 />
                 <button className="slider__slide-button">Translate</button>
                 {myURL && (
