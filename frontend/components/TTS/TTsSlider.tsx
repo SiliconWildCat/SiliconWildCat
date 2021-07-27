@@ -118,7 +118,7 @@ export default function TTsSlider({ Select }) {
                 {mp3File && (
                   <AudioPlayer
                     className="slider__slide-music"
-                    style={{ width: '60%', borderRadius: '8px' }}
+                    style={{ left: '20%',top: '80%', width: '60%', borderRadius: '8px' }}
                     src={mp3File}
                     autoPlay={true}
                   />
