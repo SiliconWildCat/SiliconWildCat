@@ -76,13 +76,13 @@ const StyledMenu = styled.nav<{ open: boolean; selectNum: number }>`
   text-align: left;
   padding: 2rem;
   position: absolute;
-
+  /* left: -5%; */
   border: 0.2rem solid white;
   border-radius: 20px;
   margin-top: 5rem;
   z-index: 200;
   top: 0;
-  left: 0;
+  left: -3%;
   transition: transform 0.3s ease-in-out;
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-120%)')};
   /* @media screen and (max-width: 769px) {

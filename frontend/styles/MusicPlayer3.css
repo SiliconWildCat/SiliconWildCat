@@ -47,20 +47,13 @@
 
 @media screen and (max-width: 376px) {
   .rhap_container {
-    top: 77%;
+    top: 80%;
     width: 94%;
     left: 3%;
     height: 13%;
   }
 }
-@media screen and (max-width: 376px) {
-  .rhap_container {
-    top: 77%;
-    width: 94%;
-    left: 3%;
-    height: 13%;
-  }
-}
+
 @media screen and (max-width: 360px) {
   .rhap_container {
     top: 80%;
