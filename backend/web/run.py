@@ -23,7 +23,7 @@ session = Session()
 
 
 SWAGGER_URL = '/swagger'
-API_URL = '/static/swagger.json'
+API_URL = '/swagger.json'
 swaggerui_blueprint = get_swaggerui_blueprint(
     SWAGGER_URL,
     API_URL,
@@ -47,15 +47,9 @@ def text_speech():
         wavs=synthesize(speech,syn)
         sf.write('static/audio.wav',wavs,22050,subtype='PCM_16')
 
-        '''
-        w = wave.open('audio.wav','r')
-        frame = w.getnframes()
-        rate = w.getframerate()
-        '''
-
         #out = io.BytesIO()
         #syn.save_wav(wavs, out)
-        #save_text(speech,database,session)
+        save_text(speech,database,session)
         #return 'ok' 
         #response=send_file('/static/audio.wav', mimetype="audio/wav")
         src=url_for('static', filename='audio.wav')
