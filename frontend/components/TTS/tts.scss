@@ -106,6 +106,7 @@ $letterStagger: 0.1s;
     }
     // 제목
     &-subheadings {
+      position: relative;
       margin-top: 1.8rem;
       margin-bottom: 2rem;
       font-size: 1.5rem;
@@ -137,6 +138,7 @@ $letterStagger: 0.1s;
       }
     }
     &-subheadingss {
+      position: relative;
       margin-bottom: 2rem;
       font-size: 1rem;
       letter-spacing: 2px;
@@ -441,6 +443,7 @@ $letterStagger: 0.1s;
 
     .slider__top-headings {
       // left: -19%;
+      // position: relative;
       font-weight: bold;
 
       font-size: 1.6rem;

@@ -9,9 +9,9 @@
   line-height: 1;
   font-family: inherit;
   width: 35%;
-  height: 10%;
+  height: 11%;
   padding: 10px 15px;
-  border: 0.3rem solid #ffffff;
+  border: 0.2rem solid #ffffff;
   background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
   border-radius: 1rem;
@@ -19,7 +19,7 @@
 
 @media screen and (max-width: 1024px) {
   .rhap_container {
-    top: 80%;
+    top: 85%;
     width: 80%;
     height: 12%;
     left: 10%;
@@ -29,36 +29,44 @@
 @media screen and (max-width: 768px) {
   .rhap_container {
     top: 80%;
-    width: 80%;
+    width: 94%;
+    left: 3%;
     height: 12%;
-    left: 10%;
+    border: 0.15rem solid #ffffff;
   }
 }
 
 @media screen and (max-width: 415px) {
   .rhap_container {
     top: 80%;
-    width: 80%;
+    width: 94%;
+    left: 3%;
     height: 12%;
-    left: 10%;
   }
 }
 
 @media screen and (max-width: 376px) {
   .rhap_container {
-    top: 80%;
-    width: 80%;
+    top: 77%;
+    width: 94%;
+    left: 3%;
     height: 13%;
-    left: 10%;
   }
 }
-
+@media screen and (max-width: 376px) {
+  .rhap_container {
+    top: 77%;
+    width: 94%;
+    left: 3%;
+    height: 13%;
+  }
+}
 @media screen and (max-width: 360px) {
   .rhap_container {
     top: 80%;
-    width: 80%;
+    width: 94%;
+    left: 3%;
     height: 15%;
-    left: 10%;
   }
 }
 
