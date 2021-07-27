@@ -48,6 +48,9 @@ export default function TTsSlider({ Select }) {
     window.clearTimeout(changeTO);
   }, [changeTO, mp3File]);
   useEffect(() => {
+    dispatch(setInitialText());
+  }, []);
+  useEffect(() => {
     setTimeout(() => {
       onOne4({
         activeSlide: value.key,
