@@ -4,11 +4,12 @@ import sys
 from unicodedata import normalize
 from pathlib import Path
 from TTS.utils.synthesizer import Synthesizer
-from g2pK import g2pk
+sys.path.append('/g2pK')
+import g2pk
 
 g2p = g2pk.G2p()
 
-def normalize_text(text):
+def normalize_text(text,symbols):
     text = text.strip()
 
     for c in ",;:":
@@ -185,43 +186,11 @@ def create_synthesizer(voice):
             None,
             False,
             )
-
-    """
-    for voice in ('TaeYeon','KSS'):
-        glow_model_path="/app/glowtts-v2/"+voice+"/best_model.pth.tar"
-        glow_config_path="/app/glowtts-v2/"+voice+"/config.json"
-
-        hifi_model_path="/app/hifigan-v2/"+voice+"/best_model.pth.tar"
-        hifi_config_path="/app/hifigan-v2/"+voice+"/config.json"
-
-        synthesizer = Synthesizer(
-            glow_model_path,
-            glow_config_path,
-            None,
-            hifi_model_path,
-            hifi_config_path,
-            None,
-            None,
-            False,
-            )
-        voice_dict[voice]=synthesizer
-        symbols = synthesizer.tts_config.characters.characters   
-     """   
+  
     return synthesizer
 
 
 
-"""
-synthesizer = Synthesizer(
-    "/app/glowtts-v2/best_model.pth.tar",
-    "/app/glowtts-v2/config.json",
-    None,
-    "/app/hifigan-v2/best_model_488587.pth.tar",
-    "/app/hifigan-v2/config.json",
-    None,
-    None,
-    False,
-)
-"""
+
 #symbols = synthesizer.tts_config.characters.characters
 

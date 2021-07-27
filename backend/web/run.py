@@ -2,7 +2,7 @@
 from flask_cors import CORS
 from flask import Flask, render_template, request, jsonify,send_file,Response,make_response,url_for,send_from_directory
 from flask_ngrok import run_with_ngrok
-from inference import create_synthesizer,synthesize
+from inference import create_synthesizer,synthesize,normalize_text
 import soundfile as sf
 from saveText import save_text, find_path
 from sqlalchemy import create_engine
@@ -41,15 +41,13 @@ def text_speech():
         speech=data['speech']
         voices=data['voices']
         syn=create_synthesizer(voices)
-        speechdot=speech+"."
-        wavs=synthesize(speechdot,syn)
+        symbols=syn.tts_config.characters.characters
+        speechs=normalize_text(speech,symbols)
+        wavs=synthesize(speechs,syn)
         sf.write('static/audio.wav',wavs,22050,subtype='PCM_16')
 
-        #out = io.BytesIO()
-        #syn.save_wav(wavs, out)
         save_text(speech,database,session)
-        #return 'ok' 
-        #response=send_file('/static/audio.wav', mimetype="audio/wav")
+        
         src=url_for('static', filename='audio.wav')
         response=make_response(jsonify({"msg":"success","data":src}))
         response.headers.add("Access-Control-Allow-Origin", "*")
