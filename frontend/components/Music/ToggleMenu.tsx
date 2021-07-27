@@ -1,38 +1,23 @@
-import { createGlobalStyle } from 'styled-components';
 import { ThemeProvider } from 'styled-components';
 import styled from 'styled-components';
 import { useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks/useSelector';
+import { useAppDispatch } from '../../hooks/useSelector';
 import { RootState } from '../../modules';
 import { useSelector } from 'react-redux';
 import { changeSelect } from '../../modules/music';
-import { redirect } from 'next/dist/next-server/server/api-utils';
 
-const GlobalStyles = createGlobalStyle`
-  html, body {
-    margin: 0;
-    padding: 0;
-  }
-  *, *::after, *::before {
-    box-sizing: border-box;
-  }
-  body {
-    align-items: center;
-    background: #0D0C1D;
-    color: #EFFFFA;
-    display: flex;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    height: 100vh;
-    justify-content: center;
-    text-rendering: optimizeLegibility;
-  }
-  `;
 const theme = {
   primaryDark: '#0D0C1D',
   primaryLight: 'white',
 
   primaryHover: '#343078',
-  mobile: { normal: '1024px', iphone_x: '380px', Ipad: '770px', dev: '830px' },
+  mobile: {
+    normal: '1024px',
+    iphone_x: '380px',
+    Ipad: '770px',
+    dev: '830px',
+    xs: '370px',
+  },
 };
 
 const StyledBurger = styled.button<{ open: boolean }>`
@@ -170,14 +155,41 @@ const MusicList = styled.div<{ index: number; selectNum: number }>`
   }
   @media (max-width: ${({ theme }) => theme.mobile.normal}) {
     font-size: 1.2rem;
-    /* padding: 0; */
+    ${(props) =>
+      props.index === props.selectNum && {
+        fontWeight: 400,
+        border: '0.3rem solid #8e63e8',
+      }}
   }
   @media (max-width: ${({ theme }) => theme.mobile.dev}) {
     font-size: 1rem;
-    /* padding: 0; */
+    padding: 1rem 1rem;
+    ${(props) =>
+      props.index === props.selectNum && {
+        fontWeight: 400,
+        border: '0.3rem solid #8e63e8',
+      }}
+  }
+  @media (max-width: ${({ theme }) => theme.mobile.xs}) {
+    padding: 1rem 1rem;
+    font-size: 1rem;
+    ${(props) =>
+      props.index === props.selectNum && {
+        fontWeight: 400,
+        border: '0.3rem solid #8e63e8',
+      }}
   }
   @media (max-width: ${({ theme }) => theme.mobile.iphone_x}) {
     font-size: 1rem;
+    padding: 1rem 1rem;
+    ${(props) =>
+      props.index === props.selectNum && {
+        fontWeight: 400,
+        border: '0.3rem solid #8e63e8',
+      }}/* &:hover {
+      font-weight: 300;
+      border: 0.3rem solid white;
+    } */
   }
 `;
 export default function ToggleMenu() {
@@ -190,7 +202,6 @@ export default function ToggleMenu() {
   const onChangeNum = ({ e, index }) => {
     e.preventDefault();
     dispatch(changeSelect(index));
-    console.log(e.target);
   };
   return (
     <div className="toggle_bar">
@@ -210,7 +221,6 @@ export default function ToggleMenu() {
                     selectNum={selectNum}
                     onClick={(e) => {
                       onChangeNum({ e, index });
-                      console.log(index);
                     }}
                     key={music.title}
                   >
