@@ -28,10 +28,10 @@ export const initialState: IMusic = {
     },
 
     {
-      title: 'Stay',
+      title: 'Weekend',
       imgURL: 'https://t1.daumcdn.net/cfile/tistory/9954D9485C8EEF7C1E',
       musicURL:
-        'https://storage.googleapis.com/siliconwildcat_poc_bucket/music/IU_Secret_Garden.mp3',
+        'https://storage.googleapis.com/siliconwildcat_poc_bucket/music/TAEYEON_Weekend.mp3',
     },
   ],
   music: '',
