@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Counter from '../components/Counter';
 import MusicSlider from '../components/Music/MusicSlider';
 import ToggleMenu from '../components/Music/ToggleMenu';
-import MusicPlayer from '../components/MusicPlayer3';
+// import MusicPlayer from '../components/MusicPlayer3';
 
 export default function Home() {
   return (
@@ -18,7 +18,7 @@ export default function Home() {
       </Head>
       <ToggleMenu />
       <MusicSlider />
-      <MusicPlayer />
+      {/* <MusicPlayer /> */}
     </div>
   );
 }
