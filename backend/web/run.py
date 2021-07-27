@@ -8,6 +8,7 @@ from saveText import save_text, find_path
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from flask_swagger_ui import get_swaggerui_blueprint
+from audio import add_padding
 import io
 
 
@@ -54,11 +55,7 @@ def text_speech():
         response=make_response(jsonify({"msg":"success","data":src}))
         response.headers.add("Access-Control-Allow-Origin", "*")
         return response
-"""
-@app.route('/<path:path>')
-def send_js(path):
-    return send_from_directory('js', path)
-"""
+
 @app.route('/<path:filename>')
 def wav_return():
     return app.send_static_file('audio.wav')

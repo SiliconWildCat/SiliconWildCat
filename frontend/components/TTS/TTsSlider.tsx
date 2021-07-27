@@ -20,12 +20,11 @@ const options = [
 ];
 
 export default function TTsSlider({ Select }) {
-  const { text, mp3File, type, mp3File2 } = useAppSelector(
+  const { text, mp3File, type } = useAppSelector(
     ({ tts }: RootState) => ({
       text: tts.text,
       mp3File: tts.mp3File,
-      type: tts.type,
-      mp3File2: tts.mp3File2,
+      type: tts.type
     })
   );
   const [IMAGE_PARTS, onOne] = useState(4);
@@ -69,27 +68,6 @@ export default function TTsSlider({ Select }) {
     dispatch(changeType(label));
   }, [value, dispatch]);
 
-  // const onGET = async () => {
-  //   const { data } = await axios.post(
-  //     'http://localhost:5000/TTS',
-  //     {
-  //       speech: '태연',
-  //       voices: 'KSS',
-  //     },
-  //     {
-  //       responseType: 'arraybuffer',
-  //       headers: {
-  //         'Content-Type': 'audio/wav',
-  //       },
-  //     }
-  //   );
-  // const blob = new Blob([data], {
-  //   type: 'audio/wav',
-  // });
-
-  //   const myURL = URL.createObjectURL(blob);
-  //   onChangemyURL(myURL);
-  // };
   const onChangeText = (e) => {
     dispatch(inputText(e.target.value));
   };
@@ -179,19 +157,12 @@ export default function TTsSlider({ Select }) {
                   })}
                 />
                 <button className="slider__slide-button">Translate</button>
-                {myURL && (
+
+                {mp3File && (
                   <AudioPlayer
                     className="slider__slide-music"
                     style={{ width: '60%', borderRadius: '8px' }}
-                    src={myURL}
-                    onPlay={(e) => console.log('onPlay')}
-                  />
-                )}
-                {mp3File2 && (
-                  <AudioPlayer
-                    className="slider__slide-music"
-                    style={{ width: '60%', borderRadius: '8px' }}
-                    src={mp3File2}
+                    src={mp3File}
                     onPlay={(e) => console.log('onPlay')}
                   />
                 )}

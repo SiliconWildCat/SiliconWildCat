@@ -53,10 +53,6 @@ export const ttsSlice = createSlice({
       state.type = action.payload;
     },
     SUBMIT_TTS_SUCCESS: (state, action: PayloadAction<any>) => {
-      //console.log(action.payload);
-      //var array_data=action.payload;
-      //var blob=new Blob([array_data],{ 'type' : 'audio/wav' });
-      //var url= URL.createObjectURL(blob);
       var url=action.payload['data']
       state.mp3File="http://localhost:5000"+url;
     

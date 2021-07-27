@@ -6,9 +6,8 @@ export const submitTTS = ({ text, type }: submit) => {
     'Content-type': 'application/json; charset=UTF-8',
   };
   // const Accept = '*/*';
-  const responseType = 'arraybuffer';
   const data = JSON.stringify({ speech: text, voices: type });
-  return client.post(`/TTS`, data, { headers, responseType });
+  return client.post(`/TTS`, data, { headers});
 };
 
 export const getMP3 = () =>
