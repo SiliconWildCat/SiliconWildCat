@@ -3,7 +3,7 @@ import Icon from '../static/icon.png';
 
 import MusicSlider from '../components/Music/MusicSlider';
 import ToggleMenu from '../components/Music/ToggleMenu';
-// import MusicPlayer from '../components/MusicPlayer3';
+import MusicPlayer from '../components/MusicPlayer';
 
 function Music() {
   return (
@@ -17,7 +17,7 @@ function Music() {
       <ToggleMenu></ToggleMenu>
       <MusicSlider />
 
-      {/* <MusicPlayer /> */}
+      <MusicPlayer />
     </>
   );
 }
