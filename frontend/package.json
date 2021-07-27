@@ -18,6 +18,7 @@
     "classnames": "^2.3.1",
     "file-loader": "^6.2.0",
     "jquery": "^3.6.0",
+    "netlify-cli": "^5.2.6",
     "next": "11.0.1",
     "next-redux-saga": "^4.1.2",
     "next-redux-wrapper": "^7.0.2",

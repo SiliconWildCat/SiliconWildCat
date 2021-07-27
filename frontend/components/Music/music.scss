@@ -33,8 +33,9 @@ $letterStagger: 0.1s;
   &__top-heading {
     z-index: $numOfParts * 3;
     position: absolute;
-    left: -9%;
+    // left: -7%;
     top: 20%;
+    right: 35%;
     text-align: center;
     font-size: 3.5rem;
     margin-left: 62%;
@@ -166,26 +167,42 @@ $letterStagger: 0.1s;
     }
 
     &-readmore {
-      position: relative;
-      font-size: 14px;
-      text-transform: lowercase;
+      position: absolute;
+      font-size: 1rem;
+      text-transform: uppercase;
       backface-visibility: hidden;
+      letter-spacing: 0.1rem;
       transform: translateY(-10px);
       cursor: pointer;
-      margin-left: 13%;
-      @include subTextsActiveSlide;
-
+      right: 0rem;
+      box-sizing: border-box;
+      padding-right: 0rem;
+      padding-bottom: 4rem;
+      margin-bottom: 4rem;
+      top: 46%;
+      @media screen and (max-width: 900px) {
+        display: none;
+      }
+      @media screen and (max-width: 769px) {
+        display: none;
+      }
       &:before {
         content: '';
         position: absolute;
         left: -2px;
-        top: -3px;
-        width: calc(100% + 4px);
-        height: calc(100% + 6px);
-        background: rgba(255, 255, 255, 0.4);
+        top: -5px;
+        width: calc(100%);
+        height: calc(125%);
+        background: rgba(255, 255, 255, 0.15);
+
         transform: scaleX(0.2);
+        transform: scaleY(0.5);
         transform-origin: 0 50%;
         transition: transform 0.3s;
+        border-radius: 8px;
+        @media screen and (max-width: 769px) {
+          display: none;
+        }
       }
 
       &:hover:before {
@@ -282,20 +299,22 @@ $letterStagger: 0.1s;
   &__control {
     $size: 50px;
 
-    z-index: 100;
+    z-index: 20;
     position: absolute;
-    left: 10px;
+    left: 60px;
     top: 50%;
-
+    @media screen and (max-width: 600px) {
+      left: 10px;
+    }
     width: $size;
     height: $size;
     margin-top: $size/-2;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.7);
     transform: translateX($size * -1);
     opacity: 0;
     transition: $sliderReadyTrans;
-    cursor: pointer;
+    // cursor: pointer;
 
     &:before {
       content: '';
@@ -339,23 +358,27 @@ $letterStagger: 0.1s;
 }
 @media screen and (max-width: 862px) {
   .slider__top-heading {
-    position: absolute;
-    top: 35%;
-    margin-left: 450px;
+    top: 28%;
+    margin-left: 550px;
     font-weight: bold;
-    font-size: 3rem;
+    font-size: 1.3rem;
+  }
+  .slider__slide-subheading {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    font-size: 1rem;
   }
 }
 
 @media screen and (max-width: 769px) {
   .slider__top-heading,
-  .slider__slide-subheading,
-  .slider__slide-readmore {
+  .slider__slide-subheading {
     position: absolute;
   }
 
   .slider__top-heading {
-    top: 28%;
+    top: 22%;
     margin-left: 550px;
     font-weight: bold;
     font-size: 1.3rem;
@@ -368,10 +391,7 @@ $letterStagger: 0.1s;
   }
 
   .slider__slide-readmore {
-    top: 38%;
-    left: 52%;
-    font-size: 0.5rem;
-    margin-top: 10px;
+    font-size: 0.6rem;
   }
 }
 @media screen and (max-width: 800px) {
@@ -390,7 +410,7 @@ $letterStagger: 0.1s;
 }
 @media screen and (max-width: 416px) {
   .slider__top-heading {
-    top: 22%;
+    top: 30%;
     // left: 62%;
     margin: 0;
     font-weight: bold;
@@ -405,7 +425,7 @@ $letterStagger: 0.1s;
 
 @media screen and (max-width: 380px) {
   .slider__top-heading {
-    top: 23.5%;
+    top: 26.5%;
     // left: 62%;
     margin-left: -0.5rem;
     font-weight: bold;
@@ -417,7 +437,20 @@ $letterStagger: 0.1s;
     font-size: 0.7rem;
   }
 }
-
+// @media screen and (max-width: 370px) {
+//   .slider__top-heading {
+//     top: 23.5%;
+//     // left: 62%;
+//     margin-left: -0.5rem;
+//     font-weight: bold;
+//     font-size: 1.5rem;
+//   }
+//   .slider__slide-subheading {
+//     top: 39%;
+//     left: 31%;
+//     font-size: 0.7rem;
+//   }
+// }
 @media screen and (max-width: 280px) {
   .slider__top-heading {
     position: absolute;

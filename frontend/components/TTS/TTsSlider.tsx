@@ -5,13 +5,7 @@ import Link from 'next/link';
 import AudioPlayer from 'react-h5-audio-player';
 import { useAppDispatch, useAppSelector } from '../../hooks/useSelector';
 import { RootState } from '../../modules';
-import axios from 'axios';
-import {
-  initialText,
-  inputText,
-  // submitTTS,
-  changeType,
-} from '../../modules/tts';
+import { initialText, inputText, changeType } from '../../modules/tts';
 import { changeSelect } from '../../modules/music';
 
 const options = [
@@ -20,16 +14,13 @@ const options = [
 ];
 
 export default function TTsSlider({ Select }) {
-  const { text, mp3File, type } = useAppSelector(
-    ({ tts }: RootState) => ({
-      text: tts.text,
-      mp3File: tts.mp3File,
-      type: tts.type
-    })
-  );
+  const { text, mp3File, type } = useAppSelector(({ tts }: RootState) => ({
+    text: tts.text,
+    mp3File: tts.mp3File,
+    type: tts.type,
+  }));
   const [IMAGE_PARTS, onOne] = useState(4);
   const [changeTO, onOne2] = useState(0);
-  const AUTOCHANGE_TIME = 4000;
   const [state, onOne4] = useState({
     activeSlide: -1,
     prevSlide: 0,
@@ -40,13 +31,11 @@ export default function TTsSlider({ Select }) {
     label: 'KSS',
     key: 0,
   });
-  const [myURL, onChangemyURL] = useState('');
 
   const dispatch = useAppDispatch();
   const onSubmitText = (e) => {
     e.preventDefault();
     const info: submit = { text: text, type: type };
-
     dispatch(submitTTS(info));
     dispatch(initialText());
   };
@@ -54,7 +43,6 @@ export default function TTsSlider({ Select }) {
     window.clearTimeout(changeTO);
   }, [changeTO]);
   useEffect(() => {
-    // runAutochangeTO();
     setTimeout(() => {
       onOne4({
         activeSlide: value.key,
@@ -74,43 +62,12 @@ export default function TTsSlider({ Select }) {
   const onInitial = () => {
     dispatch(changeSelect(0));
   };
-  function onClickChange(e) {
-    window.clearTimeout(changeTO);
-
-    const prevSlide = state.activeSlide;
-    let activeSlide = 3;
-
-    onOne4({
-      activeSlide: activeSlide,
-      prevSlide: prevSlide,
-      sliderReady: true,
-    });
-  }
-  const onChangeVal = () => {
-    onChangeValue(value);
-  };
-  function changeSlides(change) {
-    window.clearTimeout(changeTO);
-    const { length } = tts;
-
-    const prevSlide = state.activeSlide;
-    let activeSlide = prevSlide + change;
-    if (activeSlide < 0) activeSlide = length - 1;
-    if (activeSlide >= length) activeSlide = 0;
-
-    onOne4({
-      activeSlide: activeSlide,
-      prevSlide: prevSlide,
-      sliderReady: true,
-    });
-  }
 
   return (
     <>
       <div className={classNames('slider', { 's--ready': state.sliderReady })}>
-        {/* <button onClick={onClickChange}>2</button> */}
         <p className="slider__top-headings">Text to speech</p>
-        {console.log(type)}
+
         <div className="slider__slides">
           {tts.map((slide, index) => (
             <div
@@ -139,6 +96,9 @@ export default function TTsSlider({ Select }) {
                 >
                   목소리를 선택하세요.
                 </h3>
+                <Link href="/music">
+                  <p className="slider__slide-readmores">go to music page</p>
+                </Link>
                 <Select
                   className="slider__slide-subheadingss"
                   options={options}
@@ -148,22 +108,19 @@ export default function TTsSlider({ Select }) {
                   onChange={onChangeValue}
                   theme={(theme) => ({
                     ...theme,
-                    // borderRadius: 0,
                     colors: {
                       ...theme.colors,
-                      // primary25: '#8977ad',
                       primary: '#8977ad',
                     },
                   })}
                 />
                 <button className="slider__slide-button">Translate</button>
-
                 {mp3File && (
                   <AudioPlayer
                     className="slider__slide-music"
-                    style={{ width: '60%', borderRadius: '8px' }}
+                    style={{ left: '20%',top: '80%', width: '60%', borderRadius: '8px' }}
                     src={mp3File}
-                    onPlay={(e) => console.log('onPlay')}
+                    autoPlay={true}
                   />
                 )}
               </form>

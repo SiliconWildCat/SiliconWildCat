@@ -1,13 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { ReactDOM } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/useSelector';
-
 import Link from 'next/link';
-import { changeSelect } from '../../modules/music';
 import { RootState } from '../../modules';
-import Music from '../../pages/music';
-import Player from '../MusicPlayer3';
 
 export default function MusicSlider() {
   const { selectNum, musics } = useAppSelector(({ music }: RootState) => ({
@@ -16,7 +11,6 @@ export default function MusicSlider() {
   }));
   const [IMAGE_PARTS, onOne] = useState(4);
   const [changeTO, onOne2] = useState(0);
-  const AUTOCHANGE_TIME = 4000;
   const [state, onOne4] = useState({
     activeSlide: -1,
     prevSlide: -1,
@@ -25,7 +19,7 @@ export default function MusicSlider() {
   const dispatch = useAppDispatch();
   useEffect(() => {
     window.clearTimeout(changeTO);
-  }, []);
+  }, [changeTO]);
 
   useEffect(() => {
     if (selectNum === 0) {
@@ -48,54 +42,11 @@ export default function MusicSlider() {
         sliderReady: true,
       });
     }
-
-    // changeSlides(selectNum);
   }, [selectNum]);
-
-  // function runAutochangeTO() {
-  //   onOne2(
-  //     setTimeout(() => {
-  //       changeSlides(1);
-  //       runAutochangeTO();
-  //     }, AUTOCHANGE_TIME)
-  //   );
-  // }
-
-  function onClickChange(e) {
-    window.clearTimeout(changeTO);
-
-    const prevSlide = state.activeSlide;
-    let activeSlide = 3;
-
-    onOne4({
-      activeSlide: activeSlide,
-      prevSlide: prevSlide,
-      sliderReady: true,
-    });
-  }
-  const changeSlides = useCallback(
-    (change) => {
-      window.clearTimeout(changeTO);
-      const { length } = musics;
-
-      const prevSlide = state.activeSlide;
-      let activeSlide = prevSlide + change;
-      if (activeSlide < 0) activeSlide = length - 1;
-      if (activeSlide >= length) activeSlide = 0;
-      // dispatch(changeSelect(activeSlide));
-      onOne4({
-        activeSlide: selectNum,
-        prevSlide: prevSlide,
-        sliderReady: true,
-      });
-    },
-    [selectNum]
-  );
 
   return (
     <>
       <div className={classNames('slider', { 's--ready': state.sliderReady })}>
-        {/* <button onClick={onClickChange}>2</button> */}
         <p className="slider__top-heading">Taeyeon</p>
         <div className="slider__slides">
           {musics.map((slide, index) => (
@@ -113,14 +64,10 @@ export default function MusicSlider() {
                 >
                   Title : {slide.title}
                 </h3>
-                {/* <h2 className="slider__slide-heading">
-                  {slide.city.split('').map((l, index) => (
-                    <span style={{ color: 'white' }} key={index}>
-                      {l}
-                    </span>
-                  ))}
-                </h2> */}
-                {/* <p className="slider__slide-readmore">Go to Youtube</p> */}
+                <Link href="/tts">
+                  <p className="slider__slide-readmore">Go to TTS Page</p>
+                </Link>
+                {/* <p className="slider__slide-readmore">Go to TTS Page</p> */}
               </div>
               <div className="slider__slide-parts">
                 {[...Array(IMAGE_PARTS).fill(0)].map((x, i) => (
@@ -132,10 +79,6 @@ export default function MusicSlider() {
                   </div>
                 ))}
               </div>
-              <Player
-                className={'slider__slide-player'}
-                url={slide.musicURL}
-              ></Player>
             </div>
           ))}
         </div>
