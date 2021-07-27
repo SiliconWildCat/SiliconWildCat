@@ -137,6 +137,18 @@ $letterStagger: 0.1s;
         padding: 0.5rem;
       }
     }
+    &-loading {
+      position: absolute;
+      color: #fff;
+      transition: all 0.1s ease 0s;
+      cursor: pointer;
+      top: 80%;
+
+      margin-bottom: 2rem;
+      transform: translateY(20px);
+      z-index: 300;
+      // @include subTextsActiveSlide;
+    }
     &-subheadingss {
       position: relative;
       margin-bottom: 2rem;
