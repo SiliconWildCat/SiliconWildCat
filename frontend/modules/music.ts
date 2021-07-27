@@ -8,20 +8,20 @@ export const initialState: IMusic = {
   selectNum: 0,
   musics: [
     {
-      title: '별 보러 갈래',
+      title: '사계',
       imgURL:
         'https://t1.daumcdn.net/cfile/tistory/994D5C485C8EEF791E?original',
       musicURL:
         'https://storage.googleapis.com/siliconwildcat_poc_bucket/music/FourSeasons.wav',
     },
     {
-      title: '그리 쉽게 이별을 말하지 말아요',
+      title: '신호등',
       imgURL: 'https://t1.daumcdn.net/cfile/tistory/9980B4485C8EEF781C',
       musicURL:
-        'https://storage.googleapis.com/siliconwildcat_poc_bucket/music/IU_Secret_Garden.mp3',
+        'https://ww8007bucket.s3.ap-northeast-2.amazonaws.com/%ED%83%9C%EC%97%B0/y2mate.com+-+MV+Lee+Mujin%EC%9D%B4%EB%AC%B4%EC%A7%84++Traffic+light%EC%8B%A0%ED%98%B8%EB%93%B1.mp3',
     },
     {
-      title: '제주도 푸른밤',
+      title: '신호등',
       imgURL: 'https://t1.daumcdn.net/cfile/tistory/9975134C5C97724E08',
       musicURL:
         'https://storage.googleapis.com/siliconwildcat_poc_bucket/music/IU_Secret_Garden.mp3',
