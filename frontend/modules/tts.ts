@@ -1,12 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { PayloadActionCreator } from '@reduxjs/toolkit';
 import { ITts } from '../interface/tts';
 import * as api from '../lib/api/tts';
 import createRequestSaga from '../hooks/createRequestSaga';
 import { takeLatest } from 'redux-saga/effects';
 import { createAction } from 'redux-actions';
-import { stat } from 'fs';
-import axios from 'axios';
 export const tts = [
   {
     city: 'Paris',
@@ -36,10 +33,9 @@ export const submitTTS = createAction(SUBMIT_TTS, (info: submit) => info);
 // export const submitTTS = createAction(SUBMIT_TTS);
 export const getTTS = createAction(GET_TTS);
 const submitTTSSaga = createRequestSaga(SUBMIT_TTS, api.submitTTS);
-const getTTSSaga = createRequestSaga(GET_TTS, api.getMP3);
+
 export function* ttsSaga() {
   yield takeLatest(SUBMIT_TTS, submitTTSSaga);
-  yield takeLatest(GET_TTS, getTTSSaga);
 }
 const ttsSlice = createSlice({
   name: 'tts',
@@ -55,15 +51,14 @@ const ttsSlice = createSlice({
       state.type = action.payload;
     },
     SUBMIT_TTS_SUCCESS: (state, action: PayloadAction<any>) => {
-      var url = action.payload['data'];
-      state.mp3File = 'http://localhost:5000'+url;
-      // state.mp3File = 'hihi';
-    },
-    setInitialText: (state) => {
-      state.mp3File = '';
+      const url = action.payload['data'];
+      state.mp3File = `http://localhost:5000${url}`;
     },
     SUBMIT_TTS_FAILURE: (state, action: PayloadAction<any>) => {
       state.error = action.payload;
+    },
+    setInitialText: (state) => {
+      state.mp3File = '';
     },
   },
 });
