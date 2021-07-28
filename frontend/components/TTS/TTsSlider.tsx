@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { submit, tts, submitTTS, setInitialText } from '../../modules/tts';
 import Link from 'next/link';
@@ -15,6 +15,7 @@ const options = [
 ];
 
 export default function TTsSlider({ Select }) {
+  const scrollRef = useRef(null);
   const { text, mp3File, type, loadingWAV } = useAppSelector(
     ({ tts, loading }: RootState) => ({
       text: tts.text,
@@ -73,7 +74,10 @@ export default function TTsSlider({ Select }) {
 
   return (
     <>
-      <div className={classNames('slider', { 's--ready': state.sliderReady })}>
+      <div
+        className={classNames('slider', { 's--ready': state.sliderReady })}
+        ref={scrollRef}
+      >
         <p className="slider__top-headings">Text to speech</p>
 
         <div className="slider__slides">
@@ -151,8 +155,10 @@ export default function TTsSlider({ Select }) {
           ))}
         </div>
         <div className="slide_btns">
-          <Link href="/music">
-            <p className="slider__slide-readmores">go to music page</p>
+          <Link passHref href="/music">
+            <p onClick={onInitial} className="slider__slide-readmores">
+              go to music page
+            </p>
           </Link>
           <Link href="/music">
             <a onClick={onInitial} className="slider__control" />
