@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.1",
+    "@types/redux-actions": "^2.6.2",
     "@types/redux-saga": "^0.10.5",
     "@types/styled-components": "^5.1.11",
     "axios": "^0.21.1",
