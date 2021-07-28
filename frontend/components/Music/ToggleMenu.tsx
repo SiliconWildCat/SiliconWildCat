@@ -133,6 +133,12 @@ const MusicList = styled.div<{ index: number; selectNum: number }>`
   &:hover {
     font-weight: 400;
     border: 0.3rem solid #8e63e8;
+    @media (max-width: 500px) {
+      *:hover {
+        pointer-events: none !important;
+      }
+      border: 0.3rem solid white;
+    }
   }
   @media (max-width: ${({ theme }) => theme.mobile.Ipad}) {
     font-size: 1.2rem;
