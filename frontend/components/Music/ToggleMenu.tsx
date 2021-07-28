@@ -138,6 +138,7 @@ const MusicList = styled.div<{ index: number; selectNum: number }>`
         pointer-events: none !important;
       }
       border: 0.3rem solid white;
+      font-weight: 400;
     }
   }
   @media (max-width: ${({ theme }) => theme.mobile.Ipad}) {
