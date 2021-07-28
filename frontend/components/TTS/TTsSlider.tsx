@@ -63,6 +63,7 @@ export default function TTsSlider({ Select }) {
     const { label } = value;
     dispatch(changeType(label));
   }, [value, dispatch]);
+
   const onChangeText = (e) => {
     dispatch(inputText(e.target.value));
   };
@@ -158,8 +159,11 @@ export default function TTsSlider({ Select }) {
               ></Loader> */}
             </div>
           ))}
-          </div><Link href="/music">
+        </div>
+        <Link href="/music">
           <a onClick={onInitial} className="slider__control" />
         </Link>
       </div>
-    </>);}
+    </>
+  );
+}
