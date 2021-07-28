@@ -5,8 +5,6 @@ export default function LoadingLoadingProgress({ className }) {
     <div className={className}>
       <Loader
         type="Oval"
-        // color="black"
-        // color="#8977ad"
         color="white"
         width={60}
         height={60}

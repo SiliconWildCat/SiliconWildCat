@@ -1,6 +1,5 @@
 import { combineReducers, AnyAction, CombinedState } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
-import { ICounter } from '../interface/counter';
 import { ITts } from '../interface/tts';
 import { Sample } from './counter';
 import tts, { ttsSaga } from './tts';

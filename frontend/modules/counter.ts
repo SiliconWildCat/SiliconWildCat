@@ -1,12 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ICounter } from '../interface/counter';
 import * as api from '../lib/api/api';
 import createRequestSaga from '../hooks/createRequestSaga';
 import { takeLatest } from 'redux-saga/effects';
 import { createAction } from 'redux-actions';
-// const initialState: ICounter = {
-//   number: 3,
-// };
 export interface Sample {
   post: string[];
   users: any[];
