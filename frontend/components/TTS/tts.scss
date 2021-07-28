@@ -7,7 +7,7 @@
 }
 
 body {
-  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
   background: #000;
 }
 
@@ -239,7 +239,7 @@ $letterStagger: 0.1s;
     }
 
     &-readmores {
-      position: absolute;
+      position: fixed;
       font-size: 1rem;
       text-transform: uppercase;
       backface-visibility: hidden;
@@ -247,8 +247,8 @@ $letterStagger: 0.1s;
       // transform: translateY(-10px);
       z-index: 4000;
       cursor: pointer;
-      top: 54%;
-      left: 0;
+      top: 47%;
+      left: 10px;
       padding-right: 0rem;
       padding-bottom: 4rem;
       margin-bottom: 4rem;
@@ -259,13 +259,13 @@ $letterStagger: 0.1s;
         // padding-right: 0rem;
       }
       &:before {
-        content: '';
+        content: "";
         z-index: 8000;
-        position: absolute;
-        left: -2px;
-        top: -5px;
-        width: calc(100%);
-        height: calc(125%);
+        position: fixed;
+        left: 10px;
+        top: 47%;
+        width: 180px;
+        height: 100px;
         background: rgba(255, 255, 255, 0.3);
         transform: scaleX(0.2);
         transform: scaleY(0.5);
@@ -291,7 +291,7 @@ $letterStagger: 0.1s;
       height: 100%;
 
       &:after {
-        content: '';
+        content: "";
         z-index: $numOfParts + 1;
         position: absolute;
         left: 0;
@@ -322,7 +322,7 @@ $letterStagger: 0.1s;
         transition: transform $animTime/2 ease-in-out;
 
         &:before {
-          content: '';
+          content: "";
           position: absolute;
           width: 100vw;
           height: 100%;
@@ -387,17 +387,25 @@ $letterStagger: 0.1s;
       font-size: 1.2rem;
     }
 
-    // .slider__slide-readmore {
-    //   top: 38%;
-    //   left: 52%;
-    //   font-size: 0.5rem;
-    //   margin-top: 10px;
-    // }
-    // &-button {
-    //   padding: 0;
-    // }
+    .slider__slide-readmore {
+      top: 38%;
+      left: 52%;
+      font-size: 0.5rem;
+      margin-top: 10px;
+    }
+    &-button {
+      padding: 0;
+    }
     .-button {
       padding: 0;
     }
   }
+}
+.slide_btns {
+  position: fixed;
+  z-index: 2000;
+  width: 200px;
+  height: 100px;
+  top: 47%;
+  left: 0%;
 }
