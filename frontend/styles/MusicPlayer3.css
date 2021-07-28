@@ -15,8 +15,16 @@
   background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
   border-radius: 1rem;
+  -webkit-tap-highlight-color: transparent;
 }
 
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
 @media screen and (max-width: 1024px) {
   .rhap_container {
     top: 85%;
@@ -33,6 +41,14 @@
     left: 3%;
     height: 12%;
     border: 0.15rem solid #ffffff;
+    -webkit-tap-highlight-color: transparent;
+  }
+  input,
+  textarea,
+  button,
+  select,
+  a {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
 }
 
@@ -42,31 +58,27 @@
     width: 94%;
     left: 3%;
     height: 12%;
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
 @media screen and (max-width: 376px) {
   .rhap_container {
-    top: 77%;
+    top: 80%;
     width: 94%;
     left: 3%;
     height: 13%;
+    -webkit-tap-highlight-color: transparent;
   }
 }
-@media screen and (max-width: 376px) {
-  .rhap_container {
-    top: 77%;
-    width: 94%;
-    left: 3%;
-    height: 13%;
-  }
-}
+
 @media screen and (max-width: 360px) {
   .rhap_container {
     top: 80%;
     width: 94%;
     left: 3%;
     height: 15%;
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
@@ -76,6 +88,7 @@
     width: 80%;
     height: 17%;
     left: 10%;
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
@@ -85,6 +98,7 @@
     width: 90%;
     height: 15%;
     left: 5%;
+    -webkit-tap-highlight-color: transparent;
   }
 }
 .rhap_container:focus:not(:focus-visible) {

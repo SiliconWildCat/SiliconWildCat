@@ -6,7 +6,13 @@
   fill: #d7dce2;
   transition: all 0.2s ease-in-out;
 }
-
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
 html,
 body {
   height: 100%;

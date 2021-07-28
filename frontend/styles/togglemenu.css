@@ -31,5 +31,8 @@
     width: 100%;
     height: 120px;
   }
+  html.touch *:hover {
+    pointer-events: none !important;
+  }
 }
 /*각 디바이스별 미디어 쿼리 생성.*/
