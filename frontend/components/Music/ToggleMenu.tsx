@@ -183,6 +183,11 @@ const MusicList = styled.div<{ index: number; selectNum: number }>`
         fontWeight: 400,
         border: '0.3rem solid #8e63e8',
       }}
+    &:hover {
+      font-weight: 400;
+      border: 0.3rem solid white;
+      -webkit-tap-highlight-color: transparent;
+    }
   }
   @media (max-width: ${({ theme }) => theme.mobile.iphone_x}) {
     font-size: 1rem;
@@ -191,10 +196,12 @@ const MusicList = styled.div<{ index: number; selectNum: number }>`
       props.index === props.selectNum && {
         fontWeight: 400,
         border: '0.3rem solid #8e63e8',
-      }}/* &:hover {
-      font-weight: 300;
+      }}
+    &:hover {
+      font-weight: 400;
       border: 0.3rem solid white;
-    } */
+      -webkit-tap-highlight-color: transparent;
+    }
   }
 `;
 export default function ToggleMenu() {
