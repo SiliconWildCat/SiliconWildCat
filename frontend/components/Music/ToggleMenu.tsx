@@ -155,7 +155,6 @@ const MusicList = styled.div<{ index: number; selectNum: number }>`
     &:hover {
       font-weight: 400;
       border: 0.3rem solid #8e63e8;
-      -webkit-tap-highlight-color: transparent;
     }
   }
   @media (max-width: ${({ theme }) => theme.mobile.normal}) {
@@ -186,7 +185,6 @@ const MusicList = styled.div<{ index: number; selectNum: number }>`
     &:hover {
       font-weight: 400;
       border: 0.3rem solid white;
-      -webkit-tap-highlight-color: transparent;
     }
   }
   @media (max-width: ${({ theme }) => theme.mobile.iphone_x}) {
@@ -200,7 +198,6 @@ const MusicList = styled.div<{ index: number; selectNum: number }>`
     &:hover {
       font-weight: 400;
       border: 0.3rem solid white;
-      -webkit-tap-highlight-color: transparent;
     }
   }
 `;
