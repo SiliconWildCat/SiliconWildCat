@@ -101,9 +101,7 @@ export default function TTsSlider({ Select }) {
                 >
                   목소리를 선택하세요.
                 </h3>
-                <Link href="/music">
-                  <p className="slider__slide-readmores">go to music page</p>
-                </Link>
+                
                 <Select
                   className="slider__slide-subheadingss"
                   options={options}
@@ -157,9 +155,14 @@ export default function TTsSlider({ Select }) {
             </div>
           ))}
         </div>
-        <Link href="/music">
-          <a onClick={onInitial} className="slider__control" />
-        </Link>
+        <div className="slide_btns">
+          <Link href="/music">
+                  <p className="slider__slide-readmores" style={{position:'fixed'}}>go to music page</p>
+          </Link>
+          <Link href="/music">
+            <a onClick={onInitial} className="slider__control" />
+          </Link>
+        </div>
       </div>
     </>
   );
