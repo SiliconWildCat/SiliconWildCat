@@ -6,6 +6,6 @@ export const getMusic = ({title}) => {
       };
       // const Accept = '*/*';
       const data = JSON.stringify({ title: title});
-    client.get(`/SVS`,data,{headers})
+    client.get(`/SVS`);
 
 };
