@@ -56,7 +56,7 @@ const ttsSlice = createSlice({
     },
     SUBMIT_TTS_SUCCESS: (state, action: PayloadAction<any>) => {
       var url = action.payload['data'];
-      state.mp3File = 'http://localhost:5000' + url;
+      state.mp3File = 'http://localhost:5000'+url;
       // state.mp3File = 'hihi';
     },
     setInitialText: (state) => {

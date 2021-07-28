@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { submit, tts, submitTTS, setInitialText } from '../../modules/tts';
 import Link from 'next/link';
@@ -7,13 +7,14 @@ import { useAppDispatch, useAppSelector } from '../../hooks/useSelector';
 import { RootState } from '../../modules';
 import { initialText, inputText, changeType } from '../../modules/tts';
 import { changeSelect } from '../../modules/music';
+import Loader from 'react-loader-spinner';
 import LoadingProgress from '../../lib/Loading/LoadingProgress';
 const options = [
   { value: 'KSS', label: 'KSS', key: 0 },
   { value: 'TaeYeon', label: 'TaeYeon', key: 1 },
 ];
 
-function TTsSlider({ Select }) {
+export default function TTsSlider({ Select }) {
   const { text, mp3File, type, loadingWAV } = useAppSelector(
     ({ tts, loading }: RootState) => ({
       text: tts.text,
@@ -36,13 +37,19 @@ function TTsSlider({ Select }) {
   });
 
   const dispatch = useAppDispatch();
-
+  const onSubmitText = (e) => {
+    e.preventDefault();
+    const info: submit = { text: text, type: type };
+    dispatch(submitTTS(info));
+    dispatch(initialText());
+    dispatch(setInitialText());
+  };
   useEffect(() => {
     window.clearTimeout(changeTO);
-  }, [changeTO]);
+  }, [changeTO, mp3File]);
   useEffect(() => {
     dispatch(setInitialText());
-  }, [dispatch, mp3File, value]);
+  }, []);
   useEffect(() => {
     setTimeout(() => {
       onOne4({
@@ -56,26 +63,12 @@ function TTsSlider({ Select }) {
     const { label } = value;
     dispatch(changeType(label));
   }, [value, dispatch]);
-  const onSubmitText = useCallback(
-    (e) => {
-      e.preventDefault();
-      const info: submit = { text: text, type: type };
-      dispatch(submitTTS(info));
-      dispatch(initialText());
-      dispatch(setInitialText());
-    },
-    [dispatch, text, type]
-  );
-
-  const onChangeText = useCallback(
-    (e) => {
-      dispatch(inputText(e.target.value));
-    },
-    [dispatch]
-  );
-  const onInitial = useCallback(() => {
+  const onChangeText = (e) => {
+    dispatch(inputText(e.target.value));
+  };
+  const onInitial = () => {
     dispatch(changeSelect(0));
-  }, [dispatch]);
+  };
 
   return (
     <>
@@ -110,7 +103,9 @@ function TTsSlider({ Select }) {
                 >
                   목소리를 선택하세요.
                 </h3>
-                
+                <Link href="/music">
+                  <p className="slider__slide-readmores">go to music page</p>
+                </Link>
                 <Select
                   className="slider__slide-subheadingss"
                   options={options}
@@ -154,20 +149,17 @@ function TTsSlider({ Select }) {
                   </div>
                 ))}
               </div>
+              {/* <Loader
+                type="Oval"
+                color="black"
+                height={30}
+                width={30}
+                timeout={3000}
+              ></Loader> */}
             </div>
           ))}
-        </div>
-        <div className="slide_btns">
-          <Link href="/music">
-                  <p className="slider__slide-readmores" style={{position:'fixed'}}>go to music page</p>
-          </Link>
-          <Link href="/music">
-            <a onClick={onInitial} className="slider__control" />
-          </Link>
-        </div>
+          </div><Link href="/music">
+          <a onClick={onInitial} className="slider__control" />
+        </Link>
       </div>
-    </>
-  );
-}
-
-export default React.memo(TTsSlider);
+    </>);}
