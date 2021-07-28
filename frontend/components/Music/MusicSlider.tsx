@@ -62,9 +62,9 @@ export default function MusicSlider() {
                   className="slider__slide-subheading"
                   style={{ color: 'white' }}
                 >
-                  Title : {slide.title}
+                  Title : {slide.subTitle}
                 </h3>
-                
+
                 {/* <p className="slider__slide-readmore">Go to TTS Page</p> */}
               </div>
               <div className="slider__slide-parts">
@@ -80,7 +80,7 @@ export default function MusicSlider() {
             </div>
           ))}
         </div>
-        <div className='slide_btn'>
+        <div className="slide_btn">
           <Link href="/tts">
             <p className="slider__slide-readmore">Go to TTS Page</p>
           </Link>
