@@ -64,9 +64,7 @@ export default function MusicSlider() {
                 >
                   Title : {slide.title}
                 </h3>
-                <Link href="/tts">
-                  <p className="slider__slide-readmore">Go to TTS Page</p>
-                </Link>
+                
                 {/* <p className="slider__slide-readmore">Go to TTS Page</p> */}
               </div>
               <div className="slider__slide-parts">
@@ -82,9 +80,14 @@ export default function MusicSlider() {
             </div>
           ))}
         </div>
-        <Link href="/tts">
-          <a className="slider__control  slider__control--right" />
-        </Link>
+        <div className='slide_btn'>
+          <Link href="/tts">
+            <p className="slider__slide-readmore">Go to TTS Page</p>
+          </Link>
+          <Link href="/tts">
+            <a className="slider__control  slider__control--right" />
+          </Link>
+        </div>
       </div>
     </>
   );
