@@ -63,6 +63,7 @@ def text_speech():
 def wav_return():
     return app.send_static_file('audio.wav')
 
+
 @app.route('/SVS', methods=['GET'])
 def singing_voice():
     param_dict = request.args.to_dict()

@@ -11,9 +11,9 @@ export const initialState: IMusic = {
       title: '사계',
       imgURL:
         'https://t1.daumcdn.net/cfile/tistory/994D5C485C8EEF791E?original',
-      musicURL:
-        'https://storage.googleapis.com/siliconwildcat_poc_bucket/music/FourSeasons.wav',
-    },
+      musicURL: 
+         'https://storage.googleapis.com/siliconwildcat_poc_bucket/music/FourSeasons.wav',
+        },
     {
       title: '신호등',
       imgURL: 'https://t1.daumcdn.net/cfile/tistory/9980B4485C8EEF781C',
@@ -51,6 +51,7 @@ export const musicSlice = createSlice({
   name: 'music',
   initialState: initialState,
   reducers: {
+
     changeSelect: (state, action: PayloadAction<number>) => {
       state.selectNum = action.payload;
     },
