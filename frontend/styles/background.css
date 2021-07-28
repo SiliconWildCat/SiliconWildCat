@@ -1,6 +1,11 @@
-html.touch *:hover {
-  pointer-events: none !important;
+@media (max-width: 600px) {
+  *:hover {
+    pointer-events: none !important;
+  }
 }
-* {
-  -webkit-tap-highlight-color: transparent;
+
+*,
+*:before,
+*:after {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
