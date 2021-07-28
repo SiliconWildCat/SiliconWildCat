@@ -104,7 +104,6 @@ export default function TTsSlider({ Select }) {
                 >
                   목소리를 선택하세요.
                 </h3>
-
                 <Select
                   className="slider__slide-subheadingss"
                   options={options}
