@@ -134,9 +134,6 @@ const MusicList = styled.div<{ index: number; selectNum: number }>`
     font-weight: 400;
     border: 0.3rem solid #8e63e8;
     @media (max-width: 500px) {
-      *:hover {
-        pointer-events: none !important;
-      }
       border: 0.3rem solid white;
       font-weight: 400;
     }
