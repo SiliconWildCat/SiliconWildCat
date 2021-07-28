@@ -10,7 +10,7 @@ export default function LoadingLoadingProgress({ className }) {
         color="white"
         width={60}
         height={60}
-        timeout={30000}
+        timeout={300000}
       ></Loader>
     </div>
   );
