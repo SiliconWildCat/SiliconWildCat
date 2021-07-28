@@ -203,7 +203,7 @@ export default function ToggleMenu() {
   const onChangeNum = ({ e, index }) => {
     e.preventDefault();
     dispatch(changeSelect(index));
-    dispatch(getMusic(musics[index].title));
+    // dispatch(getMusic(musics[index].title)); //여기 주석 푸시면 됩니다.
   };
   return (
     <div className="toggle_bar">
@@ -226,7 +226,7 @@ export default function ToggleMenu() {
                     }}
                     key={music.title}
                   >
-                    {music.title}
+                    {music.subTitle}
                   </MusicList>
                 ))}
               </StyledMenu>
