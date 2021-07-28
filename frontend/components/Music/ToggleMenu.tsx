@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useAppDispatch } from '../../hooks/useSelector';
 import { RootState } from '../../modules';
 import { useSelector } from 'react-redux';
-import { changeSelect } from '../../modules/music';
+import { changeSelect, getMusic } from '../../modules/music';
 
 const theme = {
   primaryDark: '#0D0C1D',
@@ -203,6 +203,7 @@ export default function ToggleMenu() {
   const onChangeNum = ({ e, index }) => {
     e.preventDefault();
     dispatch(changeSelect(index));
+    dispatch(getMusic(musics[index].title));
   };
   return (
     <div className="toggle_bar">
