@@ -34,29 +34,31 @@ swaggerui_blueprint = get_swaggerui_blueprint(
 app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 
 
+count=0
 @app.route('/TTS', methods=['POST'])
-def text_speech(): 
-    if request.method=='POST':   
+def text_speech():
+    if request.method=='POST':
         data=request.get_json()
         speech=data['speech']
         voices=data['voices']
         try:
             if speech=="":
                 raise Exception('There is no input')
+            global count
             syn=create_synthesizer(voices)
             symbols=syn.tts_config.characters.characters
             speechs=normalize_text(speech,symbols)
             wavs=synthesize(speechs,syn)
-            sf.write('static/audio.wav',wavs,22050,subtype='PCM_16')
-
+            count+=1
+            sf.write(('static/'+str(count)+'.wav'),wavs,22050,subtype='PCM_16')
             save_text(speech,database,session)
-            src=url_for('static', filename='audio.wav')
+            src=url_for('static', filename=(str(count)+'.wav'))
             response=make_response(jsonify({"msg":"success","data":{"url": src, "title": speech}}))
             response.headers.add("Access-Control-Allow-Origin", "*")
-        
+            if(count>3):
+                count=0
         except Exception as e:
             response=make_response(jsonify({"msg": "There is no input"}))
-           
         return response
 
 @app.route('/<path:filename>')
