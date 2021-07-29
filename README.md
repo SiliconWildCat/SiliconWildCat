@@ -44,7 +44,8 @@ http://localhost:8000
 >### Local
 ```
 Frontend: http://localhost:3000
-Backend: http://localhost:5000
+Backend: http://localhost:5000/audio.wav 
+Swagger: http://localhost:5000/swagger 
 ```
 
 ---
