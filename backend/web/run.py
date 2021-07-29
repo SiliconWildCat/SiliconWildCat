@@ -51,7 +51,7 @@ def text_speech():
 
             save_text(speech,database,session)
             src=url_for('static', filename='audio.wav')
-            response=make_response(jsonify({"msg":"success","data":src}))
+            response=make_response(jsonify({"msg":"success","data":{"url": src, "title": speech}}))
             response.headers.add("Access-Control-Allow-Origin", "*")
         
         except Exception as e:
@@ -85,3 +85,4 @@ def build_actual_response(response):
 
 if __name__ == "__main__":
     app.run(port=80, debug=True)
+
