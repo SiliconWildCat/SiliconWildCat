@@ -8,8 +8,8 @@ export const initialState: IMusic = {
   selectNum: 0,
   musics: [
     {
-      title: 'Weekend',
-      subTitle: 'Weekend',
+      title: 'Mind',
+      subTitle: '마음',
       imgURL:
         'https://t1.daumcdn.net/cfile/tistory/994D5C485C8EEF791E?original',
       musicURL: '',
@@ -22,14 +22,13 @@ export const initialState: IMusic = {
     },
     {
       title: 'SecretGarden',
-      subTitle: '비밀의 정원',
+      subTitle: '비밀의 화원',
       imgURL: 'https://t1.daumcdn.net/cfile/tistory/9975134C5C97724E08',
       musicURL: '',
     },
-
     {
-      title: '신호등',
-      subTitle: '신호등',
+      title: 'Weekend',
+      subTitle: 'Weekend',
       imgURL: 'https://t1.daumcdn.net/cfile/tistory/9954D9485C8EEF7C1E',
       musicURL:
         'https://ww8007bucket.s3.ap-northeast-2.amazonaws.com/%ED%83%9C%EC%97%B0/y2mate.com+-+MV+Lee+Mujin%EC%9D%B4%EB%AC%B4%EC%A7%84++Traffic+light%EC%8B%A0%ED%98%B8%EB%93%B1.mp3',
