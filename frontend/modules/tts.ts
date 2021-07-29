@@ -21,7 +21,7 @@ const initialState: ITts = {
   mp3File: '',
   type: 'KSS',
   error: '',
-  mp3File2: '',
+  mp3File2: 1,
 };
 export interface submit {
   text: string;
@@ -52,7 +52,10 @@ const ttsSlice = createSlice({
     },
     SUBMIT_TTS_SUCCESS: (state, action: PayloadAction<any>) => {
       const url = action.payload['data'];
-      state.mp3File = `http://localhost:5000${url}`;
+      state.mp3File2 += 1;
+      state.mp3File = '';
+
+      state.mp3File = `http://34.81.205.172:5000${url}`;
     },
     SUBMIT_TTS_FAILURE: (state, action: PayloadAction<any>) => {
       state.error = action.payload;
