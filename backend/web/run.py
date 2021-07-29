@@ -33,6 +33,7 @@ swaggerui_blueprint = get_swaggerui_blueprint(
 
 app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 
+global count = 0
 
 @app.route('/TTS', methods=['POST'])
 def text_speech(): 
@@ -40,6 +41,7 @@ def text_speech():
         data=request.get_json()
         speech=data['speech']
         voices=data['voices']
+        count+=1
         try:
             if speech=="":
                 raise Exception('There is no input')
@@ -50,7 +52,7 @@ def text_speech():
             sf.write('static/audio.wav',wavs,22050,subtype='PCM_16')
 
             save_text(speech,database,session)
-            src=url_for('static', filename='audio.wav')
+            src=url_for('static', filename='audio'+count+'.wav')
             response=make_response(jsonify({"msg":"success","data":{"url": src, "title": speech}}))
             response.headers.add("Access-Control-Allow-Origin", "*")
         

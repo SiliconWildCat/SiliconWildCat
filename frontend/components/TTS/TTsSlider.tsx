@@ -16,15 +16,15 @@ const options = [
 
 export default function TTsSlider({ Select }) {
   const scrollRef = useRef(null);
-  const { text, mp3File, type, loadingWAV, mp3File2 } = useAppSelector(
-    ({ tts, loading }: RootState) => ({
+  const { text, mp3File, type, loadingWAV, mp3File2, saveText } =
+    useAppSelector(({ tts, loading }: RootState) => ({
       text: tts.text,
       mp3File: tts.mp3File,
       type: tts.type,
       loadingWAV: loading['tts/SUBMIT_TTS'],
       mp3File2: tts.mp3File2,
-    })
-  );
+      saveText: tts.saveText,
+    }));
   const [IMAGE_PARTS, onOne] = useState(4);
   const [changeTO, onOne2] = useState(0);
   const [state, onOne4] = useState({
