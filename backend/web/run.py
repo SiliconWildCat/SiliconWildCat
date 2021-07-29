@@ -41,7 +41,8 @@ def text_speech():
         speech=data['speech']
         voices=data['voices']
         try:
-            
+            if speech=="":
+                raise Exception('There is no input')
             syn=create_synthesizer(voices)
             symbols=syn.tts_config.characters.characters
             speechs=normalize_text(speech,symbols)
@@ -52,11 +53,9 @@ def text_speech():
             src=url_for('static', filename='audio.wav')
             response=make_response(jsonify({"msg":"success","data":src}))
             response.headers.add("Access-Control-Allow-Origin", "*")
-            if speech=="":
-                raise Exception('There is no input')
+        
         except Exception as e:
-            response=make_response(jsonify({"msg":"success","data":src}))
-            response.headers.add("Access-Control-Allow-Origin", "*")
+            response=make_response(jsonify({"msg": "There is no input"}))
            
         return response
 
