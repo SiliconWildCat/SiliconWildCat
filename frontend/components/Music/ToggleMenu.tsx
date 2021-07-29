@@ -208,7 +208,7 @@ export default function ToggleMenu() {
   const onChangeNum = ({ e, index }) => {
     e.preventDefault();
     dispatch(changeSelect(index));
-    // dispatch(getMusic(musics[index].title)); //여기 주석 푸시면 됩니다.
+    dispatch(getMusic(musics[index].title));
   };
   return (
     <div className="toggle_bar">
