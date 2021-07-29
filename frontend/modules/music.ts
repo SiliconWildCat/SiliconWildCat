@@ -37,6 +37,7 @@ export const initialState: IMusic = {
   ],
   music: '',
   Title: '',
+  error: '',
 };
 
 const GET_MUSIC = 'music/GET_MUSIC';
@@ -55,8 +56,11 @@ export const musicSlice = createSlice({
     changeSelect: (state, action: PayloadAction<number>) => {
       state.selectNum = action.payload;
     },
-    GET_MUSIC_SUCCESS: (state, action: PayloadAction<string>) => {
+    GET_MUSIC_SUCCESS: (state, action: PayloadAction<any>) => {
       state.musics[state.selectNum].musicURL = action.payload;
+    },
+    GET_MUSIC_FAILURE: (state, action: PayloadAction<any>) => {
+      state.error = action.payload;
     },
   },
 });
