@@ -55,7 +55,7 @@ def text_speech():
             src=url_for('static', filename=(str(count)+'.wav'))
             response=make_response(jsonify({"msg":"success","data":{"url": src, "title": speech}}))
             response.headers.add("Access-Control-Allow-Origin", "*")
-            if(count>3):
+            if(count>49):
                 count=0
         except Exception as e:
             response=make_response(jsonify({"msg": "There is no input"}))
