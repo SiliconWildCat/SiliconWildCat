@@ -6,16 +6,16 @@ We used Neural Network Models (GlowTTS, HIFI-GAN, mlp) with KSS dataset and prep
 
 
 
-
----
-
-## System Architecture
-![system architecture](https://user-images.githubusercontent.com/68267278/126674124-fcd2b432-1eb4-4234-a262-df2608a89284.png)
 ---
 ## Tech Stack
 
 <img src="https://img.shields.io/badge/PYTHON-3776AB?style=for-the-badge&logo=python&logoColor=white"> <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"> <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/flask-ffffff?style=for-the-badge&logo=flask&logoColor=black"> <img src="https://img.shields.io/badge/gunicorn-489746?style=for-the-badge&logo=gunicorn&logoColor=black"> <img src="https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=black"> <img src="https://img.shields.io/badge/Google Cloud-4285F4?style=for-the-badge&logo=google cloud&logoColor=white"> <img src="https://img.shields.io/badge/Google Colaboratory-F9AB00?style=for-the-badge&logo=googlecolab&logoColor=black"> <img src="https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=black"> <img src="https://img.shields.io/badge/Google Cloud Storage-4285F4?style=for-the-badge&logo=&logoColor=white"> <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white"> <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=black"> <img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=redux&logoColor=black"> <img src="https://img.shields.io/badge/Redux Saga-999999?style=for-the-badge&logo=reduxSaga&logoColor=black"> <img src="https://img.shields.io/badge/styled components-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=black"> <img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black"> <img src="https://img.shields.io/badge/Jquery-0769AD?style=for-the-badge&logo=Jquery&logoColor=black"> <img src="https://img.shields.io/badge/pytorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=black">
 
+
+
+---
+## System Architecture
+![system architecture](https://user-images.githubusercontent.com/68267278/126674124-fcd2b432-1eb4-4234-a262-df2608a89284.png)
 
 
     Backend: Flask
@@ -58,7 +58,7 @@ Backend: http://localhost:5000
  
 ```
 ### 1) Text To Speech
-![TTS](https://user-images.githubusercontent.com/78634177/126648363-72c2741d-6e41-4185-8da4-28f6185be1fb.PNG)
+![tts page2](https://user-images.githubusercontent.com/78634177/127527064-b4e27eb6-aabe-4ad8-a756-9aea44a4b82d.PNG)
 
 - Enter the text you want to convert and select the desired voice to play the text as the corresponding voice.
 
@@ -68,11 +68,13 @@ Backend: http://localhost:5000
   the tone and pronounce of voice based Glow TTS Neural Network. 
 
   - Reduce Noise and make the voice similar to the actual speaker by Hifi-Gan Neural Network.
+
+ ![TTS](https://user-images.githubusercontent.com/78634177/127528779-1b55231e-fc60-4535-ac0e-7d8f951a890b.PNG)
+ 
   
 ### 2) Singing Voice Synthesis
 
-![VS](https://user-images.githubusercontent.com/78634177/126648439-f6ece78d-6904-4652-9852-d497d01a8660.png)
-
+![tts page1](https://user-images.githubusercontent.com/78634177/127527070-59b68399-489b-4f20-a046-4d5ab732efe5.PNG)
 
 - This will provide the result of synthesizing songs with singer Taeyeon's voice.
 
@@ -87,6 +89,7 @@ Backend: http://localhost:5000
   
   - Reduce Noise and make the voice similar to the actual speaker by Hifi-Gan Neural Network.
 
+![SVS](https://user-images.githubusercontent.com/78634177/127528770-35728bc4-ccb1-41e1-9a36-871dee5a041c.PNG)
 
 
 ---
@@ -190,7 +193,8 @@ Backend: http://localhost:5000
 
 ---
 ## Swagger
-![swagger1](https://user-images.githubusercontent.com/78634177/126656866-4f02effe-2b9d-4320-8f0b-7df92d9ce766.png)
+![image (1)](https://user-images.githubusercontent.com/78634177/127527804-c4c16e1e-817f-4609-a453-5073148b5987.png)
+
 
 ---
 ## Reference
@@ -205,4 +209,3 @@ Backend: http://localhost:5000
 |Sorim Lee|Seoyeong Han|Jieun Park|Youngjin Shin|Donghyun Jang|Sunghan Kim|
 |---|---|---|---|---|---|
 |[**@thfla1105**](https://github.com/thfla1105)|[**@syoung622**](https://github.com/syoung622)|[**@jieun1128**](https://github.com/jieun1128)|[**@yjshin229**](https://github.com/yjshin229)|[**@ww8007**](https://github.com/ww8007)|[**@Dudu-CNU**](https://github.com/Dudu-CNU)
-
