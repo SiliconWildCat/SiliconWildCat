@@ -21,7 +21,7 @@ const rootReducer = (state: State | undefined, action: AnyAction) => {
       console.log('HYDRATE');
       return action.payload;
     default: {
-      const combineReducer = combineReducers({ counter, loading, tts, music });
+      const combineReducer = combineReducers({ loading, tts, music });
       return combineReducer(state, action);
     }
   }
@@ -31,5 +31,5 @@ export type RootState = ReturnType<typeof rootReducer>;
 export default rootReducer;
 
 export function* rootSaga() {
-  yield all([sampleSaga(), ttsSaga(), musicSaga()]);
+  yield all([ttsSaga(), musicSaga()]);
 }

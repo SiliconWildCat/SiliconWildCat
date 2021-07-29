@@ -9,4 +9,5 @@ export interface IMusic {
   musics: slides[];
   music: string;
   Title: string;
+  error: string;
 }

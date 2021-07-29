@@ -150,7 +150,7 @@ const MusicList = styled.div<{ index: number; selectNum: number }>`
 
     &:hover {
       font-weight: 400;
-      border: 0.3rem solid #8e63e8;
+
       -webkit-tap-highlight-color: transparent;
     }
   }
@@ -179,6 +179,10 @@ const MusicList = styled.div<{ index: number; selectNum: number }>`
         fontWeight: 400,
         border: '0.3rem solid #8e63e8',
       }}
+    &:hover {
+      font-weight: 400;
+      -webkit-tap-highlight-color: transparent;
+    }
   }
   @media (max-width: ${({ theme }) => theme.mobile.iphone_x}) {
     font-size: 1rem;
@@ -187,10 +191,11 @@ const MusicList = styled.div<{ index: number; selectNum: number }>`
       props.index === props.selectNum && {
         fontWeight: 400,
         border: '0.3rem solid #8e63e8',
-      }}/* &:hover {
-      font-weight: 300;
-      border: 0.3rem solid white;
-    } */
+      }} &:hover {
+      font-weight: 400;
+
+      -webkit-tap-highlight-color: transparent;
+    }
   }
 `;
 export default function ToggleMenu() {
@@ -203,7 +208,7 @@ export default function ToggleMenu() {
   const onChangeNum = ({ e, index }) => {
     e.preventDefault();
     dispatch(changeSelect(index));
-    // dispatch(getMusic(musics[index].title)); //여기 주석 푸시면 됩니다.
+    dispatch(getMusic(musics[index].title));
   };
   return (
     <div className="toggle_bar">
