@@ -57,7 +57,7 @@ const ttsSlice = createSlice({
       const getTitle = action.payload.data.title;
       state.mp3File2 = getTitle;
       if (state.saveText === getTitle) {
-        state.mp3File = `http://34.81.205.172:5000${url}`;
+        state.mp3File = `https://34.81.205.172:5000${url}`;
       }
       state.saveText = '';
     },
