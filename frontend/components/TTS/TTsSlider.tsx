@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { submit, tts, submitTTS, setInitialText } from '../../modules/tts';
 import Link from 'next/link';
@@ -16,12 +16,13 @@ const options = [
 
 export default function TTsSlider({ Select }) {
   const scrollRef = useRef(null);
-  const { text, mp3File, type, loadingWAV } = useAppSelector(
+  const { text, mp3File, type, loadingWAV, mp3File2 } = useAppSelector(
     ({ tts, loading }: RootState) => ({
       text: tts.text,
       mp3File: tts.mp3File,
       type: tts.type,
       loadingWAV: loading['tts/SUBMIT_TTS'],
+      mp3File2: tts.mp3File2,
     })
   );
   const [IMAGE_PARTS, onOne] = useState(4);
@@ -36,21 +37,24 @@ export default function TTsSlider({ Select }) {
     label: 'KSS',
     key: 0,
   });
-
+  const count = useRef(0);
   const dispatch = useAppDispatch();
-  const onSubmitText = (e) => {
-    e.preventDefault();
-    const info: submit = { text: text, type: type };
-    dispatch(submitTTS(info));
-    dispatch(initialText());
-    dispatch(setInitialText());
-  };
+  const onSubmitText = useCallback(
+    (e) => {
+      e.preventDefault();
+      const info: submit = { text: text, type: type };
+      dispatch(submitTTS(info));
+      dispatch(initialText());
+      dispatch(setInitialText());
+    },
+    [text, type, dispatch]
+  );
   useEffect(() => {
     window.clearTimeout(changeTO);
-  }, [changeTO, mp3File]);
+  }, [changeTO, mp3File, mp3File2]);
   useEffect(() => {
     dispatch(setInitialText());
-  }, []);
+  }, [type, dispatch]);
   useEffect(() => {
     setTimeout(() => {
       onOne4({
@@ -60,6 +64,7 @@ export default function TTsSlider({ Select }) {
       });
     }, 0);
   }, [value]);
+
   useEffect(() => {
     const { label } = value;
     dispatch(changeType(label));
@@ -135,6 +140,7 @@ export default function TTsSlider({ Select }) {
                       top: '80%',
                       width: '60%',
                       borderRadius: '8px',
+                      zIndex: mp3File2,
                     }}
                     src={mp3File}
                     autoPlay={true}
