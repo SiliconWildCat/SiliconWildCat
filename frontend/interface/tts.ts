@@ -3,5 +3,5 @@ export interface ITts {
   mp3File: string;
   type: string;
   error: string;
-  mp3File2: string;
+  mp3File2: number;
 }
