@@ -5,10 +5,10 @@ COPY package.json yarn.lock ./
 RUN yarn
 
 ENV CONTINUOUS_INTEGRATION=1
-ENV NODE_ENV=dev
-# ENV NODE_ENV=production
+# ENV NODE_ENV=dev
+ENV NODE_ENV=production
 COPY . .
 RUN yarn build
 
 EXPOSE 3000 
-CMD [ "yarn", "dev" ]
+CMD [ "yarn", "start" ]
