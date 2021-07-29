@@ -33,10 +33,11 @@ swaggerui_blueprint = get_swaggerui_blueprint(
 
 app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 
-global count = 0
 
+count = 0
 @app.route('/TTS', methods=['POST'])
 def text_speech(): 
+    global count
     if request.method=='POST':   
         data=request.get_json()
         speech=data['speech']
