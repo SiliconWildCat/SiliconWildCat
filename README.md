@@ -198,3 +198,11 @@ Backend: http://localhost:5000
 - MLP Singer: https://github.com/neosapience/mlp-singer
 - g2pK: https://github.com/sce-tts/g2pK.git
 - TTS: https://github.com/sce-tts/TTS.git
+
+## Team Members
+- 2021 Silicon Valley Summer Online Internship Program
+
+|Sorim Lee|Seoyeong Han|Jieun Park|Youngjin Shin|Donghyun Jang|Sunghan Kim|
+|---|---|---|---|---|---|
+|@thfla1105|@syoung622|@jieun1128|@yjshin229|@ww8007|@Dudu-CNU
+
