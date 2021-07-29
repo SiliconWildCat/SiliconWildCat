@@ -204,5 +204,5 @@ Backend: http://localhost:5000
 
 |Sorim Lee|Seoyeong Han|Jieun Park|Youngjin Shin|Donghyun Jang|Sunghan Kim|
 |---|---|---|---|---|---|
-|@thfla1105|@syoung622|@jieun1128|@yjshin229|@ww8007|@Dudu-CNU
+|[**@thfla1105**](https://github.com/thfla1105)|[**@syoung622**](https://github.com/syoung622)|[**@jieun1128**](https://github.com/jieun1128)|[**@yjshin229**](https://github.com/yjshin229)|[**@ww8007**](https://github.com/ww8007)|[**@Dudu-CNU**](https://github.com/Dudu-CNU)
 
